@@ -1,11 +1,186 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-Hant">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+     <meta charset="UTF-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <title>營運組成分析</title>
+     <style>
+          body {
+               margin: 0;
+               font-family: "Lato", sans-serif;
+               background-color: #f5f7fa;
+          }
+
+          header {
+               margin-left: 200px;
+               padding: 16px;
+               font-size: 24px;
+               font-weight: bold;
+          }
+
+          .content {
+               margin-left: 200px;
+               padding: 24px;
+               display: flex;
+               gap: 24px;
+               width: calc(75% - 200px);
+          }
+
+          .card {
+               flex: 1;
+               background-color: white;
+               border-radius: 12px;
+               box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+               padding: 20px;
+               display: flex;
+               flex-direction: column;
+               align-items: center;
+          }
+
+          .card h4 {
+               margin: 0;
+               font-size: 16px;
+               color: #555;
+          }
+
+          .amount {
+               font-size: 24px;
+               color: #007bff;
+               margin: 8px 0;
+          }
+
+          .circle {
+               width: 200px;
+               height: 200px;
+               border-radius: 50%;
+               margin-top: 16px;
+          }
+
+          .income .circle {
+               background-color: white;
+               border: 1px solid #ccc;
+          }
+
+          .expense .circle {
+               background-color: #9be132;
+          }
+
+          /* sidebar (簡化版) */
+          .sidebar {
+               margin: 0;
+               padding: 0;
+               width: 200px;
+               background-color: #f1f1f1;
+               position: fixed;
+               height: 100%;
+               overflow: auto;
+          }
+
+          .sidebar a {
+               display: block;
+               color: black;
+               padding: 16px;
+               text-decoration: none;
+          }
+
+          .sidebar a.active {
+               background-color: #04AA6D;
+               color: white;
+          }
+
+          .sidebar a:hover:not(.active) {
+               background-color: #555;
+               color: white;
+          }
+
+          @media screen and (max-width: 700px) {
+               .sidebar {
+                    width: 100%;
+                    height: auto;
+                    position: relative;
+               }
+
+               .sidebar a {
+                    float: left;
+               }
+
+               .content,
+               header {
+                    margin-left: 0;
+               }
+          }
+
+          @media screen and (max-width: 400px) {
+               .sidebar a {
+                    text-align: center;
+                    float: none;
+               }
+
+               .content {
+                    flex-direction: column;
+                    align-items: center;
+               }
+          }
+          .container {
+               display: flex;
+               flex-direction: column;
+               justify-content: space-around;
+               margin-top: 20px;
+               padding: 20px;
+               background-color: white;
+               border-radius: 12px;
+               box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+          }
+     </style>
 </head>
+
 <body>
-    
+
+     <!-- Sidebar -->
+     <div class="sidebar">
+          <a class="active" href="#index">首頁</a>
+          <a href="#accountbooks">收支帳簿</a>
+          <a href="#assets">資金管理</a>
+          <a href="#assets">資產管理</a>
+          <a href="#incomeStatement">我的報表</a>
+          <a href="#subsidiaryLedger">會計科目</a>
+          <a href="#about">扣繳申報</a>
+          <a href="#about">設定</a>
+     </div>
+
+     <!-- Header -->
+     <header>營運組成分析</header>
+
+     <!-- Content -->
+     <div class="content">
+          <div class="card income">
+               <h4>2025年總收入</h4>
+               <div class="amount">$ 0</div>
+               <div class="circle"></div>
+          </div>
+
+          <div class="card expense">
+               <h4>2025年總支出</h4>
+               <div class="amount">$ 100</div>
+               <div class="circle"></div>
+          </div>
+
+          <div class="container">
+          <div class="item">2025年總收入
+               <div class="amount">$ 0</div>
+          </div>
+          <div class="item">2025年總支出
+               <div class="amount">$ 100</div>
+          </div>
+          <div class="item">2025年總損益
+               <div class="amount">$ -100</div>
+          </div>
+     </div>
+
+     
+     
+
 </body>
+
 </html>
