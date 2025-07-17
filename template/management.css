@@ -1,0 +1,67 @@
+body {
+     margin: 0;
+     font-family: "Lato", sans-serif;
+     background-color: #f5f7fa;
+}
+
+header {
+     margin-left: 200px;
+     padding: 16px;
+     font-size: 40px;
+     font-weight: bold;
+}
+
+
+/* sidebar (簡化版) */
+.sidebar {
+     margin: 0;
+     padding: 0;
+     width: 200px;
+     background-color: #f1f1f1;
+     position: fixed;
+     height: 100%;
+     overflow: auto;
+}
+
+.sidebar a {
+     display: block;
+     color: black;
+     padding: 16px;
+     text-decoration: none;
+}
+
+.sidebar a.active {
+     background-color: #04AA6D;
+     color: white;
+}
+
+.sidebar a:hover:not(.active) {
+     background-color: #555;
+     color: white;
+}
+
+.menu {
+     width: auto;
+     margin-left: 250px;
+     display: flex;
+     flex-direction: row;
+     gap: 20px;
+}
+
+.btn {
+     display: flex;
+     justify-content: center;
+     align-items: center;
+     text-align: center;
+     width: 150px;
+     height: 150px;
+     background-color: white;
+     color: blue;
+     border: 2px solid blue;
+     border-radius: 16px;
+     font-size: 30px;
+     font-weight: bold;
+     cursor: pointer;
+     transition: background-color 0.3s;
+     text-decoration: none;
+}
