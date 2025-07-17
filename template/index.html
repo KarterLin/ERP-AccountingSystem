@@ -23,12 +23,14 @@
                margin-left: 200px;
                padding: 24px;
                display: flex;
+               flex-wrap: wrap;
                gap: 24px;
-               width: calc(75% - 200px);
+               width: calc(100% - 200px);
           }
 
           .card {
-               flex: 1;
+               flex: 1 1 300px;
+               max-width: 500px;
                background-color: white;
                border-radius: 12px;
                box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
@@ -122,15 +124,66 @@
                     align-items: center;
                }
           }
-          .container {
-               display: flex;
-               flex-direction: column;
-               justify-content: space-around;
-               margin-top: 20px;
-               padding: 20px;
+
+          .financial-summary {
+               flex: 1;
                background-color: white;
                border-radius: 12px;
                box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+               padding: 20px;
+               display: flex;
+               flex-direction: column;
+               align-items: center;
+               /* ✅ 跟其他卡片一致 */
+               justify-content: space-between;
+          }
+
+          .financial-summary .item {
+               border-bottom: 1px solid #eee;
+               padding-bottom: 10px;
+               width: 100%;
+          }
+
+          .financial-summary .item:last-child {
+               border-bottom: none;
+          }
+
+          .financial-summary .item h4 {
+               margin: 0;
+               font-size: 14px;
+               color: #333;
+          }
+
+          table {
+               border-collapse: collapse;
+               margin: 40px auto;
+               /* ✅ 置中 */
+               width: calc(100% - 240px);
+               /* ✅ 考慮 sidebar 的寬度 */
+               max-width: 1000px;
+               background-color: white;
+               box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+               border-radius: 10px;
+               overflow: hidden;
+               font-family: "Lato", sans-serif;
+          }
+
+          th,
+          td {
+               padding: 12px 16px;
+               text-align: center;
+               border-bottom: 1px solid #ddd;
+               font-size: 14px;
+          }
+
+          th {
+               background-color: #007bff;
+               color: white;
+               font-weight: bold;
+          }
+
+          tr:hover {
+               background-color: #f1f1f1;
           }
      </style>
 </head>
@@ -166,20 +219,77 @@
                <div class="circle"></div>
           </div>
 
-          <div class="container">
-          <div class="item">2025年總收入
-               <div class="amount">$ 0</div>
-          </div>
-          <div class="item">2025年總支出
-               <div class="amount">$ 100</div>
-          </div>
-          <div class="item">2025年總損益
-               <div class="amount">$ -100</div>
+          <div class="card financial-summary">
+               <div class="item">
+                    <h4>2025年總收入</h4>
+                    <div class="amount">$ 0</div>
+               </div>
+               <div class="item">
+                    <h4>2025年總支出</h4>
+                    <div class="amount">$ 100</div>
+               </div>
+               <div class="item">
+                    <h4>2025年總損益</h4>
+                    <div class="amount">$ -100</div>
+               </div>
           </div>
      </div>
+     <table>
+          <tr>
+               <th>公司代號</th>
+               <th>公司簡稱</th>
+               <th>發言日期</th>
+               <th>發言時間</th>
+               <th>主旨</th>
+          </tr>
+          <tr>
+               <td>Alfreds Futterkiste</td>
+               <td>Maria Anders</td>
+               <td>Germany</td>
+               <td>Germany</td>
+               <td>Germany</td>
+          </tr>
+          <tr>
+               <td>Centro comercial Moctezuma</td>
+               <td>Francisco Chang</td>
+               <td>Mexico</td>
+               <td>Germany</td>
+               <td>Germany</td>
+          </tr>
+          <tr>
+               <td>Alfreds Futterkiste</td>
+               <td>Maria Anders</td>
+               <td>Germany</td>
+               <td>Germany</td>
+               <td>Germany</td>
+          </tr>
+          <tr>
+               <td>Alfreds Futterkiste</td>
+               <td>Maria Anders</td>
+               <td>Germany</td>
+               <td>Germany</td>
+               <td>Germany</td>
+          </tr>
+          <tr>
+               <td>Alfreds Futterkiste</td>
+               <td>Maria Anders</td>
+               <td>Germany</td>
+               <td>Germany</td>
+               <td>Germany</td>
+          </tr>
+          <tr>
+               <td>Alfreds Futterkiste</td>
+               <td>Maria Anders</td>
+               <td>Germany</td>
+               <td>Germany</td>
+               <td>Germany</td>
+          </tr>
+     </table>
 
-     
-     
+
+
+
+
 
 </body>
 
