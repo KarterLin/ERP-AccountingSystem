@@ -1,23 +1,104 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="./journalEntries.css">
 </head>
+
 <body>
     <!-- Sidebar -->
-     <div class="sidebar">
-          <a class="active" href="#index">首頁</a>
-          <a href="#accountbooks">收支帳簿</a>
-          <a href="#assets">資金管理</a>
-          <a href="#assets">資產管理</a>
-          <a href="#incomeStatement">我的報表</a>
-          <a href="#subsidiaryLedger">會計科目</a>
-          <a href="#about">扣繳申報</a>
-          <a href="#about">設定</a>
-     </div>
-    
+    <div class="sidebar">
+        <a class="active" href="#index">首頁</a>
+        <a href="#accountbooks">帳務管理</a>
+        <a href="#assets">資金管理</a>
+        <a href="#assets">資產管理</a>
+        <a href="#incomeStatement">我的報表</a>
+        <a href="#subsidiaryLedger">會計科目</a>
+        <a href="#about">扣繳申報</a>
+        <a href="#about">設定</a>
+    </div>
+
+    <!-- 主要內容區域 -->
+    <div class="main-content">
+        <a href="accountbooks.html" class="header-link">回到帳務管理</a>
+        
+        <div class="entry-form-container">
+            <form id="journal-entry-form">
+                <table id="entries-table">
+                    <tr>
+                        <th>傳票編號</th>
+                        <th>科目編號</th>
+                        <th>科目名稱</th>
+                        <th>借/貸</th>
+                        <th>借方金額</th>
+                        <th>貸方金額</th>
+                        <th>摘要</th>
+                        <th>操作</th>
+                    </tr>
+                    <!-- 預設兩組欄位 -->
+                    <tr>
+                        <td><input type="text" name="voucher_no[]" required></td>
+                        <td><input type="text" name="account_no[]" required></td>
+                        <td><input type="text" name="account_name[]" required></td>
+                        <td>
+                            <select name="debit_credit[]" required>
+                                <option value="借">借</option>
+                                <option value="貸">貸</option>
+                            </select>
+                        </td>
+                        <td><input type="number" name="debit_amount[]" min="0" step="1"></td>
+                        <td><input type="number" name="credit_amount[]" min="0" step="1"></td>
+                        <td><input type="text" name="summary[]"></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td><input type="text" name="voucher_no[]" required></td>
+                        <td><input type="text" name="account_no[]" required></td>
+                        <td><input type="text" name="account_name[]" required></td>
+                        <td>
+                            <select name="debit_credit[]" required>
+                                <option value="借">借</option>
+                                <option value="貸">貸</option>
+                            </select>
+                        </td>
+                        <td><input type="number" name="debit_amount[]" min="0" step="1"></td>
+                        <td><input type="number" name="credit_amount[]" min="0" step="1"></td>
+                        <td><input type="text" name="summary[]"></td>
+                        <td></td>
+                    </tr>
+                </table>
+                <button type="button" id="add-row">＋ 新增一組</button>
+                <button type="submit">送出分錄</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('add-row').onclick = function() {
+            const table = document.getElementById('entries-table');
+            const newRow = table.rows[1].cloneNode(true);
+            
+            // 清空欄位
+            Array.from(newRow.querySelectorAll('input')).forEach(input => input.value = '');
+            Array.from(newRow.querySelectorAll('select')).forEach(select => select.selectedIndex = 0);
+            
+            // 為新增的行添加刪除按鈕
+            const lastCell = newRow.cells[newRow.cells.length - 1];
+            lastCell.innerHTML = '<button type="button" class="remove-row">-</button>';
+            
+            table.appendChild(newRow);
+        };
+
+        document.getElementById('entries-table').addEventListener('click', function(e) {
+            if (e.target.classList.contains('remove-row')) {
+                const row = e.target.closest('tr');
+                if (this.rows.length > 3) row.remove(); // 保留至少兩組（標題行 + 兩個預設行）
+            }
+        });
+    </script>
 </body>
+
 </html>
