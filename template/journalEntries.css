@@ -1,203 +1,211 @@
 /* 重置默認邊距和填充 */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
+ * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-body {
-    margin: 0;
-    font-family: "Lato", sans-serif;
-    background-color: #f5f7fa;
-}
+        body {
+            margin: 0;
+            font-family: "Lato", sans-serif;
+            background-color: #f5f7fa;
+        }
 
-/* 側邊欄樣式 */
-.sidebar {
-    margin: 0;
-    padding: 0;
-    width: 200px;
-    background-color: #f1f1f1;
-    position: fixed;
-    height: 100%;
-    overflow: auto;
-    z-index: 1000;
-}
+        /* 側邊欄樣式 */
+        .sidebar {
+            margin: 0;
+            padding: 0;
+            width: 200px;
+            background-color: #f1f1f1;
+            position: fixed;
+            height: 100%;
+            overflow: auto;
+            z-index: 1000;
+        }
 
-.sidebar a {
-    display: block;
-    color: black;
-    padding: 16px;
-    text-decoration: none;
-}
+        .sidebar a {
+            display: block;
+            color: black;
+            padding: 16px;
+            text-decoration: none;
+        }
 
-.sidebar a.active {
-    background-color: #04AA6D;
-    color: white;
-}
+        .sidebar a.active {
+            background-color: #04AA6D;
+            color: white;
+        }
 
-.sidebar a:hover:not(.active) {
-    background-color: #555;
-    color: white;
-}
+        .sidebar a:hover:not(.active) {
+            background-color: #555;
+            color: white;
+        }
 
-/* 主要內容區域 */
-.main-content {
-    margin-left: 200px;
-    /* 為側邊欄留出空間 */
-    padding: 20px;
-    min-height: 100vh;
-}
+        /* 主要內容區域 */
+        .main-content {
+            margin-left: 200px; /* 為側邊欄留出空間 */
+            padding: 20px;
+            min-height: 100vh;
+        }
 
-/* 頂部連結 */
-.header-link {
-    display: inline-block;
-    margin-bottom: 20px;
-    padding: 10px 20px;
-    background-color: #3498db;
-    color: white;
-    text-decoration: none;
-    border-radius: 5px;
-    transition: background-color 0.3s;
-}
+        /* 頂部連結 */
+        .header-link {
+            display: inline-block;
+            margin-bottom: 20px;
+            padding: 10px 20px;
+            background-color: #3498db;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
 
-.header-link:hover {
-    background-color: #2980b9;
-}
+        .header-link:hover {
+            background-color: #2980b9;
+        }
 
-/* 表單容器 */
-.entry-form-container {
-    background-color: white;
-    padding: 30px;
-    border-radius: 8px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    max-width: 100%;
-    overflow-x: auto;
-}
+        /* 表單容器 */
+        .entry-form-container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            max-width: 100%;
+            overflow-x: auto;
+        }
 
-/* 表格樣式 */
-#entries-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-bottom: 20px;
-    font-size: 14px;
-}
+        /* 表格樣式 */
+        #entries-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+            font-size: 14px;
+        }
 
-#entries-table th,
-#entries-table td {
-    border: 1px solid #ddd;
-    padding: 12px 8px;
-    text-align: center;
-}
+        #entries-table th,
+        #entries-table td {
+            border: 1px solid #ddd;
+            padding: 12px 8px;
+            text-align: center;
+        }
 
-#entries-table th {
-    background-color: #34495e;
-    color: white;
-    font-weight: bold;
-}
+        #entries-table th {
+            background-color: #34495e;
+            color: white;
+            font-weight: bold;
+        }
 
-#entries-table tr:nth-child(even) {
-    background-color: #f9f9f9;
-}
+        #entries-table tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
 
-#entries-table tr:hover {
-    background-color: #f1f1f1;
-}
+        #entries-table tr:hover {
+            background-color: #f1f1f1;
+        }
 
-/* 輸入欄位樣式 */
-input[type="text"],
-input[type="number"],
-select {
-    width: 100%;
-    padding: 8px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    font-size: 14px;
-}
+        /* 輸入欄位樣式 */
+        input[type="text"],
+        input[type="number"],
+        input[type="date"],
+        select {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 14px;
+        }
 
-input[type="text"]:focus,
-input[type="number"]:focus,
-select:focus {
-    outline: none;
-    border-color: #3498db;
-    box-shadow: 0 0 5px rgba(52, 152, 219, 0.3);
-}
+        input[type="text"]:focus,
+        input[type="number"]:focus,
+        input[type="date"]:focus,
+        select:focus {
+            outline: none;
+            border-color: #3498db;
+            box-shadow: 0 0 5px rgba(52, 152, 219, 0.3);
+        }
 
-/* 按鈕樣式 */
-button {
-    padding: 10px 20px;
-    margin: 5px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 14px;
-    transition: background-color 0.3s;
-}
+        /* 被鎖定的輸入欄位 */
+        input[type="number"]:disabled {
+            background-color: #f5f5f5;
+            color: #999;
+            cursor: not-allowed;
+        }
 
-#add-row {
-    background-color: #27ae60;
-    color: white;
-}
+        /* 按鈕樣式 */
+        button {
+            padding: 10px 20px;
+            margin: 5px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: background-color 0.3s;
+        }
 
-#add-row:hover {
-    background-color: #219a52;
-}
+        #add-row {
+            background-color: #27ae60;
+            color: white;
+        }
 
-button[type="submit"] {
-    background-color: #3498db;
-    color: white;
-}
+        #add-row:hover {
+            background-color: #219a52;
+        }
 
-button[type="submit"]:hover {
-    background-color: #2980b9;
-}
+        button[type="submit"] {
+            background-color: #3498db;
+            color: white;
+        }
 
-.remove-row {
-    background-color: #e74c3c;
-    color: white;
-    width: 30px;
-    height: 30px;
-    border-radius: 50%;
-    padding: 0;
-    margin: 0;
-}
+        button[type="submit"]:hover {
+            background-color: #2980b9;
+        }
 
-.remove-row:hover {
-    background-color: #c0392b;
-}
+        .remove-row {
+            background-color: #e74c3c;
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            padding: 0;
+            margin: 0;
+        }
 
-/* 響應式設計 */
-@media screen and (max-width: 700px) {
-    .sidebar {
-        width: 100%;
-        height: auto;
-        position: relative;
-    }
+        .remove-row:hover {
+            background-color: #c0392b;
+        }
 
-    .sidebar a {
-        float: left;
-    }
+        /* 響應式設計 */
+        @media screen and (max-width: 700px) {
+            .sidebar {
+                width: 100%;
+                height: auto;
+                position: relative;
+            }
 
-    .main-content {
-        margin-left: 0;
-    }
-}
+            .sidebar a {
+                float: left;
+            }
 
-@media screen and (max-width: 400px) {
-    .sidebar a {
-        text-align: center;
-        float: none;
-    }
+            .main-content {
+                margin-left: 0;
+            }
+        }
 
-    .entry-form-container {
-        padding: 15px;
-    }
+        @media screen and (max-width: 400px) {
+            .sidebar a {
+                text-align: center;
+                float: none;
+            }
 
-    #entries-table {
-        font-size: 12px;
-    }
+            .entry-form-container {
+                padding: 15px;
+            }
 
-    #entries-table th,
-    #entries-table td {
-        padding: 8px 4px;
-    }
-}
+            #entries-table {
+                font-size: 12px;
+            }
+
+            #entries-table th,
+            #entries-table td {
+                padding: 8px 4px;
+            }
+        }

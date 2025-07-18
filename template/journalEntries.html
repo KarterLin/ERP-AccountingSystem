@@ -2,10 +2,10 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="./journalEntries.css">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Journal Entry</title>
+    <link rel="stylesheet" href="./journalEntries.css" />
 </head>
 
 <body>
@@ -24,12 +24,14 @@
     <!-- 主要內容區域 -->
     <div class="main-content">
         <a href="accountbooks.html" class="header-link">回到帳務管理</a>
-        
+
         <div class="entry-form-container">
             <form id="journal-entry-form">
+                <label for="entry-date">入帳日期：</label>
+                <input type="date" id="entry-date" name="entryDate" required><br><br>
+
                 <table id="entries-table">
                     <tr>
-                        <th>傳票編號</th>
                         <th>科目編號</th>
                         <th>科目名稱</th>
                         <th>借/貸</th>
@@ -38,38 +40,37 @@
                         <th>摘要</th>
                         <th>操作</th>
                     </tr>
-                    <!-- 預設兩組欄位 -->
                     <tr>
-                        <td><input type="text" name="voucher_no[]" required></td>
-                        <td><input type="text" name="account_no[]" required></td>
-                        <td><input type="text" name="account_name[]" required></td>
                         <td>
-                            <select name="debit_credit[]" required>
-                                <option value="借">借</option>
-                                <option value="貸">貸</option>
+                            <select name="accountCode[]" class="account-code" required>
+                                <option value="">請選擇科目編號</option>
                             </select>
                         </td>
-                        <td><input type="number" name="debit_amount[]" min="0" step="1"></td>
-                        <td><input type="number" name="credit_amount[]" min="0" step="1"></td>
-                        <td><input type="text" name="summary[]"></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td><input type="text" name="voucher_no[]" required></td>
-                        <td><input type="text" name="account_no[]" required></td>
-                        <td><input type="text" name="account_name[]" required></td>
                         <td>
-                            <select name="debit_credit[]" required>
-                                <option value="借">借</option>
-                                <option value="貸">貸</option>
+                            <select name="accountName[]" class="account-name" required>
+                                <option value="">請選擇科目名稱</option>
                             </select>
                         </td>
-                        <td><input type="number" name="debit_amount[]" min="0" step="1"></td>
-                        <td><input type="number" name="credit_amount[]" min="0" step="1"></td>
-                        <td><input type="text" name="summary[]"></td>
+                        <td>
+                            <select name="debitCredit[]" class="debit-credit" required>
+                                <option value="">請選擇</option>
+                                <option value="debit">借</option>
+                                <option value="credit">貸</option>
+                            </select>
+                        </td>
+                        <td><input type="number" name="debit[]" min="0" step="1" class="debit-amount"></td>
+                        <td><input type="number" name="credit[]" min="0" step="1" class="credit-amount"></td>
+                        <td><input type="text" name="description[]"></td>
                         <td></td>
                     </tr>
                 </table>
+
+                <div id="balance-check" style="margin-top: 10px;">
+                    <strong>借方總額：</strong><span id="total-debit">0</span>，
+                    <strong>貸方總額：</strong><span id="total-credit">0</span>，
+                    <strong>差額：</strong><span id="balance-diff" style="color:red;">0</span>
+                </div>
+
                 <button type="button" id="add-row">＋ 新增一組</button>
                 <button type="submit">送出分錄</button>
             </form>
@@ -77,26 +78,199 @@
     </div>
 
     <script>
-        document.getElementById('add-row').onclick = function() {
+        let accountsData = [];
+
+        function getCurrentDate() {
+            const today = new Date();
+            return today.toISOString().split('T')[0];
+        }
+
+        function setDefaultDates() {
+            const dateInput = document.getElementById('entry-date');
+            if (!dateInput.value) dateInput.value = getCurrentDate();
+        }
+
+        async function loadAccountsData() {
+            try {
+                const response = await fetch('/api/accounts');
+                if (response.ok) {
+                    accountsData = await response.json();
+                } else {
+                    throw new Error();
+                }
+            } catch {
+                accountsData = [
+                    { accountCode: '1001', accountName: '現金' },
+                    { accountCode: '1002', accountName: '銀行存款' },
+                    { accountCode: '2001', accountName: '應付帳款' },
+                    { accountCode: '3001', accountName: '資本' },
+                    { accountCode: '4001', accountName: '銷貨收入' },
+                    { accountCode: '5001', accountName: '銷貨成本' }
+                ];
+            }
+            populateAccountSelects();
+        }
+
+        function populateAccountSelects() {
+            document.querySelectorAll('.account-code').forEach(select => {
+                select.innerHTML = '<option value="">請選擇科目編號</option>';
+                accountsData.forEach(account => {
+                    const option = document.createElement('option');
+                    option.value = account.accountCode;
+                    option.textContent = account.accountCode;
+                    select.appendChild(option);
+                });
+            });
+            document.querySelectorAll('.account-name').forEach(select => {
+                select.innerHTML = '<option value="">請選擇科目名稱</option>';
+                accountsData.forEach(account => {
+                    const option = document.createElement('option');
+                    option.value = account.accountName;
+                    option.textContent = account.accountName;
+                    select.appendChild(option);
+                });
+            });
+        }
+
+        function handleDebitCreditChange(select) {
+            const row = select.closest('tr');
+            const debitInput = row.querySelector('.debit-amount');
+            const creditInput = row.querySelector('.credit-amount');
+            if (select.value === 'debit') {
+                debitInput.disabled = false;
+                debitInput.value = '';
+                creditInput.disabled = true;
+                creditInput.value = '0';
+            } else if (select.value === 'credit') {
+                creditInput.disabled = false;
+                creditInput.value = '';
+                debitInput.disabled = true;
+                debitInput.value = '0';
+            } else {
+                debitInput.disabled = false;
+                creditInput.disabled = false;
+                debitInput.value = '';
+                creditInput.value = '';
+            }
+        }
+
+        function handleAccountCodeChange(select) {
+            const row = select.closest('tr');
+            const nameSelect = row.querySelector('.account-name');
+            const selected = accountsData.find(a => a.accountCode === select.value);
+            nameSelect.value = selected ? selected.accountName : '';
+        }
+
+        function handleAccountNameChange(select) {
+            const row = select.closest('tr');
+            const codeSelect = row.querySelector('.account-code');
+            const selected = accountsData.find(a => a.accountName === select.value);
+            codeSelect.value = selected ? selected.accountCode : '';
+        }
+
+        function updateBalanceSummary() {
+            let totalDebit = 0;
+            let totalCredit = 0;
+            document.querySelectorAll('input[name="debit[]"]').forEach(input => {
+                totalDebit += parseFloat(input.value || '0');
+            });
+            document.querySelectorAll('input[name="credit[]"]').forEach(input => {
+                totalCredit += parseFloat(input.value || '0');
+            });
+            const diff = totalDebit - totalCredit;
+            document.getElementById('total-debit').textContent = totalDebit.toFixed(2);
+            document.getElementById('total-credit').textContent = totalCredit.toFixed(2);
+            const diffSpan = document.getElementById('balance-diff');
+            diffSpan.textContent = diff.toFixed(2);
+            diffSpan.style.color = diff === 0 ? 'green' : 'red';
+        }
+
+        function addEntryRow() {
             const table = document.getElementById('entries-table');
             const newRow = table.rows[1].cloneNode(true);
-            
-            // 清空欄位
-            Array.from(newRow.querySelectorAll('input')).forEach(input => input.value = '');
-            Array.from(newRow.querySelectorAll('select')).forEach(select => select.selectedIndex = 0);
-            
-            // 為新增的行添加刪除按鈕
-            const lastCell = newRow.cells[newRow.cells.length - 1];
-            lastCell.innerHTML = '<button type="button" class="remove-row">-</button>';
-            
-            table.appendChild(newRow);
-        };
+            Array.from(newRow.querySelectorAll('input')).forEach(i => {
+                i.value = '';
+                i.disabled = false;
+            });
+            Array.from(newRow.querySelectorAll('select')).forEach(s => s.selectedIndex = 0);
 
-        document.getElementById('entries-table').addEventListener('click', function(e) {
-            if (e.target.classList.contains('remove-row')) {
-                const row = e.target.closest('tr');
-                if (this.rows.length > 3) row.remove(); // 保留至少兩組（標題行 + 兩個預設行）
+            const currentRowCount = table.rows.length - 1; // 不含表頭
+            if (currentRowCount >= 2) {
+                newRow.cells[newRow.cells.length - 1].innerHTML = '<button type="button" class="remove-row">-</button>';
+            } else {
+                newRow.cells[newRow.cells.length - 1].innerHTML = '';
             }
+
+            table.appendChild(newRow);
+            populateAccountSelects();
+        }
+
+        document.getElementById('entries-table').addEventListener('input', function (e) {
+            if (e.target.name === 'debit[]' || e.target.name === 'credit[]') {
+                updateBalanceSummary();
+            }
+        });
+
+        document.getElementById('entries-table').addEventListener('change', function (e) {
+            if (e.target.classList.contains('debit-credit')) handleDebitCreditChange(e.target);
+            else if (e.target.classList.contains('account-code')) handleAccountCodeChange(e.target);
+            else if (e.target.classList.contains('account-name')) handleAccountNameChange(e.target);
+        });
+
+        document.getElementById('add-row').onclick = addEntryRow;
+
+        document.getElementById('entries-table').addEventListener('click', function (e) {
+            if (e.target && e.target.classList.contains('remove-row')) {
+                e.target.closest('tr').remove();
+                updateBalanceSummary();
+            }
+        });
+
+        document.getElementById('journal-entry-form').addEventListener('submit', async function (e) {
+            e.preventDefault();
+            const entryDate = document.getElementById('entry-date').value;
+            const entries = [];
+            const rows = document.querySelectorAll('#entries-table tr');
+            for (let i = 1; i < rows.length; i++) {
+                const row = rows[i];
+                const accountCode = row.querySelector('select[name="accountCode[]"]').value;
+                const accountName = row.querySelector('select[name="accountName[]"]').value;
+                const debit = row.querySelector('input[name="debit[]"]').value || '0';
+                const credit = row.querySelector('input[name="credit[]"]').value || '0';
+                const description = row.querySelector('input[name="description[]"]').value;
+                if (accountCode && accountName) {
+                    entries.push({ entryDate, accountCode, accountName, debit: parseFloat(debit), credit: parseFloat(credit), description });
+                }
+            }
+            if (entries.length === 0) return alert('請至少填寫一筆分錄');
+            const totalDebit = entries.reduce((sum, e) => sum + e.debit, 0);
+            const totalCredit = entries.reduce((sum, e) => sum + e.credit, 0);
+            if (totalDebit !== totalCredit) return alert(`借貸不相符！\n借方總額：${totalDebit}，貸方總額：${totalCredit}`);
+            try {
+                const res = await fetch('/api/journal-entries', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ entries })
+                });
+                if (res.ok) {
+                    alert('分錄已成功提交！');
+                    this.reset();
+                    setDefaultDates();
+                    updateBalanceSummary();
+                } else {
+                    alert('提交失敗，請重試');
+                }
+            } catch (err) {
+                console.error(err);
+                alert('提交時發生錯誤，請重試');
+            }
+        });
+
+        document.addEventListener('DOMContentLoaded', function () {
+            setDefaultDates();
+            loadAccountsData();
+            addEntryRow(); // 新增第二筆
+            updateBalanceSummary();
         });
     </script>
 </body>
