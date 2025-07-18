@@ -44,24 +44,41 @@ body {
      width: auto;
      margin-left: 250px;
      display: flex;
-     flex-direction: row;
+     flex-direction: column;
      gap: 20px;
+     list-style: none;
+     padding-left: 20px;
 }
 
 .btn {
+     background-color: #f0f0f0;
+     padding: 6px 12px;
+     margin: 4px 0;
      display: flex;
-     justify-content: center;
-     align-items: center;
-     text-align: center;
-     width: 150px;
-     height: 150px;
-     background-color: white;
-     color: blue;
-     border: 2px solid blue;
-     border-radius: 16px;
-     font-size: 30px;
+     font-size: 20px;
      font-weight: bold;
      cursor: pointer;
-     transition: background-color 0.3s;
      text-decoration: none;
+}
+
+
+.hidden {
+      display: none;
+}
+
+.note-area {
+    margin-top: 5px;
+    padding: 5px;
+}
+
+.note-input {
+    padding: 4px;
+    font-size: 14px;
+    margin-right: 8px;
+}
+
+.clickable-text {
+     font-size: 20px;
+     font-weight: bold;
+     cursor: pointer;
 }
