@@ -24,7 +24,7 @@
             </div>
 
             <div class="col form">
-                <button class="formBtn" onclick="enableForm()">編輯</button><br>
+                <button class="editBtn" onclick="enableForm()">編輯</button><br>
                 <form id="cForm">
                     <label for="cName" class="required">公司名稱</label><br>
                     <input type="text" id="cName" disabled placeholder="請輸入公司名稱"><br>
@@ -50,7 +50,9 @@
                     <input type="tel" id="contactTel" disabled placeholder="請輸入扣繳申報聯絡人電話"><br>
                     <label for="LOSN">稅籍編號</label><br>
                     <input type="number" id="LOSN"disabled placeholder="請輸入稅籍編號"><br>
-                    <span class="submit">
+                    
+                    <span class="endEdit">
+                     <button type="button" class="cancelBtn" onclick="cancelEdit()">取消更新</button>
                      <button type="submit" class="submitBtn">確認更新</button>
                     </span>    
                 </form>

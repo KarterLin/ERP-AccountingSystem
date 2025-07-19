@@ -44,15 +44,16 @@ button {
     background-color: #3498db;
     color: white;
 }
-.formBtn {
+.editBtn {
     display: block;
     margin-left: auto;
     justify-content: end;
 }
-.submit {
+.endEdit {
     /* display: block; */
     /* 用js控制 */
     text-align: center;
     display: none;
     margin-top: 10px;
+    gap: 10px;
 }
