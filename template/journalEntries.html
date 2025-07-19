@@ -40,7 +40,7 @@
                         <th>摘要</th>
                         <th>操作</th>
                     </tr>
-                    <tr>
+                    <tr class="journal-row">
                         <td>
                             <select name="accountCode[]" class="account-code" required>
                                 <option value="">請選擇科目編號</option>
@@ -91,46 +91,66 @@
         }
 
         async function loadAccountsData() {
-            try {
-                const response = await fetch('/api/accounts');
-                if (response.ok) {
-                    accountsData = await response.json();
-                } else {
-                    throw new Error();
-                }
-            } catch {
-                accountsData = [
-                    { accountCode: 1001000, accountName: '現金' },
-                    { accountCode: 1002000, accountName: '銀行存款' },
-                    { accountCode: 2001000, accountName: '應付帳款' },
-                    { accountCode: 3001000, accountName: '資本' },
-                    { accountCode: 4001000, accountName: '銷貨收入' },
-                    { accountCode: 5001000, accountName: '銷貨成本' }
-                ];
-            }
-            populateAccountSelects();
+    try {
+        const response = await fetch('http://localhost:8080/api/accounts');
+        if (response.ok) {
+            accountsData = await response.json(); // 直接用原始欄位 code, name
+        } else {
+            throw new Error();
         }
+    } catch {
+        accountsData = [
+            { code: "1001000", name: '現金' },
+            { code: "1002000", name: '銀行存款' },
+            { code: "2001000", name: '應付帳款' },
+            { code: "3001000", name: '資本' },
+            { code: "4001000", name: '銷貨收入' },
+            { code: "5001000", name: '銷貨成本' }
+        ];
+    }
+
+    populateAccountSelects();
+}
 
         function populateAccountSelects() {
-            document.querySelectorAll('.account-code').forEach(select => {
-                select.innerHTML = '<option value="">請選擇科目編號</option>';
-                accountsData.forEach(account => {
-                    const option = document.createElement('option');
-                    option.value = account.accountCode;
-                    option.textContent = account.accountCode;
-                    select.appendChild(option);
-                });
-            });
-            document.querySelectorAll('.account-name').forEach(select => {
-                select.innerHTML = '<option value="">請選擇科目名稱</option>';
-                accountsData.forEach(account => {
-                    const option = document.createElement('option');
-                    option.value = account.accountName;
-                    option.textContent = account.accountName;
-                    select.appendChild(option);
-                });
-            });
-        }
+    document.querySelectorAll('.account-code').forEach(select => {
+        select.innerHTML = '<option value="">請選擇科目編號</option>';
+        accountsData.forEach(account => {
+            const option = document.createElement('option');
+            option.value = account.code;
+            option.textContent = account.code;
+            select.appendChild(option);
+        });
+    });
+
+    document.querySelectorAll('.account-name').forEach(select => {
+        select.innerHTML = '<option value="">請選擇科目名稱</option>';
+        accountsData.forEach(account => {
+            const option = document.createElement('option');
+            option.value = account.name;
+            option.textContent = account.name;
+            select.appendChild(option);
+        });
+    });
+
+    // 連動設定
+    document.querySelectorAll('.journal-row').forEach(row => {
+        const codeSelect = row.querySelector('.account-code');
+        const nameSelect = row.querySelector('.account-name');
+
+        codeSelect.addEventListener('change', () => {
+            const matched = accountsData.find(acc => acc.code === codeSelect.value);
+            nameSelect.value = matched ? matched.name : '';
+        });
+
+        nameSelect.addEventListener('change', () => {
+            const matched = accountsData.find(acc => acc.name === nameSelect.value);
+            codeSelect.value = matched ? matched.code : '';
+        });
+    });
+}
+
+        
 
         function handleDebitCreditChange(select) {
             const row = select.closest('tr');
@@ -154,18 +174,18 @@
             }
         }
 
-        function handleAccountCodeChange(select) {
-            const row = select.closest('tr');
-            const nameSelect = row.querySelector('.account-name');
-            const selected = accountsData.find(a => a.accountCode == select.value);
-            nameSelect.value = selected ? selected.accountName : '';
-        }
+       function handleAccountCodeChange(select) {
+           const row = select.closest('tr');
+           const nameSelect = row.querySelector('.account-name');
+           const selected = accountsData.find(a => a.code == select.value);
+           nameSelect.value = selected ? selected.name : '';
+}
 
         function handleAccountNameChange(select) {
             const row = select.closest('tr');
             const codeSelect = row.querySelector('.account-code');
-            const selected = accountsData.find(a => a.accountName === select.value);
-            codeSelect.value = selected ? selected.accountCode : '';
+            const selected = accountsData.find(a => a.name === select.value);
+            codeSelect.value = selected ? selected.code : '';
         }
 
         function updateBalanceSummary() {
@@ -266,7 +286,7 @@
             console.log('將要發送的JSON格式:', JSON.stringify(journalEntry, null, 2));
             
             try {
-                const res = await fetch('/api/journal-entries', {
+                const res = await fetch('http://localhost:8080/api/journal-entries', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify(journalEntry)
