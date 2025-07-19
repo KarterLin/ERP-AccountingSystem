@@ -1,23 +1,82 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="entriesManagement.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+
 </head>
+
 <body>
     <!-- Sidebar -->
-     <div class="sidebar">
-          <a class="active" href="#index">首頁</a>
-          <a href="#accountbooks">收支帳簿</a>
-          <a href="#assets">資金管理</a>
-          <a href="#assets">資產管理</a>
-          <a href="#incomeStatement">我的報表</a>
-          <a href="#subsidiaryLedger">會計科目</a>
-          <a href="#about">扣繳申報</a>
-          <a href="#about">設定</a>
-     </div>
-    
+    <div class="sidebar">
+        <a class="active" href="#index">首頁</a>
+        <a href="#accountbooks">收支帳簿</a>
+        <a href="#assets">資金管理</a>
+        <a href="#assets">資產管理</a>
+        <a href="#incomeStatement">我的報表</a>
+        <a href="#subsidiaryLedger">會計科目</a>
+        <a href="#about">扣繳申報</a>
+        <a href="#about">設定</a>
+    </div>
+    <div class="d1">
+        <h1 class="title">傳票管理</h1>
+        <div class="d2">
+            <button class="btn1">匯入傳票</button>
+            <button class="btn1">新增傳票</button>
+        </div>
+    </div>
+    <div class="d3">
+        <fieldset class="query-box">
+            <legend class="query-title">查詢條件</legend>
+            <div class="ds">
+                <div class="field">
+                    <label for="dateRange" class="l1">日期區間：</label>
+                    <input type="text" id="dateRange" placeholder="請選擇日期區間">
+                </div>
+                <div class="field">
+                    <label for="summonsId" class="l1">傳票編號：</label>
+                    <input type="text" id="summonsId" placeholder="請輸入編號">
+
+                </div>
+                <div class="field">
+                    <label for="category" class="l1">傳票類型：</label>
+                    <div class="select-wrapper">
+                        <select id="category" name="category">
+                            <option value="">全部</option>
+                            <option value="income">收入傳票</option>
+                            <option value="expense">支出傳票</option>
+                            <option value="Transfer">轉帳傳票</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="field">
+                    <label for="summary" class="l1">摘要備註：</label>
+                    <input type="text" id="summary" placeholder="請輸入摘要">
+
+                </div>
+                <div class="field">
+                    <label for="suject" class="l1">科目名稱：</label>
+                    <div class="select-wrapper">
+                        <select id="suject" name="category">
+                            <option value="">全部</option>
+                        </select>
+                    </div>
+                </div>
+
+            </div>
+
+
+        </fieldset>
+    </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/zh.js"></script>
+    <script src="entriesManagement.js"></script>
 </body>
+
 </html>
