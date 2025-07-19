@@ -1,0 +1,162 @@
+body {
+     margin: 0;
+     font-family: "Lato", sans-serif;
+     background-color: #f5f7fa;
+}
+
+.title {
+
+     margin-left: 200px;
+     padding: 20px;
+     font-size: 40px;
+     font-weight: bold;
+     margin-bottom: -5px;
+
+
+}
+
+
+/* sidebar (簡化版) */
+.sidebar {
+     margin: 0;
+     padding: 0;
+     width: 200px;
+     background-color: #f1f1f1;
+     position: fixed;
+     height: 100%;
+     overflow: auto;
+}
+
+.sidebar a {
+     display: block;
+     color: black;
+     padding: 16px;
+     text-decoration: none;
+}
+
+.sidebar a.active {
+     background-color: #04AA6D;
+     color: white;
+}
+
+.sidebar a:hover:not(.active) {
+     background-color: #555;
+     color: white;
+}
+
+.d1 {
+     display: flex;
+     align-items: center;
+     justify-content: space-between;
+     padding: 10px 20px 5px 20px;
+
+
+
+}
+
+.d2 {
+     display: flex;
+     gap: 10px;
+}
+
+.d3 {
+     margin-left: 225px;
+     margin-right: 15px;
+
+}
+
+.btn1 {
+     width: 150px;
+     height: 50px;
+     padding: 4px 12px;
+     font-size: 25px;
+     cursor: pointer;
+     background-color: #f0f0f0;
+     border: solid 1px blue;
+     border-radius: 4px;
+
+}
+
+.query-title {
+     font-size: 25px;
+}
+
+.ds {
+     display: flex;
+     flex-wrap: wrap;
+     gap: 16px;
+     padding: 10px 0;
+}
+
+.field {
+     display: flex;
+     flex-direction: column;
+     min-width: 180px;
+     flex: 1 1 200px;
+     /* 可彈性縮放，必要時換行 */
+}
+
+.field label {
+     font-size: 14px;
+     margin-bottom: 4px;
+     font-weight: bold;
+}
+
+.l1 {
+     padding-top: 3px;
+}
+
+
+
+.select-wrapper {
+     position: relative;
+     width: 220px;
+}
+
+
+
+/* 自訂箭頭圖示 */
+.select-wrapper::after {
+     content: "";
+     position: absolute;
+     top: 50%;
+     right: 12px;
+     width: 0;
+     height: 0;
+     pointer-events: none;
+     border-left: 6px solid transparent;
+     border-right: 6px solid transparent;
+     border-top: 6px solid #555;
+     transform: translateY(-50%);
+}
+
+.ds label {
+     font-size: 20px;
+     font-weight: bold;
+     margin-bottom: 4px;
+}
+
+.ds input[type="text"],
+.ds .select-wrapper select {
+     width: 250px;
+     height: 38px;
+     padding: 6px 10px;
+     font-size: 16px;
+     border: 1px solid #ccc;
+     border-radius: 6px;
+     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+     box-sizing: border-box;
+     text-align: center;
+     /* 或改成 left */
+     appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+
+    background-color: white;
+    cursor: pointer;
+}
+
+.select-wrapper {
+     width: 220px;
+     position: relative;
+}
