@@ -10,111 +10,132 @@
 
 <body>
     <!-- Sidebar -->
-    <div class="sidebar">
-        <a class="active" href="#index">首頁</a>
-        <a href="#accountbooks">收支帳簿</a>
-        <a href="#assets">資金管理</a>
-        <a href="#assets">資產管理</a>
-        <a href="#incomeStatement">我的報表</a>
-        <a href="#subsidiaryLedger">會計科目</a>
-        <a href="#about">扣繳申報</a>
-        <a href="#about">設定</a>
+    <div id="sidebar-container"></div>
+
+    <div class="hamburger" onclick="toggleSidebar()">&#9776;</div>
+    <div class="page-wrapper">
+        <h1 class="title">科目管理</h1>
+        <ul class="menu">
+            <!-- 資產 -->
+            <li>
+                <button onclick="toggle('asset')" class="btn">資產</button>
+                <ul id="asset" class="hidden">
+                    <li>
+                        <button onclick="toggle('currentAssets')" class="btn">流動資產</button>
+                        <ul id="currentAssets" class="hidden">
+                            <li onclick="event.stopPropagation(); toggleNoteInput(this)"><span
+                                    class="clickable-text">現金</span></li>
+                            <li>
+                                <button onclick="toggle('bankDeposits')" class="btn">銀行存款</button>
+                                <ul id="bankDeposits" class="hidden">
+                                    <li onclick="event.stopPropagation(); toggleNoteInput(this)"><span
+                                            class="clickable-text">台新帳戶</span></li>
+                                    <li onclick="event.stopPropagation(); toggleNoteInput(this)"><span
+                                            class="clickable-text">玉山帳戶</span></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+
+            <!-- 負債：與資產並列 -->
+            <li>
+                <button onclick="toggle('liability')" class="btn">負債</button>
+                <ul id="liability" class="hidden">
+                    <li>
+                        <button onclick="toggle('currentLiabilities')" class="btn">流動負債</button>
+                        <ul id="currentLiabilities" class="hidden">
+                            <li onclick="event.stopPropagation(); toggleNoteInput(this)"><span
+                                    class="clickable-text">應付帳款</span></li>
+                            <li>
+                                <button onclick="toggle('shortTermLoans')" class="btn">短期借款</button>
+                                <ul id="shortTermLoans" class="hidden">
+                                    <li onclick="event.stopPropagation(); toggleNoteInput(this)"><span
+                                            class="clickable-text">台新銀行</span></li>
+                                    <li onclick="event.stopPropagation(); toggleNoteInput(this)"><span
+                                            class="clickable-text">第一銀行</span></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <button onclick="toggle('equity')" class="btn">權益</button>
+                <ul id="equity" class="hidden">
+                    <li onclick="event.stopPropagation(); toggleNoteInput(this)"><span class="clickable-text">資本</span>
+                    </li>
+                    <li onclick="event.stopPropagation(); toggleNoteInput(this)"><span
+                            class="clickable-text">資本公積</span></li>
+                    <li onclick="event.stopPropagation(); toggleNoteInput(this)"><span
+                            class="clickable-text">累積盈虧</span></li>
+                    <li onclick="event.stopPropagation(); toggleNoteInput(this)"><span
+                            class="clickable-text">本期損益</span></li>
+                </ul>
+            </li>
+            <li>
+                <button onclick="toggle('revenue')" class="btn">營業收入</button>
+                <ul id="revenue" class="hidden">
+                    <li onclick="event.stopPropagation(); toggleNoteInput(this)"><span
+                            class="clickable-text">銷貨收入</span></li>
+                    <li onclick="event.stopPropagation(); toggleNoteInput(this)"><span
+                            class="clickable-text">營業收入</span></li>
+                    <li onclick="event.stopPropagation(); toggleNoteInput(this)"><span
+                            class="clickable-text">服務收入</span></li>
+                    <li onclick="event.stopPropagation(); toggleNoteInput(this)"><span
+                            class="clickable-text">銷貨退回</span></li>
+                </ul>
+            </li>
+            <li>
+                <button onclick="toggle('cost')" class="btn">營業成本</button>
+                <ul id="cost" class="hidden">
+                    <li onclick="event.stopPropagation(); toggleNoteInput(this)"><span
+                            class="clickable-text">銷貨成本</span></li>
+                    <li onclick="event.stopPropagation(); toggleNoteInput(this)"><span class="clickable-text">進貨</span>
+                    </li>
+                    <li onclick="event.stopPropagation(); toggleNoteInput(this)"><span
+                            class="clickable-text">進貨退出</span></li>
+                    <li onclick="event.stopPropagation(); toggleNoteInput(this)"><span
+                            class="clickable-text">其他成本</span></li>
+                </ul>
+            </li>
+            <li>
+                <button onclick="toggle('expenses')" class="btn">營業費用</button>
+                <ul id="expenses" class="hidden">
+                    <li onclick="event.stopPropagation(); toggleNoteInput(this)"><span
+                            class="clickable-text">薪資支出</span></li>
+                    <li onclick="event.stopPropagation(); toggleNoteInput(this)"><span
+                            class="clickable-text">租金支出</span></li>
+                    <li onclick="event.stopPropagation(); toggleNoteInput(this)"><span
+                            class="clickable-text">文具用品</span></li>
+                    <li onclick="event.stopPropagation(); toggleNoteInput(this)"><span class="clickable-text">郵電費</span>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <button onclick="toggle('income')" class="btn">營業外收益</button>
+                <ul id="income" class="hidden">
+                    <li onclick="event.stopPropagation(); toggleNoteInput(this)"><span
+                            class="clickable-text">利息收入</span></li>
+                    <li onclick="event.stopPropagation(); toggleNoteInput(this)"><span
+                            class="clickable-text">租賃收入</span></li>
+                    <li onclick="event.stopPropagation(); toggleNoteInput(this)"><span
+                            class="clickable-text">其他收入</span></li>
+                </ul>
+            </li>
+            <li>
+                <button onclick="toggle('tax')" class="btn">所得稅</button>
+                <ul id="tax" class="hidden">
+                    <li onclick="event.stopPropagation(); toggleNoteInput(this)"><span
+                            class="clickable-text">所得稅費用</span></li>
+                </ul>
+            </li>
+        </ul>
     </div>
-    <h1 class="title">科目管理</h1>
-    
-    <ul class="menu">
-        <!-- 資產 -->
-        <li>
-            <button onclick="toggle('asset')" class="btn">資產</button>
-            <ul id="asset" class="hidden">
-                <li>
-                    <button onclick="toggle('currentAssets')" class="btn">流動資產</button>
-                    <ul id="currentAssets" class="hidden">
-                        <li onclick="event.stopPropagation(); toggleNoteInput(this)"><span class="clickable-text">現金</span></li>
-                        <li>
-                            <button onclick="toggle('bankDeposits')" class="btn">銀行存款</button>
-                            <ul id="bankDeposits" class="hidden">
-                                <li onclick="event.stopPropagation(); toggleNoteInput(this)"><span class="clickable-text">台新帳戶</span></li>
-                                <li onclick="event.stopPropagation(); toggleNoteInput(this)"><span class="clickable-text">玉山帳戶</span></li>
-                            </ul>
-                        </li>
-                    </ul>
-                </li>
-            </ul>
-        </li>
 
-        <!-- 負債：與資產並列 -->
-        <li>
-            <button onclick="toggle('liability')" class="btn">負債</button>
-            <ul id="liability" class="hidden">
-                <li>
-                    <button onclick="toggle('currentLiabilities')" class="btn">流動負債</button>
-                    <ul id="currentLiabilities" class="hidden">
-                        <li onclick="event.stopPropagation(); toggleNoteInput(this)"><span class="clickable-text">應付帳款</span></li>
-                        <li>
-                            <button onclick="toggle('shortTermLoans')" class="btn">短期借款</button>
-                            <ul id="shortTermLoans" class="hidden">
-                                <li onclick="event.stopPropagation(); toggleNoteInput(this)"><span class="clickable-text">台新銀行</span></li>
-                                <li onclick="event.stopPropagation(); toggleNoteInput(this)"><span class="clickable-text">第一銀行</span></li>
-                            </ul>
-                        </li>
-                    </ul>
-                </li>
-            </ul>
-        </li>
-        <li>
-            <button onclick="toggle('equity')" class="btn">權益</button>
-            <ul id="equity" class="hidden">
-                <li onclick="event.stopPropagation(); toggleNoteInput(this)"><span class="clickable-text">資本</span></li>
-                <li onclick="event.stopPropagation(); toggleNoteInput(this)"><span class="clickable-text">資本公積</span></li>
-                <li onclick="event.stopPropagation(); toggleNoteInput(this)"><span class="clickable-text">累積盈虧</span></li>
-                <li onclick="event.stopPropagation(); toggleNoteInput(this)"><span class="clickable-text">本期損益</span></li>
-            </ul>
-        </li>
-        <li>
-            <button onclick="toggle('revenue')" class="btn">營業收入</button>
-            <ul id="revenue" class="hidden">
-                <li onclick="event.stopPropagation(); toggleNoteInput(this)"><span class="clickable-text">銷貨收入</span></li>
-                <li onclick="event.stopPropagation(); toggleNoteInput(this)"><span class="clickable-text">營業收入</span></li>
-                <li onclick="event.stopPropagation(); toggleNoteInput(this)"><span class="clickable-text">服務收入</span></li>
-                <li onclick="event.stopPropagation(); toggleNoteInput(this)"><span class="clickable-text">銷貨退回</span></li>
-            </ul>
-        </li>
-        <li>
-            <button onclick="toggle('cost')" class="btn">營業成本</button>
-            <ul id="cost" class="hidden">
-                <li onclick="event.stopPropagation(); toggleNoteInput(this)"><span class="clickable-text">銷貨成本</span></li>
-                <li onclick="event.stopPropagation(); toggleNoteInput(this)"><span class="clickable-text">進貨</span></li>
-                <li onclick="event.stopPropagation(); toggleNoteInput(this)"><span class="clickable-text">進貨退出</span></li>
-                <li onclick="event.stopPropagation(); toggleNoteInput(this)"><span class="clickable-text">其他成本</span></li>
-            </ul>
-        </li>
-        <li>
-            <button onclick="toggle('expenses')" class="btn">營業費用</button>
-            <ul id="expenses" class="hidden">
-                <li onclick="event.stopPropagation(); toggleNoteInput(this)"><span class="clickable-text">薪資支出</span></li>
-                <li onclick="event.stopPropagation(); toggleNoteInput(this)"><span class="clickable-text">租金支出</span></li>
-                <li onclick="event.stopPropagation(); toggleNoteInput(this)"><span class="clickable-text">文具用品</span></li>
-                <li onclick="event.stopPropagation(); toggleNoteInput(this)"><span class="clickable-text">郵電費</span></li>
-            </ul>
-        </li>
-        <li>
-            <button onclick="toggle('income')" class="btn">營業外收益</button>
-            <ul id="income" class="hidden">
-                <li onclick="event.stopPropagation(); toggleNoteInput(this)"><span class="clickable-text">利息收入</span></li>
-                <li onclick="event.stopPropagation(); toggleNoteInput(this)"><span class="clickable-text">租賃收入</span></li>
-                <li onclick="event.stopPropagation(); toggleNoteInput(this)"><span class="clickable-text">其他收入</span></li>
-            </ul>
-        </li>
-        <li>
-            <button onclick="toggle('tax')" class="btn">所得稅</button>
-            <ul id="tax" class="hidden">
-                <li onclick="event.stopPropagation(); toggleNoteInput(this)"><span class="clickable-text">所得稅費用</span></li>
-            </ul>
-        </li>
-    </ul>
-
-    <script src='subjectMangement.js'> </script>
+    <script src='subjectManagement.js'></script>
+    <script src="js/sidebar.js"></script>
 </body>
 
 </html>

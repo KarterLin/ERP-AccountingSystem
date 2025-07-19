@@ -5,22 +5,34 @@ body {
 }
 
 .title {
-     margin-left: 200px;
-     padding: 16px;
+     white-space: nowrap;
+     margin: 0;
      font-size: 40px;
      font-weight: bold;
 }
 
 
-/* sidebar (簡化版) */
+@media (max-width: 768px) {
+     .title {
+          font-size: 28px;
+          margin-left: 0;
+          margin-top: 8px;
+          flex: 1;
+     }
+}
+
+/* 📚 Sidebar 側邊欄 */
 .sidebar {
-     margin: 0;
-     padding: 0;
-     width: 200px;
-     background-color: #f1f1f1;
      position: fixed;
+     top: 0;
+     left: 0;
+     width: 200px;
      height: 100%;
-     overflow: auto;
+     background-color: #f1f1f1;
+     box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+     transform: translateX(0);
+     transition: transform 0.3s ease;
+     z-index: 1000;
 }
 
 .sidebar a {
@@ -40,14 +52,67 @@ body {
      color: white;
 }
 
+
+
+.page-wrapper {
+    margin-left: 225px;
+    transition: margin-left 0.3s ease;
+}
+
+@media (max-width: 768px) {
+     .sidebar {
+          transform: translateX(-200px);
+     }
+
+     .sidebar.open {
+          transform: translateX(0);
+     }
+
+     .page-wrapper {
+          margin-left: 70px;
+     }
+
+     .page-wrapper.shift {
+          margin-left: 220px;
+     }
+
+}
+
+/* 🍔 漢堡選單 */
+.hamburger {
+     display: none;
+     position: fixed;
+     top: 10px;
+     left: 10px;
+     font-size: 28px;
+     background: none;
+     border: none;
+     z-index: 1100;
+     cursor: pointer;
+     opacity: 1;
+     pointer-events: auto;
+     transition: opacity 0.2s ease;
+}
+
+.hamburger.hidden {
+     opacity: 0;
+     pointer-events: none;
+}
+
+@media (max-width: 768px) {
+     .hamburger {
+          display: block;
+     }
+}
+
+
 .menu {
      width: auto;
-     margin-left: 250px;
      display: flex;
      flex-direction: column;
      gap: 20px;
      list-style: none;
-     padding-left: 20px;
+     padding-left: 0;
 }
 
 .btn {
@@ -63,18 +128,18 @@ body {
 
 
 .hidden {
-      display: none;
+     display: none;
 }
 
 .note-area {
-    margin-top: 5px;
-    padding: 5px;
+     margin-top: 5px;
+     padding: 5px;
 }
 
 .note-input {
-    padding: 4px;
-    font-size: 14px;
-    margin-right: 8px;
+     padding: 4px;
+     font-size: 14px;
+     margin-right: 8px;
 }
 
 .clickable-text {

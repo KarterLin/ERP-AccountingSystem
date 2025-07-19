@@ -5,22 +5,32 @@ body {
 }
 
 .title {
-     margin-left: 200px;
      padding: 16px;
      font-size: 40px;
      font-weight: bold;
+}
+@media (max-width: 768px) {
+     .title {
+          font-size: 28px;
+          margin-left: 0;
+          margin-top: 8px;
+          flex: 1;
+     }
 }
 
 
 /* sidebar (簡化版) */
 .sidebar {
-     margin: 0;
-     padding: 0;
-     width: 200px;
-     background-color: #f1f1f1;
      position: fixed;
+     top: 0;
+     left: 0;
+     width: 200px;
      height: 100%;
-     overflow: auto;
+     background-color: #f1f1f1;
+     box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+     transform: translateX(0);
+     transition: transform 0.3s ease;
+     z-index: 1000;
 }
 
 .sidebar a {
@@ -42,13 +52,13 @@ body {
 
 .menu {
      width: auto;
-     margin-left: 250px;
      display: flex;
      flex-direction: row;
-     gap: 20px;
+     gap: 5px;
 }
 
 .btn {
+     margin-left: 25px;
      display: flex;
      justify-content: center;
      align-items: center;
@@ -64,4 +74,52 @@ body {
      cursor: pointer;
      transition: background-color 0.3s;
      text-decoration: none;
+}
+.hamburger {
+     display: none;
+     position: fixed;
+     top: 10px;
+     left: 10px;
+     font-size: 28px;
+     background: none;
+     border: none;
+     z-index: 1100;
+     cursor: pointer;
+     opacity: 1;
+     pointer-events: auto;
+     transition: opacity 0.2s ease;
+}
+
+.hamburger.hidden {
+     opacity: 0;
+     pointer-events: none;
+}
+
+.page-wrapper {
+    margin-left: 225px;
+    transition: margin-left 0.3s ease;
+}
+
+
+/* 響應式關鍵 */
+@media (max-width: 768px) {
+  .sidebar {
+    transform: translateX(-200px); /* 隱藏 */
+  }
+
+  .sidebar.open {
+    transform: translateX(0); /* 顯示 */
+  }
+
+  .hamburger {
+    display: block; /* 小螢幕才顯示漢堡 */
+  }
+
+  .page-wrapper {
+    margin-left: 50px;
+  }
+
+  .page-wrapper.shift {
+    margin-left: 200px; /* sidebar 展開時內容偏移 */
+  }
 }
