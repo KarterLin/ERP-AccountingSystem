@@ -21,57 +21,84 @@
         <a href="#subsidiaryLedger">會計科目</a>
         <a href="#about">扣繳申報</a>
         <a href="#about">設定</a>
+        
     </div>
-    <div class="d1">
-        <h1 class="title">傳票管理</h1>
-        <div class="d2">
-            <button class="btn1">匯入傳票</button>
-            <button class="btn1">新增傳票</button>
-        </div>
-    </div>
-    <div class="d3">
-        <fieldset class="query-box">
-            <legend class="query-title">查詢條件</legend>
-            <div class="ds">
-                <div class="field">
-                    <label for="dateRange" class="l1">日期區間：</label>
-                    <input type="text" id="dateRange" placeholder="請選擇日期區間">
-                </div>
-                <div class="field">
-                    <label for="summonsId" class="l1">傳票編號：</label>
-                    <input type="text" id="summonsId" placeholder="請輸入編號">
+    
+    <div class="hamburger" onclick="toggleSidebar()">&#9776;</div>
 
-                </div>
-                <div class="field">
-                    <label for="category" class="l1">傳票類型：</label>
-                    <div class="select-wrapper">
-                        <select id="category" name="category">
-                            <option value="">全部</option>
-                            <option value="income">收入傳票</option>
-                            <option value="expense">支出傳票</option>
-                            <option value="Transfer">轉帳傳票</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="field">
-                    <label for="summary" class="l1">摘要備註：</label>
-                    <input type="text" id="summary" placeholder="請輸入摘要">
-
-                </div>
-                <div class="field">
-                    <label for="suject" class="l1">科目名稱：</label>
-                    <div class="select-wrapper">
-                        <select id="suject" name="category">
-                            <option value="">全部</option>
-                        </select>
-                    </div>
-                </div>
-
+    <div class="page-wrapper">
+        <div class="d1">
+            <div class="left-group">
+                
+                <h1 class="title">傳票管理</h1>
             </div>
+            <div class="d2">
+                <button class="btn1">匯入傳票</button>
+                <button class="btn1">新增傳票</button>
+            </div>
+        </div>
+        <div class="d3">
+            <fieldset class="query-box">
+                <legend class="query-title">查詢條件</legend>
+                <div class="ds">
+                    <div class="field">
+                        <label for="dateRange" class="l1">日期區間：</label>
+                        <input type="text" id="dateRange" placeholder="請選擇日期區間">
+                    </div>
+                    <div class="field">
+                        <label for="summonsId" class="l1">傳票編號：</label>
+                        <input type="text" id="summonsId" placeholder="請輸入編號">
 
+                    </div>
+                    <div class="field">
+                        <label for="category" class="l1">傳票類型：</label>
+                        <div class="select-wrapper">
+                            <select id="category" name="category">
+                                <option value="">全部</option>
+                                <option value="income">收入傳票</option>
+                                <option value="expense">支出傳票</option>
+                                <option value="Transfer">轉帳傳票</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="field">
+                        <label for="summary" class="l1">摘要備註：</label>
+                        <input type="text" id="summary" placeholder="請輸入摘要">
 
-        </fieldset>
-    </div>
+                    </div>
+                    <div class="field">
+                        <label for="suject" class="l1">科目名稱：</label>
+                        <div class="select-wrapper">
+                            <select id="suject" name="category">
+                                <option value="">全部</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </fieldset>
+
+        </div>
+        <div class="fieldbtngroup">
+            <button class="btn2">查詢</button>
+            <button class="btn2">清空</button>
+        </div>
+        <div class="tableFixHead">
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>id</th>
+                        <th>傳票編號</th>
+                        <th>金額</th>
+                        <th>日期</th>
+                        <th>傳票類型</th>
+                        <th>建立類型</th>
+                        <th>摘要</th>
+                        <th>備註</th>
+                        <th>動作</th>
+                    </tr>
+                </thead>
+            </table>
+        </div>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
