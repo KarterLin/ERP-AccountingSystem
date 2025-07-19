@@ -1,13 +1,4 @@
 document.addEventListener("DOMContentLoaded", function () {
-    flatpickr("#dateRange", {
-        mode: "range",
-        dateFormat: "Y-m-d",
-        locale: "zh"
-    });
-});
-
-
-document.addEventListener("DOMContentLoaded", function () {
   flatpickr("#dateRange", {
     mode: "range",
     dateFormat: "Y-m-d",
@@ -20,9 +11,23 @@ function toggleSidebar() {
   const pageWrapper = document.querySelector('.page-wrapper');
   const hamburger = document.querySelector('.hamburger');
 
-  sidebar.classList.toggle('open');
-  pageWrapper.classList.toggle('shift');
-  hamburger.classList.toggle('hidden', sidebar.classList.contains('open'));
+  const isOpen = sidebar.classList.contains('open');
+
+  if (isOpen) {
+    // 關閉 sidebar
+    sidebar.classList.remove('open');
+    pageWrapper.classList.remove('shift');
+
+    // 延遲顯示 hamburger（等 sidebar 收合動畫完成）
+    setTimeout(() => {
+      hamburger.classList.remove('hidden');
+    }, 300); // 與 CSS transition 一致
+  } else {
+    // 開啟 sidebar
+    sidebar.classList.add('open');
+    pageWrapper.classList.add('shift');
+    hamburger.classList.add('hidden');
+  }
 }
 
 // 把點擊監聽整合成一個，並避免重複
@@ -57,13 +62,13 @@ function handleResize() {
 
   if (window.innerWidth > 768) {
     sidebar.classList.add('open');
-    pageWrapper.classList.remove('shift');
-    hamburger.classList.remove('hidden');
-    pageWrapper.style.marginLeft = ''; // 清除 inline margin
+    pageWrapper.classList.remove('shift'); // ← 可考慮依 sidebar 是否固定來決定是否 shift
+    hamburger.classList.add('hidden'); // ← 桌機版不顯示 hamburger
+    pageWrapper.style.marginLeft = ''; // 清除 inline
   } else {
     sidebar.classList.remove('open');
     pageWrapper.classList.remove('shift');
-    hamburger.classList.remove('hidden'); // 讓漢堡按鈕預設顯示
+    hamburger.classList.remove('hidden');
   }
 }
 
