@@ -100,12 +100,12 @@
                 }
             } catch {
                 accountsData = [
-                    { accountCode: '1001', accountName: '現金' },
-                    { accountCode: '1002', accountName: '銀行存款' },
-                    { accountCode: '2001', accountName: '應付帳款' },
-                    { accountCode: '3001', accountName: '資本' },
-                    { accountCode: '4001', accountName: '銷貨收入' },
-                    { accountCode: '5001', accountName: '銷貨成本' }
+                    { accountCode: 1001000, accountName: '現金' },
+                    { accountCode: 1002000, accountName: '銀行存款' },
+                    { accountCode: 2001000, accountName: '應付帳款' },
+                    { accountCode: 3001000, accountName: '資本' },
+                    { accountCode: 4001000, accountName: '銷貨收入' },
+                    { accountCode: 5001000, accountName: '銷貨成本' }
                 ];
             }
             populateAccountSelects();
@@ -157,7 +157,7 @@
         function handleAccountCodeChange(select) {
             const row = select.closest('tr');
             const nameSelect = row.querySelector('.account-name');
-            const selected = accountsData.find(a => a.accountCode === select.value);
+            const selected = accountsData.find(a => a.accountCode == select.value);
             nameSelect.value = selected ? selected.accountName : '';
         }
 
@@ -229,8 +229,9 @@
         document.getElementById('journal-entry-form').addEventListener('submit', async function (e) {
             e.preventDefault();
             const entryDate = document.getElementById('entry-date').value;
-            const entries = [];
+            const details = [];
             const rows = document.querySelectorAll('#entries-table tr');
+            
             for (let i = 1; i < rows.length; i++) {
                 const row = rows[i];
                 const accountCode = row.querySelector('select[name="accountCode[]"]').value;
@@ -238,19 +239,37 @@
                 const debit = row.querySelector('input[name="debit[]"]').value || '0';
                 const credit = row.querySelector('input[name="credit[]"]').value || '0';
                 const description = row.querySelector('input[name="description[]"]').value;
+                
                 if (accountCode && accountName) {
-                    entries.push({ entryDate, accountCode, accountName, debit: parseFloat(debit), credit: parseFloat(credit), description });
+                    details.push({ 
+                        accountCode: parseInt(accountCode), // 轉換為數字
+                        debit: parseFloat(debit), 
+                        credit: parseFloat(credit), 
+                        description 
+                    });
                 }
             }
-            if (entries.length === 0) return alert('請至少填寫一筆分錄');
-            const totalDebit = entries.reduce((sum, e) => sum + e.debit, 0);
-            const totalCredit = entries.reduce((sum, e) => sum + e.credit, 0);
+            
+            if (details.length === 0) return alert('請至少填寫一筆分錄');
+            
+            const totalDebit = details.reduce((sum, e) => sum + e.debit, 0);
+            const totalCredit = details.reduce((sum, e) => sum + e.credit, 0);
             if (totalDebit !== totalCredit) return alert(`借貸不相符！\n借方總額：${totalDebit}，貸方總額：${totalCredit}`);
+            
+            // 構建新的JSON格式
+            const journalEntry = {
+                entryDate: entryDate,
+                details: details
+            };
+            
+            // 顯示將要發送的JSON格式供檢查
+            console.log('將要發送的JSON格式:', JSON.stringify(journalEntry, null, 2));
+            
             try {
                 const res = await fetch('/api/journal-entries', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ entries })
+                    body: JSON.stringify(journalEntry)
                 });
                 if (res.ok) {
                     alert('分錄已成功提交！');
