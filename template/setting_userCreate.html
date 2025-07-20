@@ -5,15 +5,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="css/sidebar.css">
+    <!-- <link rel="stylesheet" href="css/sidebar.css"> -->
     <!-- <link rel="stylesheet" href="css/main.css"> -->
-    <!-- <link rel="stylesheet" href="css/userCreate.css"> -->
+    <link rel="stylesheet" href="css/userCreate.css">
 
 </head>
 
 <body>
     <!-- Sidebar -->
-    <div id="sidebar-container"></div>
+    <!-- <div id="sidebar-container"></div> -->
 
     <div class="main">
         <h1>新增帳號</h1>
@@ -37,21 +37,26 @@
                         <option value="1">一般財會人員</option>
                         <option value="2">財會主管</option>
                     </select><br>
-                    <p class="required">帳號狀態</p>
-                    <label><input type="radio" name="openAccount" value="啟用">啟用</label>
-                    <label><input type="radio" name="openAccount" value="停用">停用</label><br>
-             
+                    <span class="radioGroup">
+                        <input type="radio" id="isActive" name="status">
+                        <label for="isActive">啟用</label>
+                        <input type="radio" id="notActive" name="status">
+                        <label for="notActive">待啟用</label>
+                    </span><br>
+
                     <span class="endEdit">
-                        <button type="button" class="cancelBtn" onclick="cancelEdit()">取消</button>
+                        <button type="reset" class="cancelBtn">取消</button>
                         <button type="submit" class="submitBtn">儲存</button>
                     </span>
                 </form>
             </div>
+
+            <div class="col blank"></div>
         </div>
     </div>
 
     <script src="js/userCreate.js"></script>
-    <script src="js/sidebar.js"></script>
+    <!-- <script src="js/sidebar.js"></script> -->
 </body>
 
 </html>

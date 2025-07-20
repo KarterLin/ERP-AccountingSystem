@@ -1,0 +1,66 @@
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    /* 如果螢幕太小會自動換行 */
+}
+.col {
+    padding-left: 10px;
+    box-sizing: border-box;
+    text-align: left;
+}
+.row .title {
+    flex: 3;
+    font-weight: bolder;
+}
+.row .form {
+    flex: 6;
+    position: relative;
+    margin-bottom: 20px;
+}
+.row .blank {
+    flex: 3;
+}
+form label {
+    font-size: small;
+    display: inline-block;
+    margin-top: 5px;
+}
+.required::after {
+    content: "*";
+    color: red;
+    margin-left: 2px;
+}
+input[ type="text"],
+input[ type="email"],
+form select {
+    width: 100%;
+    height: 20px;
+    box-sizing: border-box;
+}
+.radioGroup {
+    display: flex;
+}
+.radioGroup label {
+    margin-right: 10px;
+}
+button {
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    color: white;
+}
+.endEdit {
+    display: flex;
+    text-align: center;
+    margin-top: 10px;
+    gap: 20px;
+    justify-content: right;
+    width: 100%;
+}
+.cancelBtn {
+    background-color: lightgray;
+}
+.submitBtn {
+    background-color: #27ae60;
+}
