@@ -28,13 +28,13 @@ const fieldMap = [
 fieldMap.forEach(({ el }) => {
     initialFormData[el.id] = el.value;
 });
-// 開啟編輯
+// 開啟編輯6
 function enableForm() {
     const inputs = document.querySelectorAll('#cForm input, #cForm select');
     inputs.forEach(el => el.disabled = false);
 
     // 顯示按鈕
-    document.querySelector('.endEdit').style.display = 'block';
+    document.querySelector('.endEdit').style.display = 'inline-flex';
     // 隱藏編輯按鈕
     document.querySelector('.editBtn').style.display = "none";
 }

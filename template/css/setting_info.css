@@ -41,13 +41,13 @@ button {
     border-radius: 5px;
     cursor: pointer;
     font-size: 14px;
-    background-color: #3498db;
     color: white;
 }
 .editBtn {
     display: block;
     margin-left: auto;
     justify-content: end;
+    background-color: #3498db;
 }
 .endEdit {
     /* display: block; */
@@ -55,5 +55,13 @@ button {
     text-align: center;
     display: none;
     margin-top: 10px;
-    gap: 10px;
+    justify-content: space-around;
+    width: 100%;
+}
+.cancelBtn {
+    background-color: lightgray;
+    /* margin-right: 20px; */
+}
+.submitBtn {
+    background-color: #27ae60;
 }
