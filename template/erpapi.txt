@@ -14,3 +14,5 @@ or
 /api/trial-balance <-查詢到今日為止的試算表
 /api/trial-balance/end <-ep 指定日期查詢試算表
 
+欄位包含
+AccountCode、AccountName、balance
