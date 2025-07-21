@@ -3,7 +3,7 @@ function toggleSidebar() {
   const pageWrapper = document.querySelector('.page-wrapper');
   const hamburger = document.querySelector('.hamburger');
 
-  if(sidebar.classList.contains('open')){
+  if (sidebar.classList.contains('open')) {
     sidebar.classList.remove('open');
     pageWrapper.classList.remove('shift');
     setTimeout(() => hamburger.classList.remove('hidden'), 300);
@@ -14,8 +14,8 @@ function toggleSidebar() {
   }
 }
 
-// 把點擊監聽整合成一個，並避免重複
-document.addEventListener('click', function(event) {
+// 點擊空白處收起 sidebar
+document.addEventListener('click', function (event) {
   const sidebar = document.querySelector('.sidebar');
   const hamburger = document.querySelector('.hamburger');
   const pageWrapper = document.querySelector('.page-wrapper');
@@ -26,12 +26,10 @@ document.addEventListener('click', function(event) {
     sidebar.classList.remove('open');
     pageWrapper.classList.remove('shift');
 
-    // 取消先前的延遲，避免重複
     if (hamburger._showTimeout) {
       clearTimeout(hamburger._showTimeout);
     }
 
-    // 延遲顯示漢堡按鈕，等待側邊欄動畫結束
     hamburger._showTimeout = setTimeout(() => {
       hamburger.classList.remove('hidden');
       hamburger._showTimeout = null;
@@ -44,11 +42,13 @@ function handleResize() {
   const pageWrapper = document.querySelector('.page-wrapper');
   const hamburger = document.querySelector('.hamburger');
 
+  if (!sidebar || !pageWrapper || !hamburger) return;
+
   if (window.innerWidth > 768) {
     sidebar.classList.add('open');
-    pageWrapper.classList.remove('shift'); // ← 可考慮依 sidebar 是否固定來決定是否 shift
-    hamburger.classList.add('hidden'); // ← 桌機版不顯示 hamburger
-    pageWrapper.style.marginLeft = ''; // 清除 inline
+    pageWrapper.classList.remove('shift');
+    hamburger.classList.add('hidden');
+    pageWrapper.style.marginLeft = '';
   } else {
     sidebar.classList.remove('open');
     pageWrapper.classList.remove('shift');
@@ -59,3 +59,61 @@ function handleResize() {
 // 初始化
 handleResize();
 window.addEventListener('resize', handleResize);
+
+function toggleItems() {
+  const toggle = document.getElementById('toggleSwitch');
+  const text = document.getElementById('switchText');
+
+  toggle.classList.toggle('active');
+  if (toggle.classList.contains('active')) {
+    text.innerText = '隱藏部分項目';
+    // 加入顯示全部行的程式碼
+  } else {
+    text.innerText = '顯示全部項目';
+    // 加入隱藏部分行的程式碼
+  }
+}
+
+function toggleSubRows(groupClass) {
+  const rows = document.querySelectorAll('tr.sub-row.' + groupClass);
+  rows.forEach(row => {
+    row.classList.toggle('show');
+  });
+}
+
+// Sidebar 載入完成後的初始化
+window.onSidebarLoaded = () => {
+  handleResize();
+  window.addEventListener('resize', handleResize);
+
+  document.querySelectorAll('tr.main-row').forEach(mainRow => {
+    const groupClass = Array.from(mainRow.classList).find(c => c.startsWith('group'));
+    if (groupClass && document.querySelector(`tr.sub-row.${groupClass}`)) {
+      const td = mainRow.querySelector('td');
+      if (!td) return;
+
+      // 避免重複插入箭頭
+      if (!td.querySelector('.arrow')) {
+        const arrow = document.createElement('span');
+        arrow.className = 'arrow';
+        td.prepend(arrow);
+      }
+
+      // 避免重複綁定事件
+      if (!mainRow._clickBound) {
+        mainRow._clickBound = true;
+        mainRow.addEventListener('click', () => {
+          mainRow.classList.toggle('expanded');
+          document.querySelectorAll(`tr.sub-row.${groupClass}`).forEach(sub => {
+            sub.classList.toggle('show');
+          });
+        });
+      }
+    }
+  });
+};
+
+// 若 sidebar 載入完了，立即執行
+if (typeof window.onSidebarLoaded === 'function') {
+  window.onSidebarLoaded();
+}
