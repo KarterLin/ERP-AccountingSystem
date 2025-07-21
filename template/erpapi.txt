@@ -1,0 +1,16 @@
+//結帳POST
+/api/close-period
+body:
+{
+    "startDate":"",
+    "endDate":""
+}
+or
+{
+    "endDate":""
+}
+
+//試算表GET
+/api/trial-balance <-查詢到今日為止的試算表
+/api/trial-balance/end <-ep 指定日期查詢試算表
+
