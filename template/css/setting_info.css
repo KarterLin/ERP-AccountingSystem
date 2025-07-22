@@ -67,3 +67,9 @@ button {
 .submitBtn {
     background-color: #27ae60;
 }
+
+@media (max-width: 768px) {
+    .main {
+        margin-left: 15px;
+    }
+}
