@@ -1,7 +1,6 @@
 .row {
     display: flex;
     flex-wrap: wrap;
-    /* 如果螢幕太小會自動換行 */
 }
 .col {
     padding-left: 10px;
@@ -16,6 +15,7 @@
     flex: 6;
     position: relative;
     margin-bottom: 20px;
+    margin-top: 25px;  /*先簡單修讓表格不高於表頭*/
 }
 .row .blank {
     flex: 3;
