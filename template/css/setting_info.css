@@ -1,7 +1,6 @@
 .row {
     display: flex;
     flex-wrap: wrap;
-    /* 如果螢幕太小會自動換行 */
 }
 .col {
     padding-left: 10px;
@@ -9,15 +8,18 @@
     text-align: left;
 }
 .row .title {
-    flex: 4;
+    flex: 3;
     font-weight: bolder;
     display: flex;
     align-items: flex-start;
 }
 .row .form {
-    flex: 8;
+    flex: 6;
     position: relative;
     margin-bottom: 20px;
+}
+.row .blank {
+    flex: 3;
 }
 form label {
     font-size: small;
