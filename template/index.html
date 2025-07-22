@@ -6,111 +6,104 @@
      <meta name="viewport" content="width=device-width, initial-scale=1.0">
      <title>營運組成分析</title>
      <link rel="stylesheet" href="./index.css">
+     <link rel="stylesheet" href="./css/sidebar.css">
 </head>
 
 <body>
 
      <!-- Sidebar -->
-     <div class="sidebar">
-          <a class="active" href="#index">首頁</a>
-          <a href="#accountbooks">收支帳簿</a>
-          <a href="#assets">資金管理</a>
-          <a href="#assets">資產管理</a>
-          <a href="#incomeStatement">我的報表</a>
-          <a href="#subsidiaryLedger">會計科目</a>
-          <a href="#about">扣繳申報</a>
-          <a href="#about">設定</a>
-     </div>
+     <div id="sidebar-container"></div>
 
-     <!-- Header -->
-     <header>營運組成分析</header>
+     <div class="page-wrapper">
+          <!-- Header -->
+          <header>營運組成分析</header>
 
-     <!-- Content -->
-     <div class="content">
-          <div class="card income">
-               <h4>2025年總收入</h4>
-               <div class="amount">$ 0</div>
-               <div class="circle"></div>
-          </div>
-
-          <div class="card expense">
-               <h4>2025年總支出</h4>
-               <div class="amount">$ 100</div>
-               <div class="circle"></div>
-          </div>
-
-          <div class="card financial-summary">
-               <div class="item">
+          <!-- Content -->
+          <div class="content">
+               <div class="card income">
                     <h4>2025年總收入</h4>
                     <div class="amount">$ 0</div>
+                    <div class="circle"></div>
                </div>
-               <div class="item">
+
+               <div class="card expense">
                     <h4>2025年總支出</h4>
                     <div class="amount">$ 100</div>
+                    <div class="circle"></div>
                </div>
-               <div class="item">
-                    <h4>2025年總損益</h4>
-                    <div class="amount">$ -100</div>
+
+               <div class="card financial-summary">
+                    <div class="item">
+                         <h4>2025年總收入</h4>
+                         <div class="amount">$ 0</div>
+                    </div>
+                    <div class="item">
+                         <h4>2025年總支出</h4>
+                         <div class="amount">$ 100</div>
+                    </div>
+                    <div class="item">
+                         <h4>2025年總損益</h4>
+                         <div class="amount">$ -100</div>
+                    </div>
                </div>
           </div>
+          <table class="t1">
+               <tr>
+                    <th>公司代號</th>
+                    <th>公司簡稱</th>
+                    <th>發言日期</th>
+                    <th>發言時間</th>
+                    <th>主旨</th>
+               </tr>
+               <tr>
+                    <td>Alfreds Futterkiste</td>
+                    <td>Maria Anders</td>
+                    <td>Germany</td>
+                    <td>Germany</td>
+                    <td>Germany</td>
+               </tr>
+               <tr>
+                    <td>Centro comercial Moctezuma</td>
+                    <td>Francisco Chang</td>
+                    <td>Mexico</td>
+                    <td>Germany</td>
+                    <td>Germany</td>
+               </tr>
+               <tr>
+                    <td>Alfreds Futterkiste</td>
+                    <td>Maria Anders</td>
+                    <td>Germany</td>
+                    <td>Germany</td>
+                    <td>Germany</td>
+               </tr>
+               <tr>
+                    <td>Alfreds Futterkiste</td>
+                    <td>Maria Anders</td>
+                    <td>Germany</td>
+                    <td>Germany</td>
+                    <td>Germany</td>
+               </tr>
+               <tr>
+                    <td>Alfreds Futterkiste</td>
+                    <td>Maria Anders</td>
+                    <td>Germany</td>
+                    <td>Germany</td>
+                    <td>Germany</td>
+               </tr>
+               <tr>
+                    <td>Alfreds Futterkiste</td>
+                    <td>Maria Anders</td>
+                    <td>Germany</td>
+                    <td>Germany</td>
+                    <td>Germany</td>
+               </tr>
+          </table>
+
      </div>
-     <table>
-          <tr>
-               <th>公司代號</th>
-               <th>公司簡稱</th>
-               <th>發言日期</th>
-               <th>發言時間</th>
-               <th>主旨</th>
-          </tr>
-          <tr>
-               <td>Alfreds Futterkiste</td>
-               <td>Maria Anders</td>
-               <td>Germany</td>
-               <td>Germany</td>
-               <td>Germany</td>
-          </tr>
-          <tr>
-               <td>Centro comercial Moctezuma</td>
-               <td>Francisco Chang</td>
-               <td>Mexico</td>
-               <td>Germany</td>
-               <td>Germany</td>
-          </tr>
-          <tr>
-               <td>Alfreds Futterkiste</td>
-               <td>Maria Anders</td>
-               <td>Germany</td>
-               <td>Germany</td>
-               <td>Germany</td>
-          </tr>
-          <tr>
-               <td>Alfreds Futterkiste</td>
-               <td>Maria Anders</td>
-               <td>Germany</td>
-               <td>Germany</td>
-               <td>Germany</td>
-          </tr>
-          <tr>
-               <td>Alfreds Futterkiste</td>
-               <td>Maria Anders</td>
-               <td>Germany</td>
-               <td>Germany</td>
-               <td>Germany</td>
-          </tr>
-          <tr>
-               <td>Alfreds Futterkiste</td>
-               <td>Maria Anders</td>
-               <td>Germany</td>
-               <td>Germany</td>
-               <td>Germany</td>
-          </tr>
-     </table>
 
 
 
-
-
-
+     <script src="js/sidebar.js"></script>
 </body>
 
 </html>

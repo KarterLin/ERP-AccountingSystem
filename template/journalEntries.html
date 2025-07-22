@@ -6,70 +6,65 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Journal Entry</title>
     <link rel="stylesheet" href="./journalEntries.css" />
+    <link rel="stylesheet" href="./css/sidebar.css">
 </head>
 
 <body>
     <!-- Sidebar -->
-    <div class="sidebar">
-        <a class="active" href="#index">首頁</a>
-        <a href="#accountbooks">帳務管理</a>
-        <a href="#assets">資金管理</a>
-        <a href="#assets">資產管理</a>
-        <a href="#incomeStatement">我的報表</a>
-        <a href="#subsidiaryLedger">會計科目</a>
-        <a href="#about">扣繳申報</a>
-        <a href="#about">設定</a>
-    </div>
+    <div id="sidebar-container"></div>
 
     <!-- 主要內容區域 -->
-    <div class="main-content">
-        <a href="accountbooks.html" class="header-link">回到帳務管理</a>
+    <div class="page-wrapper">
+        <div class="main-content">
+            <a href="accountbooks.html" class="header-link">回到帳務管理</a>
 
-        <div class="entry-form-container">
-            <form id="journal-entry-form">
-                <label for="entry-date">入帳日期：</label>
-                <input type="date" id="entry-date" name="entryDate" required><br><br>
+            <div class="entry-form-container">
+                <form id="journal-entry-form">
+                    <label for="entry-date">入帳日期：</label>
+                    <input type="date" id="entry-date" name="entryDate" required><br><br>
 
-                <table id="entries-table">
-                    <tr>
-                        <th>科目編號</th>
-                        <th>科目名稱</th>
-                        <th>借方金額</th>
-                        <th>貸方金額</th>
-                        <th>摘要</th>
-                        <th>操作</th>
-                    </tr>
-                    <tr class="journal-row">
-                        <td>
-                            <select name="accountCode[]" class="account-code" required>
-                                <option value="">請選擇科目編號</option>
-                            </select>
-                        </td>
-                        <td>
-                            <select name="accountName[]" class="account-name" required>
-                                <option value="">請選擇科目名稱</option>
-                            </select>
-                        </td>
-                        <td><input type="number" name="debit[]" min="0" step="1" class="debit-amount"></td>
-                        <td><input type="number" name="credit[]" min="0" step="1" class="credit-amount"></td>
-                        <td><input type="text" name="description[]"></td>
-                        <td></td>
-                    </tr>
-                </table>
+                    <table id="entries-table">
+                        <tr>
+                            <th>科目編號</th>
+                            <th>科目名稱</th>
+                            <th>借方金額</th>
+                            <th>貸方金額</th>
+                            <th>摘要</th>
+                            <th>操作</th>
+                        </tr>
+                        <tr class="journal-row">
+                            <td>
+                                <select name="accountCode[]" class="account-code" required>
+                                    <option value="">請選擇科目編號</option>
+                                </select>
+                            </td>
+                            <td>
+                                <select name="accountName[]" class="account-name" required>
+                                    <option value="">請選擇科目名稱</option>
+                                </select>
+                            </td>
+                            <td><input type="number" name="debit[]" min="0" step="1" class="debit-amount"></td>
+                            <td><input type="number" name="credit[]" min="0" step="1" class="credit-amount"></td>
+                            <td><input type="text" name="description[]"></td>
+                            <td></td>
+                        </tr>
+                    </table>
 
-                <div id="balance-check" style="margin-top: 10px;">
-                    <strong>借方總額：</strong><span id="total-debit">0</span>，
-                    <strong>貸方總額：</strong><span id="total-credit">0</span>，
-                    <strong>差額：</strong><span id="balance-diff" style="color:red;">0</span>
-                </div>
+                    <div id="balance-check" style="margin-top: 10px;">
+                        <strong>借方總額：</strong><span id="total-debit">0</span>，
+                        <strong>貸方總額：</strong><span id="total-credit">0</span>，
+                        <strong>差額：</strong><span id="balance-diff" style="color:red;">0</span>
+                    </div>
 
-                <button type="button" id="add-row">＋ 新增一組</button>
-                <button type="submit">送出分錄</button>
-            </form>
+                    <button type="button" id="add-row">＋ 新增一組</button>
+                    <button type="submit">送出分錄</button>
+                </form>
+            </div>
         </div>
     </div>
-
+    <script src="js/sidebar.js"></script>
     <script>
+
         let accountsData = [];
 
         function getCurrentDate() {
@@ -246,7 +241,7 @@
         function addEntryRow() {
             const table = document.getElementById('entries-table');
             const newRow = table.rows[1].cloneNode(true);
-            
+
             // 清空新行的輸入值
             Array.from(newRow.querySelectorAll('input')).forEach(i => {
                 i.value = '';
@@ -265,7 +260,7 @@
             }
 
             table.appendChild(newRow);
-            
+
             // 為新行設置選項和事件監聽器
             setupRowEvents(newRow);
         }
@@ -295,7 +290,7 @@
             const entryDate = document.getElementById('entry-date').value;
             const details = [];
             const rows = document.querySelectorAll('#entries-table tr');
-            
+
             for (let i = 1; i < rows.length; i++) {
                 const row = rows[i];
                 const accountCode = row.querySelector('select[name="accountCode[]"]').value;
@@ -303,32 +298,32 @@
                 const debit = row.querySelector('input[name="debit[]"]').value || '0';
                 const credit = row.querySelector('input[name="credit[]"]').value || '0';
                 const description = row.querySelector('input[name="description[]"]').value;
-                
+
                 if (accountCode && accountName) {
-                    details.push({ 
+                    details.push({
                         accountCode: parseInt(accountCode), // 轉換為數字
-                        debit: parseFloat(debit), 
-                        credit: parseFloat(credit), 
-                        description 
+                        debit: parseFloat(debit),
+                        credit: parseFloat(credit),
+                        description
                     });
                 }
             }
-            
+
             if (details.length === 0) return alert('請至少填寫一筆分錄');
-            
+
             const totalDebit = details.reduce((sum, e) => sum + e.debit, 0);
             const totalCredit = details.reduce((sum, e) => sum + e.credit, 0);
             if (totalDebit !== totalCredit) return alert(`借貸不相符！\n借方總額：${totalDebit}，貸方總額：${totalCredit}`);
-            
+
             // 構建新的JSON格式
             const journalEntry = {
                 entryDate: entryDate,
                 details: details
             };
-            
+
             // 顯示將要發送的JSON格式供檢查
             console.log('將要發送的JSON格式:', JSON.stringify(journalEntry, null, 2));
-            
+
             try {
                 const res = await fetch('http://localhost:8080/api/journal-entries', {
                     method: 'POST',
@@ -355,6 +350,7 @@
             addEntryRow(); // 新增第二筆
             updateBalanceSummary();
         });
+
     </script>
 </body>
 

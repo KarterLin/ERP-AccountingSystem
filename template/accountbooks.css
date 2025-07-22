@@ -5,50 +5,17 @@ body {
 }
 
 header {
-     margin-left: 200px;
      padding: 16px;
      font-size: 40px;
      font-weight: bold;
 }
 
-/* sidebar (簡化版) */
-.sidebar {
-     margin: 0;
-     padding: 0;
-     width: 200px;
-     background-color: #f1f1f1;
-     position: fixed;
-     height: 100%;
-     overflow: auto;
-}
 
-.sidebar a {
-     display: block;
-     color: black;
-     padding: 16px;
-     text-decoration: none;
-}
 
-.sidebar a.active {
-     background-color: #04AA6D;
-     color: white;
-}
 
-.sidebar a:hover:not(.active) {
-     background-color: #555;
-     color: white;
-}
 
 @media screen and (max-width: 700px) {
-     .sidebar {
-          width: 100%;
-          height: auto;
-          position: relative;
-     }
-
-     .sidebar a {
-          float: left;
-     }
+     
 
      .content,
      header {
@@ -56,12 +23,7 @@ header {
      }
 }
 
-@media screen and (max-width: 400px) {
-     .sidebar a {
-          text-align: center;
-          float: none;
-     }
-}
+
 
 .button-item {
      width: 80px;
@@ -76,7 +38,7 @@ header {
      display: flex;
      align-items: center;
      /* 垂直置中 label 和按鈕們 */
-     margin-left: 250px;
+     margin-left: 25px;
      /* 跟 header 一致對齊 */
      gap: 20px;
      margin-top: 30px;

@@ -1,61 +1,38 @@
-function toggleSidebar() {
-  const sidebar = document.querySelector('.sidebar');
-  const pageWrapper = document.querySelector('.page-wrapper');
-  const hamburger = document.querySelector('.hamburger');
 
-  if (sidebar.classList.contains('open')) {
-    sidebar.classList.remove('open');
-    pageWrapper.classList.remove('shift');
-    setTimeout(() => hamburger.classList.remove('hidden'), 300);
-  } else {
-    sidebar.classList.add('open');
-    pageWrapper.classList.add('shift');
-    hamburger.classList.add('hidden');
-  }
-}
-
-// 點擊空白處收起 sidebar
-document.addEventListener('click', function (event) {
-  const sidebar = document.querySelector('.sidebar');
-  const hamburger = document.querySelector('.hamburger');
-  const pageWrapper = document.querySelector('.page-wrapper');
-
-  const clickedInsideSidebarOrHamburger = sidebar.contains(event.target) || hamburger.contains(event.target);
-
-  if (!clickedInsideSidebarOrHamburger) {
-    sidebar.classList.remove('open');
-    pageWrapper.classList.remove('shift');
-
-    if (hamburger._showTimeout) {
-      clearTimeout(hamburger._showTimeout);
-    }
-
-    hamburger._showTimeout = setTimeout(() => {
-      hamburger.classList.remove('hidden');
-      hamburger._showTimeout = null;
-    }, 300);
-  }
+document.addEventListener("DOMContentLoaded", () => {
+  initTableToggle();
 });
 
-function handleResize() {
-  const sidebar = document.querySelector('.sidebar');
-  const pageWrapper = document.querySelector('.page-wrapper');
-  const hamburger = document.querySelector('.hamburger');
+function initTableToggle() {
+  document.querySelectorAll('tr.main-row').forEach(mainRow => {
+    const groupClass = Array.from(mainRow.classList).find(c => c.startsWith('group'));
+    if (!groupClass) return;
 
-  if (!sidebar || !pageWrapper || !hamburger) return;
+    const hasSubRows = document.querySelector(`tr.sub-row.${groupClass}`);
+    if (!hasSubRows) return;
 
-  if (window.innerWidth > 768) {
-    sidebar.classList.add('open');
-    pageWrapper.classList.remove('shift');
-    hamburger.classList.add('hidden');
-    pageWrapper.style.marginLeft = '';
-  } else {
-    sidebar.classList.remove('open');
-    pageWrapper.classList.remove('shift');
-    hamburger.classList.remove('hidden');
-  }
+    const td = mainRow.querySelector('td');
+    if (!td) return;
+
+    // 插入箭頭（如果尚未插入）
+    if (!td.querySelector('.arrow')) {
+      const arrow = document.createElement('span');
+      arrow.className = 'arrow';
+      td.prepend(arrow);
+    }
+
+    // 加入點擊事件（避免重複綁定）
+    if (!mainRow._clickBound) {
+      mainRow._clickBound = true;
+      mainRow.addEventListener('click', () => {
+        mainRow.classList.toggle('expanded');
+        document.querySelectorAll(`tr.sub-row.${groupClass}`).forEach(sub => {
+          sub.classList.toggle('show');
+        });
+      });
+    }
+  });
 }
-
 // 初始化
 handleResize();
 window.addEventListener('resize', handleResize);

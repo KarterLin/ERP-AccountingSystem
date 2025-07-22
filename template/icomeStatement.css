@@ -5,60 +5,6 @@ body {
 }
 
 
-
-
-/* sidebar (簡化版) */
-.sidebar {
-     position: fixed;
-     top: 0;
-     left: 0;
-     width: 200px;
-     height: 100%;
-     background-color: #f1f1f1;
-     box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
-     transform: translateX(0);
-     transition: transform 0.3s ease;
-     z-index: 1000;
-}
-
-.sidebar a {
-     display: block;
-     color: black;
-     padding: 16px;
-     text-decoration: none;
-}
-
-.sidebar a.active {
-     background-color: #04AA6D;
-     color: white;
-}
-
-.sidebar a:hover:not(.active) {
-     background-color: #555;
-     color: white;
-}
-
-
-.hamburger {
-     display: none;
-     position: fixed;
-     top: 10px;
-     left: 10px;
-     font-size: 28px;
-     background: none;
-     border: none;
-     z-index: 1100;
-     cursor: pointer;
-     opacity: 1;
-     pointer-events: auto;
-     transition: opacity 0.2s ease;
-}
-
-.hamburger.hidden {
-     opacity: 0;
-     pointer-events: none;
-}
-
 .page-wrapper {
      margin-left: 225px;
      transition: margin-left 0.3s ease;
@@ -67,20 +13,7 @@ body {
 
 /* 響應式關鍵 */
 @media (max-width: 768px) {
-     .sidebar {
-          transform: translateX(-200px);
-          /* 隱藏 */
-     }
-
-     .sidebar.open {
-          transform: translateX(0);
-          /* 顯示 */
-     }
-
-     .hamburger {
-          display: block;
-          /* 小螢幕才顯示漢堡 */
-     }
+     
 
      .page-wrapper {
           margin-left: 50px;
@@ -125,6 +58,11 @@ body {
      /* 讓裡面所有元素垂直置中 */
      gap: 5px;
      /* 元素間距 */
+}
+@media (max-width: 768px) {
+     .d3{
+          margin-left: 15px;
+     }
 }
 
 
@@ -207,6 +145,12 @@ body {
 .table-container {
      margin-top: 25px;
      margin-right: 60px;
+}
+
+@media (max-width: 768px) {
+     .table-container{
+          margin-left: 15px;
+     }
 }
 
 tr.main-row {

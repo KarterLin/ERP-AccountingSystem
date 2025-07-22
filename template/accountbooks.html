@@ -6,48 +6,43 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="accountbooks.css">
+    <link rel="stylesheet" href="./css/sidebar.css">
+
 </head>
 
 <body>
     <!-- Sidebar -->
-    <div class="sidebar">
-        <a class="active" href="#index">首頁</a>
-        <a href="#accountbooks">收支帳簿</a>
-        <a href="#assets">資金管理</a>
-        <a href="#assets">資產管理</a>
-        <a href="#incomeStatement">我的報表</a>
-        <a href="#subsidiaryLedger">會計科目</a>
-        <a href="#about">扣繳申報</a>
-        <a href="#about">設定</a>
-    </div>
-    <header>帳務管理</header>
+    <div id="sidebar-container"></div>
+    <div class="page-wrapper">
+        <header>帳務管理</header>
 
-    <div class="buttons">
-        <div class=".button-item">
-            <span class="button-label">建立交易</span>
-            <button>
-                <img src="./img/coin.png" alt="coin" width="50px" height="50px">
-                新增交易分錄
-            </button>
+        <div class="buttons">
+            <div class=".button-item">
+                <span class="button-label">建立交易</span>
+                <button>
+                    <img src="./img/coin.png" alt="coin" width="50px" height="50px">
+                    新增交易分錄
+                </button>
+            </div>
+        </div>
+        <div class="buttons">
+            <div class=".button-item">
+                <span class="button-label">帳務管理</span>
+                <button>
+                    <img src="./img/import-37.png" alt="coin" width="50px" height="50px">
+                    匯入帳務資料
+                </button>
+            </div>
+            <div class=".button-item">
+                <span class="button-label"></span>
+                <button>
+                    <img src="./img/output.png" alt="coin" width="50px" height="50px">
+                    匯出帳務資料
+                </button>
+            </div>
         </div>
     </div>
-    <div class="buttons">
-     <div class=".button-item">
-            <span class="button-label">帳務管理</span>
-            <button>
-                <img src="./img/import-37.png" alt="coin" width="50px" height="50px">
-                匯入帳務資料
-            </button>
-        </div>
-        <div class=".button-item">
-            <span class="button-label"></span>
-            <button>
-                <img src="./img/output.png" alt="coin" width="50px" height="50px">
-                匯出帳務資料
-            </button>
-        </div>
-    </div>
-
+    <script src="js/sidebar.js"></script>
 </body>
 
 </html>
