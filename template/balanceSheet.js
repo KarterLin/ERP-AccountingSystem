@@ -86,30 +86,39 @@ window.onSidebarLoaded = () => {
   handleResize();
   window.addEventListener('resize', handleResize);
 
-  document.querySelectorAll('tr.main-row').forEach(mainRow => {
-    const groupClass = Array.from(mainRow.classList).find(c => c.startsWith('group'));
-    if (groupClass && document.querySelector(`tr.sub-row.${groupClass}`)) {
-      const td = mainRow.querySelector('td');
-      if (!td) return;
+  // 針對兩個表格分別初始化
+  const tables = document.querySelectorAll('.tableFixHead table');
 
-      // 避免重複插入箭頭
-      if (!td.querySelector('.arrow')) {
-        const arrow = document.createElement('span');
-        arrow.className = 'arrow';
-        td.prepend(arrow);
-      }
+  tables.forEach(table => {
+    table.querySelectorAll('tr.main-row').forEach(mainRow => {
+      const groupClass = Array.from(mainRow.classList).find(c => c.startsWith('group'));
+      if (groupClass && table.querySelector(`tr.sub-row.${groupClass}`)) {
+        const td = mainRow.querySelector('td');
+        if (!td) return;
 
-      // 避免重複綁定事件
-      if (!mainRow._clickBound) {
-        mainRow._clickBound = true;
-        mainRow.addEventListener('click', () => {
-          mainRow.classList.toggle('expanded');
-          document.querySelectorAll(`tr.sub-row.${groupClass}`).forEach(sub => {
-            sub.classList.toggle('show');
-          });
+        if (!td.querySelector('.arrow')) {
+          const arrow = document.createElement('span');
+          arrow.className = 'arrow';
+          td.prepend(arrow);
+        }
+
+        // 預設展開主列與該表格內對應的子列
+        mainRow.classList.add('expanded');
+        table.querySelectorAll(`tr.sub-row.${groupClass}`).forEach(sub => {
+          sub.classList.add('show');
         });
+
+        if (!mainRow._clickBound) {
+          mainRow._clickBound = true;
+          mainRow.addEventListener('click', () => {
+            mainRow.classList.toggle('expanded');
+            table.querySelectorAll(`tr.sub-row.${groupClass}`).forEach(sub => {
+              sub.classList.toggle('show');
+            });
+          });
+        }
       }
-    }
+    });
   });
 };
 

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,6 +8,7 @@
     <link rel="stylesheet" href="./balanceSheet.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
+
 <body>
     <!-- Sidebar -->
     <div id="sidebar-container"></div>
@@ -34,59 +36,122 @@
                         <tr>
                             <th colspan="4" class="text-center bg-success text-white">資產</th>
                         </tr>
-                        
+                        <tr>
+                            <td>項目名稱</td>
+                            <td>會計科目</td>
+                            <td>小計</td>
+                            <td>百分比</td>
+                        </tr>
                     </thead>
                     <tbody>
                         <!-- 主列 -->
-                        <tr class="main-row group1">
-                            <td>項目名稱</td>
-                            <td>會計科目</td>
-                            <td class="text-end">小計</td>
-                            <td class="text-end">百分比</td>
+                        <tr class="main-row group1 expanded">
+                            <td>流動資產</td>
+                            <td></td>
+                            <td class="text-end"></td>
+                            <td class="text-end"></td>
                         </tr>
                         <!-- 子列 -->
-                        <tr class="sub-row group1">
+                        <tr class="sub-row group1 show">
                             <td></td>
-                            <td>銷貨收入</td>
-                            <td class="text-end">80,000</td>
-                            <td class="text-end">80.00%</td>
+                            <td>現金及約當現金</td>
+                            <td class="text-end">0</td>
+                            <td class="text-end">0%</td>
                         </tr>
-                        <tr class="sub-row group1">
+                        <tr class="sub-row group1 show">
                             <td></td>
-                            <td>服務收入</td>
-                            <td class="text-end">20,000</td>
-                            <td class="text-end">20.00%</td>
+                            <td>按攤銷後成本衡量之金融資產-流動</td>
+                            <td class="text-end">0</td>
+                            <td class="text-end">0%</td>
+                        </tr>
+                        <tr class="sub-row group1 show">
+                            <td></td>
+                            <td>應收票據</td>
+                            <td class="text-end">0</td>
+                            <td class="text-end">0%</td>
+                        </tr>
+                        <tr class="sub-row group1 show">
+                            <td></td>
+                            <td>應收帳款</td>
+                            <td class="text-end">0</td>
+                            <td class="text-end">0%</td>
+                        </tr>
+                        <tr class="sub-row group1 show">
+                            <td></td>
+                            <td>應收帳款-關係人</td>
+                            <td class="text-end">0</td>
+                            <td class="text-end">0%</td>
+                        </tr>
+                        <tr class="sub-row group1 show">
+                            <td></td>
+                            <td>其他應收款-關係人淨額</td>
+                            <td class="text-end">0</td>
+                            <td class="text-end">0%</td>
+                        </tr>
+                        <tr class="sub-row group1 show">
+                            <td></td>
+                            <td>本期所得稅資產</td>
+                            <td class="text-end">0</td>
+                            <td class="text-end">0%</td>
+                        </tr>
+                        <tr class="sub-row group1 show">
+                            <td></td>
+                            <td>存貨</td>
+                            <td class="text-end">0</td>
+                            <td class="text-end">0%</td>
+                        </tr>
+                        <tr class="sub-row group1 show">
+                            <td></td>
+                            <td>預付款項</td>
+                            <td class="text-end">0</td>
+                            <td class="text-end">0%</td>
+                        </tr>
+                        <tr>
+                            <td>流動資產合計</td>
+                            <td></td>
+                            <td class="text-end">0</td>
+                            <td class="text-end">0%</td>
+                        </tr>
+                        <!-- 主列 -->
+                        <tr class="main-row group2 expanded">
+                            <td>非流動資產</td>
+                            <td></td>
+                            <td class="text-end"></td>
+                            <td class="text-end"></td>
+                        </tr>
+                        <!-- 子列 -->
+                        <tr class="sub-row group2 show">
+                            <td></td>
+                            <td>不動產、廠房及設備</td>
+                            <td class="text-end">0</td>
+                            <td class="text-end">0%</td>
+                        </tr>
+                        <tr class="sub-row group2 show">
+                            <td></td>
+                            <td>遞延所得稅資產</td>
+                            <td class="text-end">0</td>
+                            <td class="text-end">0%</td>
+                        </tr>
+                        <tr class="sub-row group2 show">
+                            <td></td>
+                            <td>其他非流動資產</td>
+                            <td class="text-end">0</td>
+                            <td class="text-end">0%</td>
+                        </tr>
+                        <tr>
+                            <td>非流動資產合計</td>
+                            <td></td>
+                            <td class="text-end">0</td>
+                            <td class="text-end">0%</td>
                         </tr>
 
-                        <!-- 主列 -->
-                        <tr class="main-row group2">
-                            <td>營業成本</td>
+                        <tr>
+                            <td>資產合計</td>
                             <td></td>
-                            <td class="text-end">60,000</td>
-                            <td class="text-end">60.00%</td>
-                        </tr>
-                        <!-- 子列 -->
-                        <tr class="sub-row group2">
-                            <td></td>
-                            <td>銷貨成本</td>
-                            <td class="text-end">60,000</td>
-                            <td class="text-end">60.00%</td>
+                            <td class="text-end">0</td>
+                            <td class="text-end">0%</td>
                         </tr>
 
-                        <!-- 主列 -->
-                        <tr class="main-row group3">
-                            <td>營業利益</td>
-                            <td></td>
-                            <td class="text-end">40,000</td>
-                            <td class="text-end">40.00%</td>
-                        </tr>
-                        <!-- 子列 -->
-                        <tr class="sub-row group3">
-                            <td></td>
-                            <td>營業收入 - 營業成本</td>
-                            <td class="text-end">40,000</td>
-                            <td class="text-end">40.00%</td>
-                        </tr>
                     </tbody>
                 </table>
             </div>
@@ -96,70 +161,170 @@
                         <tr>
                             <th colspan="4" class="text-center bg-success text-white">負債</th>
                         </tr>
-                        
-                    </thead>
-                    <tbody>
-                        <!-- 主列 -->
-                        <tr class="main-row group1">
+                        <tr>
                             <td>項目名稱</td>
                             <td>會計科目</td>
                             <td>小計</td>
                             <td>百分比</td>
                         </tr>
-                        <!-- 子列 -->
-                        <tr class="sub-row group1">
+                    </thead>
+                    <tbody>
+                        <!-- 主列 -->
+                        <tr class="main-row group1 expanded">
+                            <td>流動負債</td>
                             <td></td>
-                            <td>銷貨收入</td>
-                            <td class="text-end">80,000</td>
-                            <td class="text-end">80.00%</td>
+                            <td class="text-end"></td>
+                            <td class="text-end"></td>
                         </tr>
-                        <tr class="sub-row group1">
+                        <!-- 子列 -->
+                        <tr class="sub-row group1 show">
                             <td></td>
-                            <td>服務收入</td>
-                            <td class="text-end">20,000</td>
-                            <td class="text-end">20.00%</td>
+                            <td>應付帳款</td>
+                            <td class="text-end">0</td>
+                            <td class="text-end">0%</td>
+                        </tr>
+                        <tr class="sub-row group1 show">
+                            <td></td>
+                            <td>其他應付款</td>
+                            <td class="text-end">0</td>
+                            <td class="text-end">0%</td>
+                        </tr>
+                        <tr class="sub-row group1 show">
+                            <td></td>
+                            <td>其他應付款-關係人</td>
+                            <td class="text-end">0</td>
+                            <td class="text-end">0%</td>
+                        </tr>
+                        <tr class="sub-row group1 show">
+                            <td></td>
+                            <td>其他流動負債</td>
+                            <td class="text-end">0</td>
+                            <td class="text-end">0%</td>
+                        </tr>
+                        <tr>
+                            <td>流動負債合計</td>
+                            <td></td>
+                            <td class="text-end">0</td>
+                            <td class="text-end">0%</td>
+                        </tr>
+                        <!-- 主列 -->
+                        <tr class="main-row group2 expanded">
+                            <td>非流動負債</td>
+                            <td></td>
+                            <td class="text-end"></td>
+                            <td class="text-end"></td>
+                        </tr>
+                        <!-- 子列 -->
+                        <tr class="sub-row group2 show">
+                            <td></td>
+                            <td>長期借款</td>
+                            <td class="text-end">0</td>
+                            <td class="text-end">0%</td>
+                        </tr>
+                        <tr class="sub-row group2 show">
+                            <td></td>
+                            <td>遞延所得稅負債</td>
+                            <td class="text-end">0</td>
+                            <td class="text-end">0%</td>
+                        </tr>
+                        <tr class="sub-row group2 show">
+                            <td></td>
+                            <td>其他非流動負債</td>
+                            <td class="text-end">0</td>
+                            <td class="text-end">0%</td>
+                        </tr>
+                        <tr>
+                            <td>非流動負債合計</td>
+                            <td></td>
+                            <td class="text-end">0</td>
+                            <td class="text-end">0%</td>
                         </tr>
 
-                        <!-- 主列 -->
-                        <tr class="main-row group2">
-                            <td>營業成本</td>
+                        <tr>
+                            <td>負債合計</td>
                             <td></td>
-                            <td class="text-end">60,000</td>
-                            <td class="text-end">60.00%</td>
-                        </tr>
-                        <!-- 子列 -->
-                        <tr class="sub-row group2">
-                            <td></td>
-                            <td>銷貨成本</td>
-                            <td class="text-end">60,000</td>
-                            <td class="text-end">60.00%</td>
+                            <td class="text-end">0</td>
+                            <td class="text-end">0%</td>
                         </tr>
 
+                        <thead>
+
+                            <tr>
+                                <th colspan="4" class="text-center bg-success text-white">股東權益</th>
+                            </tr>
+                        </thead>
                         <!-- 主列 -->
-                        <tr class="main-row group3">
-                            <td>營業利益</td>
+                        <tr class="main-row group2 expanded">
+                            <td>股本</td>
                             <td></td>
-                            <td class="text-end">40,000</td>
-                            <td class="text-end">40.00%</td>
+                            <td class="text-end"></td>
+                            <td class="text-end"></td>
                         </tr>
                         <!-- 子列 -->
-                        <tr class="sub-row group3">
+                        <tr class="sub-row group2 show">
                             <td></td>
-                            <td>營業收入 - 營業成本</td>
-                            <td class="text-end">40,000</td>
-                            <td class="text-end">40.00%</td>
+                            <td>股本</td>
+                            <td class="text-end">0</td>
+                            <td class="text-end">0%</td>
                         </tr>
+                        <tr>
+                            <td>股本合計</td>
+                            <td></td>
+                            <td class="text-end">0</td>
+                            <td class="text-end">0%</td>
+                        </tr>
+                        <!-- 主列 -->
+                        <tr class="main-row group2 expanded">
+                            <td>保留盈餘</td>
+                            <td></td>
+                            <td class="text-end"></td>
+                            <td class="text-end"></td>
+                        </tr>
+                        <!-- 子列 -->
+                        <tr class="sub-row group2 show">
+                            <td></td>
+                            <td>保留盈餘及累積盈虧</td>
+                            <td class="text-end">0</td>
+                            <td class="text-end">0%</td>
+                        </tr>
+                        <tr class="sub-row group2 show">
+                            <td></td>
+                            <td>本期盈餘及盈虧</td>
+                            <td class="text-end">0</td>
+                            <td class="text-end">0%</td>
+                        </tr>
+                        <tr class="sub-row group2 show">
+                            <td></td>
+                            <td>法定盈餘公積</td>
+                            <td class="text-end">0</td>
+                            <td class="text-end">0%</td>
+                        </tr>
+                        <tr>
+                            <td>保留盈餘合計</td>
+                            <td></td>
+                            <td class="text-end">0</td>
+                            <td class="text-end">0%</td>
+                        </tr>
+                        <tr>
+                            <td>股東權益合計</td>
+                            <td></td>
+                            <td class="text-end">0</td>
+                            <td class="text-end">0%</td>
+                        </tr>
+
                     </tbody>
+
                 </table>
             </div>
         </div>
-        </div>
-        
     </div>
-    
-    
+
+    </div>
+
+
 
     <script src="js/sidebar.js"></script>
     <script src="./balanceSheet.js"></script>
 </body>
+
 </html>

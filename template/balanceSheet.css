@@ -271,4 +271,9 @@ td.text-end {
 
 .tableFixHead {
      width: 50%;
+     max-height: 800px;
+     /* 你可以依需要調整這個高度 */
+     overflow-y: auto;
+     border: 1px solid #ccc;
+     /* 可選：加個邊框更明顯 */
 }
