@@ -91,66 +91,89 @@
         }
 
         async function loadAccountsData() {
-    try {
-        const response = await fetch('http://localhost:8080/api/accounts');
-        if (response.ok) {
-            accountsData = await response.json(); // 直接用原始欄位 code, name
-        } else {
-            throw new Error();
+            try {
+                const response = await fetch('http://localhost:8080/api/accounts');
+                if (response.ok) {
+                    accountsData = await response.json(); // 直接用原始欄位 code, name
+                } else {
+                    throw new Error();
+                }
+            } catch {
+                accountsData = [
+                    { code: "1001000", name: '現金' },
+                    { code: "1002000", name: '銀行存款' },
+                    { code: "2001000", name: '應付帳款' },
+                    { code: "3001000", name: '資本' },
+                    { code: "4001000", name: '銷貨收入' },
+                    { code: "5001000", name: '銷貨成本' }
+                ];
+            }
+
+            populateAccountSelects();
         }
-    } catch {
-        accountsData = [
-            { code: "1001000", name: '現金' },
-            { code: "1002000", name: '銀行存款' },
-            { code: "2001000", name: '應付帳款' },
-            { code: "3001000", name: '資本' },
-            { code: "4001000", name: '銷貨收入' },
-            { code: "5001000", name: '銷貨成本' }
-        ];
-    }
 
-    populateAccountSelects();
-}
+        // 修正版本：只為新的選單填充選項，不影響已有選擇
+        function populateAccountSelects(targetRow = null) {
+            const rows = targetRow ? [targetRow] : document.querySelectorAll('.journal-row');
+            
+            rows.forEach(row => {
+                const codeSelect = row.querySelector('.account-code');
+                const nameSelect = row.querySelector('.account-name');
+                
+                // 保存當前選擇的值
+                const currentCodeValue = codeSelect.value;
+                const currentNameValue = nameSelect.value;
+                
+                // 只有當選單為空或只有預設選項時才重新填充
+                if (codeSelect.options.length <= 1) {
+                    codeSelect.innerHTML = '<option value="">請選擇科目編號</option>';
+                    accountsData.forEach(account => {
+                        const option = document.createElement('option');
+                        option.value = account.code;
+                        option.textContent = account.code;
+                        codeSelect.appendChild(option);
+                    });
+                }
+                
+                if (nameSelect.options.length <= 1) {
+                    nameSelect.innerHTML = '<option value="">請選擇科目名稱</option>';
+                    accountsData.forEach(account => {
+                        const option = document.createElement('option');
+                        option.value = account.name;
+                        option.textContent = account.name;
+                        nameSelect.appendChild(option);
+                    });
+                }
+                
+                // 恢復之前的選擇
+                codeSelect.value = currentCodeValue;
+                nameSelect.value = currentNameValue;
+            });
 
-        function populateAccountSelects() {
-    document.querySelectorAll('.account-code').forEach(select => {
-        select.innerHTML = '<option value="">請選擇科目編號</option>';
-        accountsData.forEach(account => {
-            const option = document.createElement('option');
-            option.value = account.code;
-            option.textContent = account.code;
-            select.appendChild(option);
-        });
-    });
+            // 為所有行設置連動功能（避免重複設置）
+            document.querySelectorAll('.journal-row').forEach(row => {
+                const codeSelect = row.querySelector('.account-code');
+                const nameSelect = row.querySelector('.account-name');
 
-    document.querySelectorAll('.account-name').forEach(select => {
-        select.innerHTML = '<option value="">請選擇科目名稱</option>';
-        accountsData.forEach(account => {
-            const option = document.createElement('option');
-            option.value = account.name;
-            option.textContent = account.name;
-            select.appendChild(option);
-        });
-    });
+                // 移除舊的事件監聽器，避免重複綁定
+                codeSelect.replaceWith(codeSelect.cloneNode(true));
+                nameSelect.replaceWith(nameSelect.cloneNode(true));
+                
+                // 重新獲取元素引用
+                const newCodeSelect = row.querySelector('.account-code');
+                const newNameSelect = row.querySelector('.account-name');
 
-    // 連動設定
-    document.querySelectorAll('.journal-row').forEach(row => {
-        const codeSelect = row.querySelector('.account-code');
-        const nameSelect = row.querySelector('.account-name');
+                newCodeSelect.addEventListener('change', () => {
+                    const matched = accountsData.find(acc => acc.code === newCodeSelect.value);
+                    newNameSelect.value = matched ? matched.name : '';
+                });
 
-        codeSelect.addEventListener('change', () => {
-            const matched = accountsData.find(acc => acc.code === codeSelect.value);
-            nameSelect.value = matched ? matched.name : '';
-        });
-
-        nameSelect.addEventListener('change', () => {
-            const matched = accountsData.find(acc => acc.name === nameSelect.value);
-            codeSelect.value = matched ? matched.code : '';
-        });
-    });
-}
-
-        
+                newNameSelect.addEventListener('change', () => {
+                    const matched = accountsData.find(acc => acc.name === newNameSelect.value);
+                    newCodeSelect.value = matched ? matched.code : '';
+                });
+            });
+        }
 
         function handleDebitCreditChange(select) {
             const row = select.closest('tr');
@@ -174,12 +197,12 @@
             }
         }
 
-       function handleAccountCodeChange(select) {
-           const row = select.closest('tr');
-           const nameSelect = row.querySelector('.account-name');
-           const selected = accountsData.find(a => a.code == select.value);
-           nameSelect.value = selected ? selected.name : '';
-}
+        function handleAccountCodeChange(select) {
+            const row = select.closest('tr');
+            const nameSelect = row.querySelector('.account-name');
+            const selected = accountsData.find(a => a.code == select.value);
+            nameSelect.value = selected ? selected.name : '';
+        }
 
         function handleAccountNameChange(select) {
             const row = select.closest('tr');
@@ -208,6 +231,8 @@
         function addEntryRow() {
             const table = document.getElementById('entries-table');
             const newRow = table.rows[1].cloneNode(true);
+            
+            // 清空新行的輸入值
             Array.from(newRow.querySelectorAll('input')).forEach(i => {
                 i.value = '';
                 i.disabled = false;
@@ -222,7 +247,9 @@
             }
 
             table.appendChild(newRow);
-            populateAccountSelects();
+            
+            // 只為新增的行填充選項
+            populateAccountSelects(newRow);
         }
 
         document.getElementById('entries-table').addEventListener('input', function (e) {
