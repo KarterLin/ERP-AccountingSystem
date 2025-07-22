@@ -1,0 +1,274 @@
+body {
+     margin: 0;
+     font-family: "Lato", sans-serif;
+     background-color: #f5f7fa;
+}
+
+
+
+
+/* sidebar (簡化版) */
+.sidebar {
+     position: fixed;
+     top: 0;
+     left: 0;
+     width: 200px;
+     height: 100%;
+     background-color: #f1f1f1;
+     box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+     transform: translateX(0);
+     transition: transform 0.3s ease;
+     z-index: 1000;
+}
+
+.sidebar a {
+     display: block;
+     color: black;
+     padding: 16px;
+     text-decoration: none;
+}
+
+.sidebar a.active {
+     background-color: #04AA6D;
+     color: white;
+}
+
+.sidebar a:hover:not(.active) {
+     background-color: #555;
+     color: white;
+}
+
+
+.hamburger {
+     display: none;
+     position: fixed;
+     top: 10px;
+     left: 10px;
+     font-size: 28px;
+     background: none;
+     border: none;
+     z-index: 1100;
+     cursor: pointer;
+     opacity: 1;
+     pointer-events: auto;
+     transition: opacity 0.2s ease;
+}
+
+.hamburger.hidden {
+     opacity: 0;
+     pointer-events: none;
+}
+
+.page-wrapper {
+     margin-left: 225px;
+     transition: margin-left 0.3s ease;
+}
+
+
+/* 響應式關鍵 */
+@media (max-width: 768px) {
+     .sidebar {
+          transform: translateX(-200px);
+          /* 隱藏 */
+     }
+
+     .sidebar.open {
+          transform: translateX(0);
+          /* 顯示 */
+     }
+
+     .hamburger {
+          display: block;
+          /* 小螢幕才顯示漢堡 */
+     }
+
+     .page-wrapper {
+          margin-left: 50px;
+     }
+
+     .page-wrapper.shift {
+          margin-left: 225px;
+          /* sidebar 展開時內容偏移 */
+     }
+}
+
+.title {
+     white-space: nowrap;
+     margin: 0;
+     font-size: 40px;
+     font-weight: bold;
+}
+
+.d1 {
+     display: flex;
+     align-items: center;
+     justify-content: space-between;
+     padding: 10px 20px;
+}
+
+.left-group {
+     display: flex;
+     align-items: center;
+     gap: 10px;
+}
+
+.d2 {
+     display: flex;
+     gap: 10px;
+     margin-top: 10px;
+     margin-right: 35px;
+}
+
+.d3 {
+     display: flex;
+     align-items: center;
+     /* 讓裡面所有元素垂直置中 */
+     gap: 5px;
+     /* 元素間距 */
+}
+
+
+.btn1 {
+     cursor: pointer;
+     background-color: #f0f0f0;
+     border: solid 1px blue;
+     border-radius: 4px;
+     font-size: 25px;
+     height: 50px;
+     width: 150px;
+}
+
+.btn2 {
+
+     line-height: 25px;
+     cursor: pointer;
+     background-color: #f0f0f0;
+     border: solid 2px blue;
+     border-radius: 4px;
+     font-size: 15px;
+     height: 30px;
+     width: 200px;
+}
+
+.switch-container {
+     display: inline-flex;
+     align-items: center;
+     cursor: pointer;
+     border-radius: 30px;
+     background-color: #ccc;
+     padding: 5px 10px 5px 5px;
+     transition: background-color 0.3s ease;
+     color: white;
+     font-weight: bold;
+     user-select: none;
+     margin-right: 20px;
+}
+
+.switch-container.active {
+     background-color: #0d6efd;
+     /* Bootstrap 藍 */
+}
+
+.switch-circle {
+     width: 20px;
+     height: 20px;
+     border-radius: 50%;
+     background-color: white;
+     margin-right: 25px;
+     transition: transform 0.3s ease;
+}
+
+.switch-container.active .switch-circle {
+     transform: translateX(20px);
+}
+
+.my-table thead th {
+     background-color: #04AA6D;
+     color: white;
+     text-align: center;
+     vertical-align: middle;
+     font-size: 20px;
+     width: 300px;
+     max-width: 300px;
+     white-space: nowrap;
+}
+
+.my-table tbody td {
+     background-color: #f7f7f7;
+     /* vertical-align: middle; */
+}
+
+
+
+.text-end {
+     text-align: right;
+}
+
+.table-container {
+     margin-top: 25px;
+     margin-right: 60px;
+     display: flex;
+     justify-content: space-between;
+     gap: 20px;
+     /* 兩張表之間的間距 */
+     padding: 20px;
+}
+
+tr.main-row {
+     cursor: pointer;
+     background-color: #e8f0fe;
+     font-weight: bold;
+     user-select: none;
+     transition: background-color 0.3s;
+}
+
+tr.main-row:hover {
+     background-color: #c6dafc;
+}
+
+/* 子列隱藏 */
+tr.sub-row {
+     background-color: #fafafa;
+     display: none;
+}
+
+tr.sub-row.show {
+     display: table-row;
+}
+
+/* 子列縮排 */
+tr.sub-row td:nth-child(1) {
+     padding-left: 30px;
+     font-weight: normal;
+     color: #555;
+}
+
+/* 右側數字靠右 */
+td.text-end {
+     text-align: right;
+}
+
+
+
+.arrow {
+     display: inline-block;
+     line-height: 0;
+     /* 這裡設定行高為 0 */
+     vertical-align: middle;
+     width: 0;
+     height: 0;
+     margin-right: 6px;
+     border-top: 6px solid transparent;
+     border-bottom: 6px solid transparent;
+     border-left: 10px solid black;
+     transition: transform 0.3s ease;
+     transform: rotate(0deg);
+}
+
+.main-row.expanded .arrow {
+     transform: rotate(90deg);
+}
+
+.tableFixHead {
+     width: 50%;
+}
