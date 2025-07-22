@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- <link rel="stylesheet" href="css/sidebar.css"> -->
+    <!-- <link rel="stylesheet" href="css/main.css"> -->
+    <link rel="stylesheet" href="css/userCreate.css">
+
+</head>
+
+<body>
+    <!-- Sidebar -->
+    <!-- <div id="sidebar-container"></div> -->
+
+    <div class="main">
+        <h1>新增帳號</h1>
+        <hr>
+        <div class="row">
+            <div class="col title">
+                <p>帳號資料</p>
+            </div>
+
+            <div class="col form">
+                <form id="uForm">
+                    <label for="uAccount" class="required">帳號</label><br>
+                    <input type="text" id="uAccount" placeholder="請輸入帳號，建議手機號碼"><br>
+                    <label for="uName" class="required">姓名</label><br>
+                    <input type="text" id="uName" placeholder="請輸入姓名"><br>
+                    <label for="uEmail" class="required">電子信箱</label><br>
+                    <input type="email" id="uEmail" placeholder="請輸入電子信箱"><br>
+                    <label for="jobTitle" class="required">職務</label><br>
+                    <select name="jobTitle" id="jobTitle">
+                        <option value="" disabled selected hidden>請選擇職務</option>
+                        <option value="1">一般財會人員</option>
+                        <option value="2">財會主管</option>
+                    </select><br>
+                    <p class="radioName required">帳號狀態</p>
+                    <span class="radioGroup">
+                        <input type="radio" id="isActive" name="status" checked>
+                        <label for="isActive">啟用</label>
+                        <input type="radio" id="notActive" name="status">
+                        <label for="notActive">待啟用</label>
+                    </span><br>
+
+                    <span class="endEdit">
+                        <button type="reset" class="cancelBtn">取消</button>
+                        <button type="submit" class="submitBtn">儲存</button>
+                    </span>
+                </form>
+            </div>
+
+            <div class="col blank"></div>
+        </div>
+    </div>
+
+    <script src="js/userCreate.js"></script>
+    <!-- <script src="js/sidebar.js"></script> -->
+</body>
+
+</html>
