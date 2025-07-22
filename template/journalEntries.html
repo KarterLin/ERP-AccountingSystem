@@ -34,7 +34,6 @@
                     <tr>
                         <th>科目編號</th>
                         <th>科目名稱</th>
-                        <th>借/貸</th>
                         <th>借方金額</th>
                         <th>貸方金額</th>
                         <th>摘要</th>
@@ -49,13 +48,6 @@
                         <td>
                             <select name="accountName[]" class="account-name" required>
                                 <option value="">請選擇科目名稱</option>
-                            </select>
-                        </td>
-                        <td>
-                            <select name="debitCredit[]" class="debit-credit" required>
-                                <option value="">請選擇</option>
-                                <option value="debit">借</option>
-                                <option value="credit">貸</option>
                             </select>
                         </td>
                         <td><input type="number" name="debit[]" min="0" step="1" class="debit-amount"></td>
@@ -109,94 +101,117 @@
                 ];
             }
 
-            populateAccountSelects();
+            populateAllAccountSelects();
+            // 為初始行設置事件監聽器
+            document.querySelectorAll('.journal-row').forEach(setupRowEvents);
         }
 
-        // 修正版本：只為新的選單填充選項，不影響已有選擇
-        function populateAccountSelects(targetRow = null) {
-            const rows = targetRow ? [targetRow] : document.querySelectorAll('.journal-row');
-            
-            rows.forEach(row => {
-                const codeSelect = row.querySelector('.account-code');
-                const nameSelect = row.querySelector('.account-name');
-                
-                // 保存當前選擇的值
-                const currentCodeValue = codeSelect.value;
-                const currentNameValue = nameSelect.value;
-                
-                // 只有當選單為空或只有預設選項時才重新填充
-                if (codeSelect.options.length <= 1) {
-                    codeSelect.innerHTML = '<option value="">請選擇科目編號</option>';
+        // 初始化所有下拉選單選項
+        function populateAllAccountSelects() {
+            document.querySelectorAll('.account-code').forEach(select => {
+                if (select.options.length <= 1) { // 只有當選單為空時才填充
+                    select.innerHTML = '<option value="">請選擇科目編號</option>';
                     accountsData.forEach(account => {
                         const option = document.createElement('option');
                         option.value = account.code;
                         option.textContent = account.code;
-                        codeSelect.appendChild(option);
+                        select.appendChild(option);
                     });
                 }
-                
-                if (nameSelect.options.length <= 1) {
-                    nameSelect.innerHTML = '<option value="">請選擇科目名稱</option>';
+            });
+
+            document.querySelectorAll('.account-name').forEach(select => {
+                if (select.options.length <= 1) { // 只有當選單為空時才填充
+                    select.innerHTML = '<option value="">請選擇科目名稱</option>';
                     accountsData.forEach(account => {
                         const option = document.createElement('option');
                         option.value = account.name;
                         option.textContent = account.name;
-                        nameSelect.appendChild(option);
+                        select.appendChild(option);
                     });
                 }
-                
-                // 恢復之前的選擇
-                codeSelect.value = currentCodeValue;
-                nameSelect.value = currentNameValue;
-            });
-
-            // 為所有行設置連動功能（避免重複設置）
-            document.querySelectorAll('.journal-row').forEach(row => {
-                const codeSelect = row.querySelector('.account-code');
-                const nameSelect = row.querySelector('.account-name');
-
-                // 移除舊的事件監聽器，避免重複綁定
-                codeSelect.replaceWith(codeSelect.cloneNode(true));
-                nameSelect.replaceWith(nameSelect.cloneNode(true));
-                
-                // 重新獲取元素引用
-                const newCodeSelect = row.querySelector('.account-code');
-                const newNameSelect = row.querySelector('.account-name');
-
-                newCodeSelect.addEventListener('change', () => {
-                    const matched = accountsData.find(acc => acc.code === newCodeSelect.value);
-                    newNameSelect.value = matched ? matched.name : '';
-                });
-
-                newNameSelect.addEventListener('change', () => {
-                    const matched = accountsData.find(acc => acc.name === newNameSelect.value);
-                    newCodeSelect.value = matched ? matched.code : '';
-                });
             });
         }
 
-        function handleDebitCreditChange(select) {
-            const row = select.closest('tr');
+        // 為單一行設置選項和事件監聽器
+        function setupRowEvents(row) {
+            const codeSelect = row.querySelector('.account-code');
+            const nameSelect = row.querySelector('.account-name');
             const debitInput = row.querySelector('.debit-amount');
             const creditInput = row.querySelector('.credit-amount');
-            if (select.value === 'debit') {
-                debitInput.disabled = false;
-                debitInput.value = '';
-                creditInput.disabled = true;
-                creditInput.value = '0';
-            } else if (select.value === 'credit') {
-                creditInput.disabled = false;
-                creditInput.value = '';
-                debitInput.disabled = true;
-                debitInput.value = '0';
-            } else {
-                debitInput.disabled = false;
-                creditInput.disabled = false;
-                debitInput.value = '';
-                creditInput.value = '';
+
+            // 填充選項（只有當選單為空時）
+            if (codeSelect.options.length <= 1) {
+                codeSelect.innerHTML = '<option value="">請選擇科目編號</option>';
+                accountsData.forEach(account => {
+                    const option = document.createElement('option');
+                    option.value = account.code;
+                    option.textContent = account.code;
+                    codeSelect.appendChild(option);
+                });
+            }
+
+            if (nameSelect.options.length <= 1) {
+                nameSelect.innerHTML = '<option value="">請選擇科目名稱</option>';
+                accountsData.forEach(account => {
+                    const option = document.createElement('option');
+                    option.value = account.name;
+                    option.textContent = account.name;
+                    nameSelect.appendChild(option);
+                });
+            }
+
+            // 設置連動事件（使用標記來避免重複綁定）
+            if (!codeSelect.hasAttribute('data-events-bound')) {
+                codeSelect.addEventListener('change', () => {
+                    const matched = accountsData.find(acc => acc.code === codeSelect.value);
+                    nameSelect.value = matched ? matched.name : '';
+                });
+                codeSelect.setAttribute('data-events-bound', 'true');
+            }
+
+            if (!nameSelect.hasAttribute('data-events-bound')) {
+                nameSelect.addEventListener('change', () => {
+                    const matched = accountsData.find(acc => acc.name === nameSelect.value);
+                    codeSelect.value = matched ? matched.code : '';
+                });
+                nameSelect.setAttribute('data-events-bound', 'true');
+            }
+
+            // 借方金額輸入時的處理
+            if (!debitInput.hasAttribute('data-events-bound')) {
+                debitInput.addEventListener('input', () => {
+                    if (debitInput.value && parseFloat(debitInput.value) > 0) {
+                        creditInput.disabled = true;
+                        creditInput.value = '0';
+                        creditInput.style.backgroundColor = '#f5f5f5';
+                    } else {
+                        creditInput.disabled = false;
+                        creditInput.style.backgroundColor = '';
+                    }
+                    updateBalanceSummary();
+                });
+                debitInput.setAttribute('data-events-bound', 'true');
+            }
+
+            // 貸方金額輸入時的處理
+            if (!creditInput.hasAttribute('data-events-bound')) {
+                creditInput.addEventListener('input', () => {
+                    if (creditInput.value && parseFloat(creditInput.value) > 0) {
+                        debitInput.disabled = true;
+                        debitInput.value = '0';
+                        debitInput.style.backgroundColor = '#f5f5f5';
+                    } else {
+                        debitInput.disabled = false;
+                        debitInput.style.backgroundColor = '';
+                    }
+                    updateBalanceSummary();
+                });
+                creditInput.setAttribute('data-events-bound', 'true');
             }
         }
 
+        // 刪除不再需要的函數
         function handleAccountCodeChange(select) {
             const row = select.closest('tr');
             const nameSelect = row.querySelector('.account-name');
@@ -239,6 +254,9 @@
             });
             Array.from(newRow.querySelectorAll('select')).forEach(s => s.selectedIndex = 0);
 
+            // 移除事件綁定標記，這樣新行可以重新綁定事件
+            Array.from(newRow.querySelectorAll('select, input')).forEach(element => element.removeAttribute('data-events-bound'));
+
             const currentRowCount = table.rows.length - 1; // 不含表頭
             if (currentRowCount >= 2) {
                 newRow.cells[newRow.cells.length - 1].innerHTML = '<button type="button" class="remove-row">-</button>';
@@ -248,8 +266,8 @@
 
             table.appendChild(newRow);
             
-            // 只為新增的行填充選項
-            populateAccountSelects(newRow);
+            // 為新行設置選項和事件監聽器
+            setupRowEvents(newRow);
         }
 
         document.getElementById('entries-table').addEventListener('input', function (e) {
@@ -259,8 +277,7 @@
         });
 
         document.getElementById('entries-table').addEventListener('change', function (e) {
-            if (e.target.classList.contains('debit-credit')) handleDebitCreditChange(e.target);
-            else if (e.target.classList.contains('account-code')) handleAccountCodeChange(e.target);
+            if (e.target.classList.contains('account-code')) handleAccountCodeChange(e.target);
             else if (e.target.classList.contains('account-name')) handleAccountNameChange(e.target);
         });
 
