@@ -1,20 +1,72 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="./css/sidebar.css">
+    <link rel="stylesheet" href="./css/subsidiaryLedger.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
 
 </head>
+
 <body>
     <!-- Sidebar -->
     <div id="sidebar-container"></div>
     <div class="page-wrapper">
-
-
+        <div class="ds">
+            <div class="left-group">
+                <h1 class="title">明細分類帳</h1>
+                <div class="field">
+                    <label for="dateRange" class="l1">日期區間：</label>
+                    <input type="text" id="dateRange" placeholder="請選擇日期區間">
+                </div>
+            </div>
+            <div class="d2">
+                <button class="btn1">匯出檔案</button>
+            </div>
+        </div>
+        <div class="subjectsrange">
+            <label for="accountstart">科目範圍：</label>
+            <select id="accountstart" class="range">
+                <option value="">-請選擇起始科目-</option>
+            </select>
+            <span>～</span>
+            <select id="accountend" class="range">
+                <option value="">-請選擇終止科目-</option>
+            </select>
+            <div class="btn-group">
+                <button class="btn2">清空</button>
+                <button class="btn3">查詢</button>
+            </div>
+        </div>
+        <div class="table-container">
+            <div class="tableFixHead">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>日期</th>
+                            <th>傳票編號</th>
+                            <th>備註</th>
+                            <th>摘要</th>
+                            <th>借方金額</th>
+                            <th>貸方金額</th>
+                            <th>借/貸</th>
+                            <th>餘額</th>
+                        </tr>
+                    </thead>
+                </table>
+            </div>
+        </div>
 
     </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/zh.js"></script>
     <script src="js/sidebar.js"></script>
+    <script src="js/subsidiaryLedger.js"></script>
+
 </body>
+
 </html>
