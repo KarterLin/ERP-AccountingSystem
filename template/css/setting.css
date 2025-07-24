@@ -1,0 +1,39 @@
+.menu + div {
+    display: flex;
+    margin: 20px;
+    justify-content: space-around;
+    align-items: center;
+}
+.link-box {
+    display: inline-flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    margin: 15px;
+    justify-content: left;
+    /* align-items: center; */
+    height: 80px;
+    width: 80px;
+    padding: 15px;
+    border: 1px solid #27ae60;
+    border-radius: 20px;
+    margin-bottom: 40px;
+    text-decoration: none;
+}
+.link-box .icon {
+    display: flex;
+    justify-content: center;
+}
+.icon img {
+    width: 50px;
+    /* object-fit: contain; */
+}
+.link-box .text {
+    text-align: center;
+    font-size: 20px;
+    color: #27ae60;
+    text-shadow: 5px 5px 8px lightgray;
+    margin-top: 5px;
+}
+.link-box:hover {
+    box-shadow: 0 0 10px #00CACA;
+}
