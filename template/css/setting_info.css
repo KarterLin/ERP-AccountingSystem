@@ -10,8 +10,8 @@
 .row .title {
     flex: 3;
     font-weight: bolder;
-    display: flex;
-    align-items: flex-start;
+    /* display: flex; */
+    /* align-items: flex-start; */
 }
 .row .form {
     flex: 6;

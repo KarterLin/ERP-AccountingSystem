@@ -6,38 +6,38 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="css/sidebar.css">
+    <link rel="stylesheet" href="css/main.css">
     <link rel="stylesheet" href="css/setting_info.css">
-
 
 </head>
 
 <body>
     <!-- Sidebar -->
     <div id="sidebar-container"></div>
-    <div class="page-wrapper">
-        <div id="sidebar-container">
-            <div class="main">
-                <h1>基本資料</h1>
-                <hr>
-                <div class="row">
-                    <div class="col title">
-                        <p>公司基本資料</p>
-                    </div>
 
-                    <div class="col form">
-                        <button class="editBtn" onclick="enableForm()">編輯</button><br>
-                        <form id="cForm">
-                            <label for="cName" class="required">公司名稱</label><br>
-                            <input type="text" id="cName" disabled placeholder="請輸入公司名稱"><br>
-                            <label for="taxID" class="required">公司統編</label><br>
-                            <input type="number" id="taxID" disabled placeholder="請輸入公司統編"><br>
-                            <label for="rName" class="required">負責人姓名</label><br>
-                            <input type="text" id="rName" disabled placeholder="請輸入負責人姓名"><br>
-                            <label for="rTel" class="required">負責人連絡電話</label><br>
-                            <input type="tel" id="rTel" disabled placeholder="請輸入負責人電話"><br>
-                            <label for="cEmail" class="required">電子信箱</label><br>
-                            <input type="email" id="cEmail" disabled placeholder="請輸入電子信箱"><br>
-                            <label for="office">稽徵機關名稱</label><br>
+    <div class="main page-wrapper">
+
+        <h1>基本資料</h1>
+        <hr>
+        <div class="row">
+            <div class="col title">
+                <p>公司基本資料</p>
+            </div>
+
+            <div class="col form">
+                <button class="editBtn" onclick="enableForm()">編輯</button><br>
+                <form id="cForm">
+                    <label for="cName" class="required">公司名稱</label><br>
+                    <input type="text" id="cName" disabled placeholder="請輸入公司名稱"><br>
+                    <label for="taxID" class="required">公司統編</label><br>
+                    <input type="number" id="taxID" disabled placeholder="請輸入公司統編"><br>
+                    <label for="rName" class="required">負責人姓名</label><br>
+                    <input type="text" id="rName" disabled placeholder="請輸入負責人姓名"><br>
+                    <label for="rTel" class="required">負責人連絡電話</label><br>
+                    <input type="tel" id="rTel" disabled placeholder="請輸入負責人電話"><br>
+                    <label for="cEmail" class="required">電子信箱</label><br>
+                    <input type="email" id="cEmail" disabled placeholder="請輸入電子信箱"><br>
+                    <!-- <label for="office">稽徵機關名稱</label><br>
                             <select name="office" id="office" disabled>
                                 <option value="" disabled selected hidden>請選擇稽徵機關</option>
                                 <option value="1">財政部臺北國稅局信義分局</option>
@@ -50,18 +50,18 @@
                             <label for="contactTel">扣繳申報聯絡人電話</label><br>
                             <input type="tel" id="contactTel" disabled placeholder="請輸入扣繳申報聯絡人電話"><br>
                             <label for="LOSN">稅籍編號</label><br>
-                            <input type="number" id="LOSN" disabled placeholder="請輸入稅籍編號"><br>
+                            <input type="number" id="LOSN" disabled placeholder="請輸入稅籍編號"><br> -->
 
-                            <span class="endEdit">
-                                <button type="button" class="cancelBtn" onclick="cancelEdit()">取消更新</button>
-                                <button type="submit" class="submitBtn">確認更新</button>
-                            </span>
-                        </form>
-                    </div>
-                </div>
+                    <span class="endEdit">
+                        <button type="button" class="cancelBtn" onclick="cancelEdit()">取消更新</button>
+                        <button type="submit" class="submitBtn">確認更新</button>
+                    </span>
+                </form>
             </div>
-             <div class="col blank"></div>
+
+            <div class="col blank"></div>
         </div>
+
     </div>
     <script src="js/sidebar.js"></script>
     <script src="js/setting_info.js"></script>

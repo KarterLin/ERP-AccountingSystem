@@ -1,5 +1,5 @@
 .main {
-    margin-left: 225px;
+    /* margin-left: 225px; */ /* 於sidebar.css控制 */
     padding-left: 10px;
     text-indent: 1.5;
 }
