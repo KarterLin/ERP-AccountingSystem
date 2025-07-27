@@ -19,16 +19,16 @@
             </div>
 
             <div class="col form">
-                <form id="infoUpdate">
+                <form id="userUpdate">
                     <label for="uAccount" class="required">帳號</label><br>
-                    <input type="text" id="uAccount" placeholder="請輸入帳號"><br>
+                    <input type="text" id="uAccount"><br>
                     <label for="uName" class="required">姓名</label><br>
-                    <input type="text" id="uName" placeholder="請輸入姓名"><br>
+                    <input type="text" id="uName"><br>
                     <label for="uEmail" class="required">電子信箱</label><br>
-                    <input type="email" id="uEmail" placeholder="請輸入電子信箱"><br>
+                    <input type="email" id="uEmail"><br>
                     <label for="jobTitle" class="required">職務</label><br>
                     <select name="jobTitle" id="jobTitle">
-                        <option value="" disabled selected hidden>請選擇職務</option>
+                        <!-- <option value="" disabled selected hidden>請選擇職務</option> -->
                         <option value="1">一般財會人員</option>
                         <option value="2">財會主管</option>
                     </select><br>
@@ -41,7 +41,7 @@
                     </span><br>
                     <button type="button" class="passwdBtn">密碼變更</button>
                     <span class="endEdit">
-                        <button type="reset" class="cancelBtn">取消</button>
+                        <button type="button" class="cancelBtn"  onclick="cancelEdit()">取消</button>
                         <button type="submit" class="submitBtn">儲存</button>
                     </span>
                 </form>
@@ -52,7 +52,7 @@
 
     </div>
 
-    <script src="js/userCreate.js"></script>
+    <script src="js/userUpdate.js"></script>
     <script src="js/sidebar.js"></script>
 </body>
 </html>
