@@ -38,13 +38,6 @@ form select {
     height: 20px;
     box-sizing: border-box;
 }
-button {
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 14px;
-    color: white;
-}
 .editBtn {
     display: block;
     margin-left: auto;

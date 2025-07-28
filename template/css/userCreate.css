@@ -49,13 +49,7 @@ form select {
 .radioGroup label {
     margin-right: 10px;
 }
-button {
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 14px;
-    color: white;
-}
+
 .endEdit {
     display: flex;
     text-align: center;
