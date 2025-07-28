@@ -1,19 +1,59 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="./css/sidebar.css">
     <link rel="stylesheet" href="./css/main.css">
+    <link rel="stylesheet" href="./css/userManage.css">
 </head>
+
 <body>
     <div id="sidebar-container"></div>
-    <div class="page-wrapper">
-
+    <div class="main page-wrapper">
+        <div class="header">
+        <h1>帳號管理列表</h1>
+        <a href="setting_userCreate.html">
+            <button class="createBtn">+ 建立新帳號</button>
+        </a>
+        </div>
+        <hr>
+        <div class="table">
+        <table>
+            <thead>
+                <tr>
+                    <th>帳號</th>
+                    <th>姓名</th>
+                    <th>email</th>
+                    <th>職務</th>
+                    <th>狀態</th>
+                    <th>操作</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Admin</td>
+                    <td>王大明</td>
+                    <td>123@gmail.com</td>
+                    <td>財會主管</td>
+                    <td>啟用</td>
+                    <td><a href="setting_userManage.html"><img src="./img/icon1.png" alt="edit"></a></td>
+                </tr>
+            </tbody>
+        </table>
+        </div>
+        <div class="pagination">
+            <a href="#">«</a>
+            <a href="#" class="active">1</a>
+            <a href="#">»</a>
+            <span class="note">共1頁，1筆紀錄</span>
+        </div>
 
 
     </div>
     <script src="js/sidebar.js"></script>
 </body>
+
 </html>
