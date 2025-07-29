@@ -4,13 +4,34 @@ body {
      background-color: #f5f7fa;
 }
 
+.title-bar {
+     display: flex;
+     align-items: center;
+     justify-content: space-between;
+     /* 左右兩邊分開 */
+     margin: 20px;
+}
+
 .title {
-     white-space: nowrap;
      margin: 0;
      font-size: 40px;
      font-weight: bold;
+     white-space: nowrap;
 }
 
+.add-btn {
+     padding: 10px 20px;
+     font-size: 16px;
+     background-color: #a09277;
+     color: white;
+     border: none;
+     border-radius: 6px;
+     cursor: pointer;
+}
+
+.add-btn:hover {
+     background-color: #8a7b63;
+}
 
 @media (max-width: 768px) {
      .title {
@@ -19,51 +40,51 @@ body {
           margin-top: 8px;
           flex: 1;
      }
-     .menu{
+
+     .menu {
           margin-left: 15px;
      }
-     
+
+     .title-bar {
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 10px;
+     }
+
+     .add-btn {
+          font-size: 14px;
+          padding: 8px 16px;
+     }
+
+
 }
 
 
-.menu {
-     width: auto;
-     display: flex;
-     flex-direction: column;
-     gap: 20px;
-     list-style: none;
-     padding-left: 0;
-}
-
-.btn {
-     background-color: #f0f0f0;
-     padding: 6px 12px;
-     margin: 4px 0;
-     display: flex;
+.accordion-container {
+     margin-top: 40px;
+     width: 100%;
+     font-family: Arial, sans-serif;
      font-size: 20px;
-     font-weight: bold;
-     cursor: pointer;
-     text-decoration: none;
+     padding: 0 50px 0 20px;
+     box-sizing: border-box;
 }
 
+.accordion-header {
+     background-color: #a09277;
+     color: #fff;
+     padding: 15px;
+     cursor: pointer;
+     border-bottom: 1px solid #ddd;
+     font-weight: bold;
+}
 
-.hidden {
+.accordion-content {
      display: none;
+     padding: 15px;
+     background-color: #f9f9f9;
+     border-bottom: 1px solid #ddd;
 }
 
-.note-area {
-     margin-top: 5px;
-     padding: 5px;
-}
-
-.note-input {
-     padding: 4px;
-     font-size: 14px;
-     margin-right: 8px;
-}
-
-.clickable-text {
-     font-size: 20px;
-     font-weight: bold;
-     cursor: pointer;
+.accordion-item.active .accordion-content {
+     display: block;
 }
