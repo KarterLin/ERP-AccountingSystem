@@ -29,9 +29,12 @@ table input {
     height: 30px;
 }
 tbody .title {
-    background-color: #3498db;
-    color: #FFF;
+    background-color: 	#7AFEC6;
+    color: #000;
     font-weight: bolder;
+}
+label {
+    color: 	#01814A;
 }
 .inputGroup {
     position: relative;
@@ -47,7 +50,7 @@ tbody .title {
     top: 50%;
     transform: translateY(-50%);
     border: none;
-    background: #3498db;
+    background: #01814A;
     font-size: 16px;
     cursor: pointer;
     color: #FFF;
@@ -92,4 +95,5 @@ tr {
     padding: 6px;
     border: 1px solid #ccc;
     background: #f9f9f9;
+    color: #000;
 }
