@@ -6,13 +6,68 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="./css/sidebar.css">
+    <link rel="stylesheet" href="./css/main.css">
 </head>
 
 <body>
     <div id="sidebar-container"></div>
-    <div class="page-wrapper">
-
-
+    <div class="main page-wrapper">
+        <div class="header">
+            <h1>開帳設定</h1>
+            <button class="addBtn">+ 匯入帳務</button>
+        </div>
+        <hr>
+        <form>
+            <table>
+                <thead>
+                    <tr>
+                        <th>開帳分錄</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>
+                            <label for="openDate">開帳日期</label><br>
+                            <input type="date">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="title">借方</td>
+                    </tr>
+                    <tr>
+                        <th><label for="accountCode1">科目</label></th>
+                        <th><label for="debitAmount">金額</label></th>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="text" id="accountCode1" name="accountCode1" placeholder="請輸入科目" readonly>
+                            <button type="button" class="accountSelect" onclick="openModal()">＋</button>
+                        </td>
+                        <td><input type="number" id="debitAmount" name="debitAmount"></td>
+                    </tr>
+                    <tr>
+                        <td><button type="button" onclick="addEntries()">新增借方項目</button></td>
+                    </tr>
+                    <tr>
+                        <td class="title">貸方</td>
+                    </tr>
+                    <tr>
+                        <th><label for="accountCode2">科目</label></th>
+                        <th><label for="creditAmount">金額</label></th>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="text" id="accountCode2" name="accountCode2" placeholder="請輸入科目" readonly>
+                            <button type="button" class="accountSelect" onclick="openModal()">＋</button>
+                        </td>
+                        <td><input type="number" id="creditAmount" name="creditAmount"></td>
+                    </tr>
+                    <tr>
+                        <td><button type="button" onclick="addEntries()">新增貸方項目</button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </form>
 
     </div>
     <script src="js/sidebar.js"></script>
