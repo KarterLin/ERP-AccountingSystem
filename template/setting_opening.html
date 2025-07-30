@@ -6,16 +6,102 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="./css/sidebar.css">
+    <link rel="stylesheet" href="./css/main.css">
+    <link rel="stylesheet" href="./css/opening.css">
 </head>
 
 <body>
     <div id="sidebar-container"></div>
-    <div class="page-wrapper">
+    <div class="main page-wrapper">
+        <div class="header">
+            <h1>開帳設定</h1>
+            <span>
+                <button class="addBtn">+ 匯入帳務</button>
+                <button type="submit" class="submitBtn">完成開帳</button>
+            </span>
+        </div>
+        <hr>
+        <form>
+            <table>
+                <thead>
+                    <tr>
+                        <th>開帳分錄</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th>
+                            <label for="openDate">開帳日期</label>
+                        </th>
+                    </tr>
+                    <tr>
+                        <td><input type="date" id="openDate"></td>
+                    </tr>
+                    <tr>
+                        <td class="title">借方</td>
+                    </tr>
+                    <tr>
+                        <th><label for="accountCode1">科目</label></th>
+                        <th><label for="debitAmount">金額</label></th>
+                    </tr>
+                    <tr>
+                        <td>
+                            <span class="inputGroup">
+                                <input type="text" id="accountCode1" name="accountCode1" placeholder="請輸入科目" readonly>
+                                <button type="button" class="accountSelect" onclick="openModal()">＋</button>
+                            </span>
+                        </td>
+                        <td><input type="number" id="debitAmount" name="debitAmount"></td>
+                    </tr>
+                    <tr>
+                        <td><button type="button" class="entryBtn" onclick="addEntries()">新增借方項目</button></td>
+                    </tr>
+                    <tr>
+                        <td class="title">貸方</td>
+                    </tr>
+                    <tr>
+                        <th><label for="accountCode2">科目</label></th>
+                        <th><label for="creditAmount">金額</label></th>
+                    </tr>
+                    <tr>
+                        <td>
+                            <span class="inputGroup">
+                                <input type="text" id="accountCode2" name="accountCode2" placeholder="請輸入科目" readonly>
+                                <button type="button" class="accountSelect" onclick="openModal()">＋</button>
+                            </span>
+                        </td>
+                        <td><input type="number" id="creditAmount" name="creditAmount"></td>
+                    </tr>
+                    <tr>
+                        <td><button type="button" class="entryBtn" onclick="addEntries()">新增貸方項目</button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </form>
+        <!-- 會科選擇視窗 -->
+        <div class="modalOverlay" id="modalOverlay">
+            <div class="modal">
+                <span class="modalClose" onclick="closeModal()">✖</span>
+                <h3>選擇會科</h3>
+                <input type="text" id="searchInput" placeholder="請輸入會科" oninput="filterAccounts()">
+                <select id="categoryFilter" onchange="filterAccounts()">
+                    <option value="">所有類別</option>
+                    <option value="資產">資產</option>
+                    <option value="負債">負債</option>
+                    <option value="費用">費用</option>
+                </select>
 
+                <div class="accountList" id="accountList">
+                    <!-- 會科清單由 JS 動態產生 -->
+                </div>
+            </div>
 
+        </div>
 
     </div>
+
     <script src="js/sidebar.js"></script>
+    <script src="js/opening.js"></script>
 </body>
 
 </html>
