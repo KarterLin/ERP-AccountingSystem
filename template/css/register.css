@@ -53,6 +53,9 @@ input {
   margin-top: 10px;
   border-radius: 5px;
 }
+label {
+  margin-bottom: -10px;
+}
 .checkboxLabel {
   display: inline-flex;
   align-items: center;
@@ -76,6 +79,21 @@ input:focus {
 #eyeIcon {
   cursor:pointer;
   width: 24px;
+}
+input[type="button"] {
+  background-color: lightgray;  /* #00AEAE */
+  border: 2px solid #fff;
+  border-radius: 15px;
+  color: #fff;
+  font-weight: bolder ;
+  font-size: larger;
+  padding: 5px;
+  /* cursor: pointer; */
+}
+.help {
+  display: inline-flex;
+  justify-content: center;
+  margin-top: 5px;
 }
 .note {
   color: gray;
