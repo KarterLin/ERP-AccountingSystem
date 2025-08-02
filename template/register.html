@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>柴務豹表</title>
+    <link rel="stylesheet" href="./css/main.css">
+    <link rel="stylesheet" href="./css/register.css">
+</head>
+
+<body>
+    <div class="wrap">
+        <div class="navbar">
+            <!-- logo -->
+            <img class="logo" src="./img/logo1.png" alt="logo">
+            <span>柴務豹表</span>
+
+            <!-- button -->
+            <button type="button" class="loginBtn">登入</button>
+            <button type="button" class="registerBtn">註冊</button>
+        </div>
+        <div class="container">
+            <form class="regForm">
+                <h1>註冊帳號</h1>
+                <hr>
+                <span class="content">
+                    <!-- <label for="cname">請輸入公司名稱</label><br> -->
+                    <input type="text" id="cname" placeholder="公司名稱"><br>
+                    <!-- <label for="taxId">請輸入公司統編</label><br> -->
+                    <input type="text" id="taxId" placeholder="公司統編"><br>
+                    <label class="checkboxLabel" >
+                        <input type="checkbox">公司申請中/尚未申請公司
+                    </label> <br>
+                    <!-- <label for="email">請輸入信箱</label><br> -->
+                    <input type="email" id="email" placeholder="電子信箱"><br>
+                    <!-- <label for="account">請輸入帳號</label><br> -->
+                    <input type="email" id="account" placeholder="輸入帳號"><br>
+                    <!-- <label for="password">請輸入密碼</label><br> -->
+                    <div class="inputGroup">
+                        <input type="password" id="password" placeholder="輸入密碼"><br>
+                        <span class="inputGroupImg">
+                            <img id="eyeIcon" src="./img/eye.png" alt="hide_password"
+                                onclick="togglePassword('password','eyeIcon')">
+                        </span>
+                    </div>
+                    <input type="button" value="確認註冊" disabled>
+                    <p class="note">點選「確認」即表示同意<a href="#">使用者條款</a>與<a href="#">隱私權政策</a></p>
+                </span>
+            </form>
+
+        </div>
+        <div class="footer">
+           <p> © 2025 柴務豹表 All rights reserved.</p>
+        </div>
+
+    </div>
+</body>
+
+</html>

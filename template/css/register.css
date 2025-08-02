@@ -1,0 +1,88 @@
+.wrap {
+  background-image: linear-gradient(rgba(255, 255, 255, 0.85), rgba(255, 255, 255, 0.85)),url(../img/logo3.jpg);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+.logo {
+    width: 50px;
+}
+.navbar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.loginBtn {
+  background-color: #2ecc71;
+  margin-left: auto;
+  font-size: 20px;
+  padding: 5px;
+}
+.registerBtn {
+  background-color: #3498db;
+  font-size: 20px;
+  padding: 5px;
+}
+.container {
+  height: 90vh; 
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+.regForm {
+  width: 80%;
+  margin: 10px;
+  border: 1px solid #000;
+  border-radius: 15px;
+  box-shadow: 2px 5px 10px #005757;
+  padding: 10px;
+  box-sizing: border-box;
+  overflow-y: auto;
+}
+h1 {
+  text-align: center;
+}
+.content {
+  display: flex;
+  flex-direction: column;
+  width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+}
+input {
+  margin-top: 10px;
+  border-radius: 5px;
+}
+.checkboxLabel {
+  display: inline-flex;
+  align-items: center;
+  margin-left: auto;
+}
+.inputGroup {
+  display: inline-flex;
+  position: relative;
+}
+.inputGroup input {
+  width: 100%;
+}
+.inputGroupImg {
+  position: absolute;
+  right: 5px;
+  top: 30%;
+}
+input:focus {
+  background-color: #C4E1E1;
+}
+#eyeIcon {
+  cursor:pointer;
+  width: 24px;
+}
+.note {
+  color: gray;
+  font-size: 10px;
+  text-align: center;
+}
+.footer {
+  text-align: center;
+  margin-top: 10px;
+}
