@@ -22,30 +22,28 @@
         </div>
         <div class="container">
             <form class="regForm">
-                <h1>註冊帳號</h1>
+                <h1>使用者登入</h1>
                 <hr>
                 <span class="content">
-                    <!-- <label for="cname">請輸入公司名稱</label><br> -->
-                    <input type="text" id="cname" placeholder="公司名稱"><br>
-                    <!-- <label for="taxId">請輸入公司統編</label><br> -->
-                    <input type="text" id="taxId" placeholder="公司統編">
-                    <label class="checkboxLabel" >
-                        <input type="checkbox">公司申請中/尚未申請公司
-                    </label><br> 
-                    <!-- <label for="email">請輸入信箱</label><br> -->
-                    <input type="email" id="email" placeholder="電子信箱"><br>
-                    <!-- <label for="account">請輸入帳號</label><br> -->
-                    <input type="email" id="account" placeholder="輸入帳號"><br>
-                    <!-- <label for="password">請輸入密碼</label><br> -->
+                    <label for="taxId">請輸入公司統編</label>
+                    <input type="text" id="taxId" placeholder="公司統編"><br>
+                    <label for="account">請輸入帳號</label>
+                    <input type="text" id="account" placeholder="輸入帳號"><br>
+                    <label for="password">請輸入密碼</label>
                     <div class="inputGroup">
                         <input type="password" id="password" placeholder="輸入密碼"><br>
                         <span class="inputGroupImg">
                             <img id="eyeIcon" src="./img/eye.png" alt="hide_password"
                                 onclick="togglePassword('password','eyeIcon')">
                         </span>
-                    </div><br>
-                    <input type="button" value="確認註冊" disabled>
-                    <p class="note">點選「確認」即表示同意<a href="#">使用者條款</a>與<a href="#">隱私權政策</a></p>
+                    </div>
+                    <label class="checkboxLabel" >
+                        <input type="checkbox">記住統編與帳號
+                    </label> <br>
+                    <input type="button" value="登入" disabled>
+                    <div class="help">
+                        <a href="#">忘記密碼?</a>
+                    </div>
                 </span>
             </form>
 
