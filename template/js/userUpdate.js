@@ -58,6 +58,8 @@ function cancelEdit() {
     selects.forEach(el => {
         el.selectedIndex = 0;   // 回到預設選項
     });
+
+    location.href = "setting_userManage.html";
 }
 
 // 實時移除ERRTYPE

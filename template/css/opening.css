@@ -20,6 +20,9 @@
     font-weight: bolder;
     margin-top: 5px;
 }
+.endLine {
+    margin-bottom: 10px;
+}
 table {
     margin-top: 20px;
     overflow: hidden;

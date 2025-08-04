@@ -5,16 +5,24 @@
   background-repeat: no-repeat;
 }
 .logo {
+  display: flex;
+  align-items: center;
+  text-decoration-line: none;
+  color: #005757;
+  font-weight: bolder;
+}
+.logoimg {
     width: 50px;
+    margin-right: 10px;
 }
 .navbar {
   display: flex;
-  align-items: center;
-  gap: 10px;
+  align-items: center;justify-content: space-between;
+  margin: 5px;
+  margin-right: 10px;
 }
 .loginBtn {
   background-color: #2ecc71;
-  margin-left: auto;
   font-size: 20px;
   padding: 5px;
 }
@@ -24,7 +32,7 @@
   padding: 5px;
 }
 .container {
-  height: 90vh; 
+  height: 90%; 
   width: 100%;
   display: flex;
   justify-content: center;
@@ -60,6 +68,9 @@ label {
   display: inline-flex;
   align-items: center;
   margin-left: auto;
+}
+.checkbox1 {
+  margin-top: 10px;
 }
 .inputGroup {
   display: inline-flex;
