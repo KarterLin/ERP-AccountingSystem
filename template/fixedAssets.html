@@ -1,0 +1,70 @@
+fixedAssets<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Journal Entry</title>
+    <link rel="stylesheet" href="./css/fixedAssets.css" />
+    <link rel="stylesheet" href="./css/sidebar.css">
+</head>
+
+<body>
+    <!-- Sidebar -->
+    <div id="sidebar-container"></div>
+
+    <!-- 主要內容區域 -->
+    <div class="page-wrapper">
+        <div class="main-content">
+            <a href="accountbooks.html" class="header-link">回到帳務管理</a>
+
+            <div class="entry-form-container">
+                <form id="journal-entry-form">
+                    <label for="entry-date">入帳日期：</label>
+                    <input type="date" id="entry-date" name="entryDate" required><br><br>
+
+                    <table id="entries-table">
+                        <tr>
+                            <th>科目編號</th>
+                            <th>科目名稱</th>
+                            <th>借方金額</th>
+                            <th>貸方金額</th>
+                            <th>摘要</th>
+                            <th>操作</th>
+                        </tr>
+                        <tr class="journal-row">
+                            <td>
+                                <select name="accountCode[]" class="account-code" required>
+                                    <option value="">請選擇科目編號</option>
+                                </select>
+                            </td>
+                            <td>
+                                <select name="accountName[]" class="account-name" required>
+                                    <option value="">請選擇科目名稱</option>
+                                </select>
+                            </td>
+                            <td><input type="number" name="debit[]" min="0" step="1" class="debit-amount"></td>
+                            <td><input type="number" name="credit[]" min="0" step="1" class="credit-amount"></td>
+                            <td><input type="text" name="description[]"></td>
+                            <td></td>
+                        </tr>
+                    </table>
+
+                    <div id="balance-check" style="margin-top: 10px;">
+                        <strong>借方總額：</strong><span id="total-debit">0</span>，
+                        <strong>貸方總額：</strong><span id="total-credit">0</span>，
+                        <strong>差額：</strong><span id="balance-diff" style="color:red;">0</span>
+                    </div>
+
+                    <button type="button" id="add-row">＋ 新增一組</button>
+                    <button type="submit">送出分錄</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script src="js/sidebar.js"></script>
+    <script src="js/fixedAssets.js"></script>
+    
+</body>
+
+</html>
