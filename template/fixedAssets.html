@@ -1,4 +1,4 @@
-fixedAssets<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -12,10 +12,10 @@ fixedAssets<!DOCTYPE html>
 <body>
     <!-- Sidebar -->
     <div id="sidebar-container"></div>
-
     <!-- 主要內容區域 -->
     <div class="page-wrapper">
         <div class="main-content">
+            <h1>新增固定資產</h1><br>
             <a href="accountbooks.html" class="header-link">回到帳務管理</a>
 
             <div class="entry-form-container">
@@ -50,6 +50,24 @@ fixedAssets<!DOCTYPE html>
                         </tr>
                     </table>
 
+                    <div class="row-above-buttons">
+                        <div class="form-group">
+                            <label for="startDate">起算日：</label>
+                            <input type="date" id="startDate" name="startDate" class="form-control">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="useful-life-years">使用年限：</label>
+                            <div style="display: flex; gap: 10px;">
+                                <input type="number" id="useful-life-years" name="usefulLifeYears" min="0"
+                                    placeholder="年">
+                                <input type="number" id="useful-life-months" name="usefulLifeMonths" min="0" max="11"
+                                    placeholder="月">
+                            </div>
+                        </div>
+                    </div>
+
+
                     <div id="balance-check" style="margin-top: 10px;">
                         <strong>借方總額：</strong><span id="total-debit">0</span>，
                         <strong>貸方總額：</strong><span id="total-credit">0</span>，
@@ -64,7 +82,7 @@ fixedAssets<!DOCTYPE html>
     </div>
     <script src="js/sidebar.js"></script>
     <script src="js/fixedAssets.js"></script>
-    
+
 </body>
 
 </html>

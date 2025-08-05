@@ -171,22 +171,29 @@ button[type="submit"]:hover {
 
 .row-above-buttons {
     display: flex;
-    gap: 20px;
+    gap: 40px;
+    /* 控制欄位間距 */
     margin-bottom: 15px;
-    align-items: flex-end; /* 對齊輸入框底部比較好看 */
 }
 
 .row-above-buttons .form-group {
     display: flex;
     flex-direction: column;
+    /* 讓 label 在上，input 在下 */
 }
 
-.row-above-buttons input[type="date"],
-.row-above-buttons select {
-    height: 38px;
-    width: 200px;
-    /* 你可以依照需求微調寬度 */
-    font-size: 16px;
-    padding: 5px 10px;
+#startDate,
+#useful-life-years,
+#useful-life-months {
+    width: 180px; /* 或依你實際想要的大小調整 */
     box-sizing: border-box;
+}
+
+input[type="date"],
+input[type="number"] {
+    height: 36px;          /* 你可以依照需求調整高度 */
+    font-size: 16px;       /* 確保字體一致 */
+    padding: 6px 8px;      /* 內邊距一致 */
+    box-sizing: border-box;
+    line-height: 1.2;
 }

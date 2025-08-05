@@ -16,6 +16,7 @@
     <!-- 主要內容區域 -->
     <div class="page-wrapper">
         <div class="main-content">
+            <h1>新增各項攤提</h1><br>
             <a href="accountbooks.html" class="header-link">回到帳務管理</a>
 
             <div class="entry-form-container">
@@ -57,23 +58,13 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="usefulLife">使用年限：</label>
-                            <select id="usefulLife" name="usefulLife" class="form-control">
-                                <option value="">請選擇</option>
-                                <option value="1">1個月</option>
-                                <option value="2">2個月</option>
-                                <option value="3">3個月</option>
-                                <option value="4">4個月</option>
-                                <option value="5">5個月</option>
-                                <option value="6">6個月</option>
-                                <option value="7">7個月</option>
-                                <option value="8">8個月</option>
-                                <option value="9">9個月</option>
-                                <option value="10">10個月</option>
-                                <option value="11">11個月</option>
-                                <option value="12">12個月</option>
-                                <!-- 依你系統需要加上更多 -->
-                            </select>
+                            <label for="useful-life-years">使用年限：</label>
+                            <div style="display: flex; gap: 10px;">
+                                <input type="number" id="useful-life-years" name="usefulLifeYears" min="0"
+                                    placeholder="年">
+                                <input type="number" id="useful-life-months" name="usefulLifeMonths" min="0" max="11"
+                                    placeholder="月">
+                            </div>
                         </div>
                     </div>
 
