@@ -50,6 +50,33 @@
                         </tr>
                     </table>
 
+                    <div class="row-above-buttons">
+                        <div class="form-group">
+                            <label for="startDate">起算日：</label>
+                            <input type="date" id="startDate" name="startDate" class="form-control">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="usefulLife">使用年限：</label>
+                            <select id="usefulLife" name="usefulLife" class="form-control">
+                                <option value="">請選擇</option>
+                                <option value="1">1個月</option>
+                                <option value="2">2個月</option>
+                                <option value="3">3個月</option>
+                                <option value="4">4個月</option>
+                                <option value="5">5個月</option>
+                                <option value="6">6個月</option>
+                                <option value="7">7個月</option>
+                                <option value="8">8個月</option>
+                                <option value="9">9個月</option>
+                                <option value="10">10個月</option>
+                                <option value="11">11個月</option>
+                                <option value="12">12個月</option>
+                                <!-- 依你系統需要加上更多 -->
+                            </select>
+                        </div>
+                    </div>
+
                     <div id="balance-check" style="margin-top: 10px;">
                         <strong>借方總額：</strong><span id="total-debit">0</span>，
                         <strong>貸方總額：</strong><span id="total-credit">0</span>，

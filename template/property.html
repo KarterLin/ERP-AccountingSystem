@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Journal Entry</title>
+    <link rel="stylesheet" href="./css/property.css" />
+    <link rel="stylesheet" href="./css/sidebar.css">
+</head>
+
+<body>
+    <!-- Sidebar -->
+    <div id="sidebar-container"></div>
+
+    <!-- 主要內容區域 -->
+    <div class="page-wrapper">
+        <div class="main-content">
+            <a href="accountbooks.html" class="header-link">回到帳務管理</a>
+
+            <div class="entry-form-container">
+                <form id="journal-entry-form">
+                    <label for="entry-date">取得日期：</label>
+                    <input type="date" id="entry-date" name="entryDate" required><br><br>
+                    <h1>固定資產</h1>
+                    <table id="entries-table">
+                        <tr>
+                            <th>類型</th>
+                            <th>取得日期</th>
+                            <th>財產編號</th>
+                            <th>財產名稱</th>
+                            <th>原始取得成本</th>
+                            <th>預計殘值</th>
+                            <th>累計折舊</th>
+                            <th>帳面淨額</th>
+                        </tr>
+                        <tr class="journal-row">
+                            <td>辦公設備(財會人員輸入)</td>
+                            <td>2025/1/1(財會人員輸入)</td>
+                            <td>A00001 (前端輸入後自動產生財產編號)</td>
+                            <td>影印機(財會人員輸入)</td>
+                            <td>(財會人員前端輸入)</td>
+                            <td>(財會人員前端輸入)</td>
+                            <td>根據每一個月提列的金額匯總</td>
+                            <td>原始取得成本 - 累計折舊</td>
+                        </tr>
+                    </table>
+
+                </form>
+                <form id="journal-entry-form">
+                    <h1>無形資產</h1>
+                    <table id="entries-table">
+                        <tr>
+                            <th>類型</th>
+                            <th>取得日期</th>
+                            <th>財產編號</th>
+                            <th>財產名稱</th>
+                            <th>原始取得成本</th>
+                            <th>預計殘值</th>
+                            <th>累計折舊</th>
+                            <th>帳面淨額</th>
+                        </tr>
+                        <tr class="journal-row">
+                            <td>辦公設備(財會人員輸入)</td>
+                            <td>2025/1/1(財會人員輸入)</td>
+                            <td>A00001 (前端輸入後自動產生財產編號)</td>
+                            <td>影印機(財會人員輸入)</td>
+                            <td>(財會人員前端輸入)</td>
+                            <td>(財會人員前端輸入)</td>
+                            <td>根據每一個月提列的金額匯總</td>
+                            <td>原始取得成本 - 累計折舊</td>
+                        </tr>
+                    </table>
+
+                </form>
+            </div>
+        </div>
+    </div>
+    <script src="js/sidebar.js"></script>
+    <script src="js/property.js"></script>
+
+</body>
+
+</html>

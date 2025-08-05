@@ -30,8 +30,6 @@
                             <th>借方金額</th>
                             <th>貸方金額</th>
                             <th>摘要</th>
-                            <th>起算日</th>
-                            <th>使用年限</th>
                             <th>操作</th>
                         </tr>
                         <tr class="journal-row">
@@ -48,32 +46,42 @@
                             <td><input type="number" name="debit[]" min="0" step="1" class="debit-amount"></td>
                             <td><input type="number" name="credit[]" min="0" step="1" class="credit-amount"></td>
                             <td><input type="text" name="description[]"></td>
-                            <td><input type="date"></td>
-                            <td><select>
-                                    <option value="">請選擇</option>
-                                    <option value="1">1 個月</option>
-                                    <option value="2">2 個月</option>
-                                    <option value="3">3 個月</option>
-                                    <option value="4">4 個月</option>
-                                    <option value="5">5 個月</option>
-                                    <option value="6">6 個月</option>
-                                    <option value="7">7 個月</option>
-                                    <option value="8">8 個月</option>
-                                    <option value="9">9 個月</option>
-                                    <option value="10">10 個月</option>
-                                    <option value="11">11 個月</option>
-                                    <option value="12">12 個月</option>
-                                </select></td>
                             <td></td>
                         </tr>
                     </table>
+
+                    <div class="row-above-buttons">
+                        <div class="form-group">
+                            <label for="startDate">起算日：</label>
+                            <input type="date" id="startDate" name="startDate" class="form-control">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="usefulLife">使用年限：</label>
+                            <select id="usefulLife" name="usefulLife" class="form-control">
+                                <option value="">請選擇</option>
+                                <option value="1">1個月</option>
+                                <option value="2">2個月</option>
+                                <option value="3">3個月</option>
+                                <option value="4">4個月</option>
+                                <option value="5">5個月</option>
+                                <option value="6">6個月</option>
+                                <option value="7">7個月</option>
+                                <option value="8">8個月</option>
+                                <option value="9">9個月</option>
+                                <option value="10">10個月</option>
+                                <option value="11">11個月</option>
+                                <option value="12">12個月</option>
+                                <!-- 依你系統需要加上更多 -->
+                            </select>
+                        </div>
+                    </div>
 
                     <div id="balance-check" style="margin-top: 10px;">
                         <strong>借方總額：</strong><span id="total-debit">0</span>，
                         <strong>貸方總額：</strong><span id="total-credit">0</span>，
                         <strong>差額：</strong><span id="balance-diff" style="color:red;">0</span>
                     </div>
-
                     <button type="button" id="add-row">＋ 新增一組</button>
                     <button type="submit">送出分錄</button>
                 </form>
