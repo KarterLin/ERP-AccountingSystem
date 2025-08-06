@@ -288,10 +288,16 @@ document.getElementById('journal-entry-form').addEventListener('submit', async f
     }
 });
 
-document.addEventListener('DOMContentLoaded', function () {
-    setDefaultDates();
-    loadAccountsData();
-    addEntryRow(); // 新增第二筆
-    updateBalanceSummary();
-});
+document.addEventListener("DOMContentLoaded", function () {
+    const wrapper = document.querySelector(".date-wrapper");
+    const dateInput = document.getElementById("entry-date");
 
+    wrapper.addEventListener("click", function () {
+        dateInput.showPicker?.();
+        dateInput.focus();
+    });
+
+    if (!dateInput.value) {
+        dateInput.value = getCurrentDate();
+    }
+});

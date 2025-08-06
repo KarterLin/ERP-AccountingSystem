@@ -20,40 +20,62 @@
 
             <div class="entry-form-container">
                 <form id="journal-entry-form">
-                    <label for="entry-date">入帳日期：</label>
-                    <input type="date" id="entry-date" name="entryDate" required><br><br>
+                    <div class="form-group date-wrapper">
+                        <label for="entry-date">入帳日期：</label>
+                        <input type="date" id="entry-date" name="entryDate" required>
+                    </div><br>
 
-                    <table id="entries-table">
-                        <tr>
-                            <th>科目編號</th>
-                            <th>科目名稱</th>
-                            <th>借方金額</th>
-                            <th>貸方金額</th>
-                            <th>摘要</th>
-                            <th>操作</th>
-                        </tr>
-                        <tr class="journal-row">
-                            <td>
-                                <select name="accountCode[]" class="account-code" required>
-                                    <option value="">請選擇科目編號</option>
-                                </select>
-                            </td>
-                            <td>
-                                <select name="accountName[]" class="account-name" required>
-                                    <option value="">請選擇科目名稱</option>
-                                </select>
-                            </td>
-                            <td><input type="number" name="debit[]" min="0" step="1" class="debit-amount"></td>
-                            <td><input type="number" name="credit[]" min="0" step="1" class="credit-amount"></td>
-                            <td><input type="text" name="description[]"></td>
-                            <td></td>
-                        </tr>
-                    </table>
 
                     <div class="row-above-buttons">
                         <div class="form-group">
-                            <label for="startDate">起算日：</label>
-                            <input type="date" id="startDate" name="startDate" class="form-control">
+                            <label for="startDate">固定資產類型：</label>
+                            <select id="prepaid-type" name="prepaidType" class="form-control">
+                                <option value="">請選擇</option>
+                                <option value="rent">租金</option>
+                                <option value="insurance">保險</option>
+                                <option value="utilities">水電費</option>
+                                <option value="maintenance">維修費</option>
+                                <option value="other">其他</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="usefulLife">固定資產名稱：</label>
+                            <input type="text" id="startDate" name="startDate" class="form-control">
+                        </div>
+                    </div>
+
+                    <div class="row-above-buttons">
+                        <div class="form-group">
+                            <label for="startDate">對應貸方科目：</label>
+                            <select id="prepaid-type" name="prepaidType" class="form-control">
+                                <option value="">請選擇</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="usefulLife">每期攤提科目：</label>
+                            <select id="prepaid-type" name="prepaidType" class="form-control">
+                                <option value="">請選擇</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="row-above-buttons">
+                        <div class="form-group">
+                            <label for="startDate">金額：</label>
+                            <input type="number" id="startDate" name="startDate" class="form-control">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="usefulLife">預估剩餘殘值：</label>
+                            <input type="number" id="startDate" name="startDate" class="form-control">
+                        </div>
+                    </div>
+                    <div class="row-above-buttons">
+                        <div class="form-group">
+                            <label for="startDate">摘要：</label>
+                            <input type="text" id="startDate" name="startDate" class="form-control">
                         </div>
 
                         <div class="form-group">
@@ -68,13 +90,7 @@
                     </div>
 
 
-                    <div id="balance-check" style="margin-top: 10px;">
-                        <strong>借方總額：</strong><span id="total-debit">0</span>，
-                        <strong>貸方總額：</strong><span id="total-credit">0</span>，
-                        <strong>差額：</strong><span id="balance-diff" style="color:red;">0</span>
-                    </div>
 
-                    <button type="button" id="add-row">＋ 新增一組</button>
                     <button type="submit">送出分錄</button>
                 </form>
             </div>
