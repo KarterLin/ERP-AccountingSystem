@@ -9,16 +9,18 @@ body {
      font-size: 40px;
      font-weight: bold;
 }
-.title2{
+
+.title2 {
      padding: 16px;
 }
+
 @media (max-width: 768px) {
      .title1 {
           font-size: 40px;
           margin-left: 0;
           flex: 1;
      }
-     
+
 }
 
 
@@ -50,5 +52,3 @@ body {
      transition: background-color 0.3s;
      text-decoration: none;
 }
-
-

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./css/trialBalance.css">
+    <link rel="stylesheet" href="./css/sidebar.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+</head>
+
+<body>
+    <!-- Sidebar -->
+    <div id="sidebar-container"></div>
+
+    <div class="page-wrapper">
+        <div class="d1">
+            <div class="left-group">
+                <h1 class="title">試算表</h1>
+            </div>
+            <div class="d2">
+                <button class="btn1">匯出檔案</button>
+            </div>
+        </div>
+        <div class="d3">          
+            <button class="btn2">選擇時間</button>
+        </div>
+        <div class="table-container">
+            <div class="tableFixHead">
+                <table class="table my-table">
+                    <thead>
+                        <tr>
+                            <th>科目代碼</th>
+                            <th>會計科目名稱</th>
+                            <th>FIN LEAD REF.</th>
+                            <th>上期餘額</th>
+                            <th>本期餘額</th>
+                        </tr>
+                            
+                    </thead>
+                    
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/sidebar.js"></script>
+    <script src="./js/trialBalance.js"></script>
+</body>
+
+</html>

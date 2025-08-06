@@ -5,25 +5,7 @@ body {
 }
 
 
-.page-wrapper {
-     margin-left: 225px;
-     transition: margin-left 0.3s ease;
-}
 
-
-/* 響應式關鍵 */
-@media (max-width: 768px) {
-     
-
-     .page-wrapper {
-          margin-left: 50px;
-     }
-
-     .page-wrapper.shift {
-          margin-left: 225px;
-          /* sidebar 展開時內容偏移 */
-     }
-}
 
 .title {
      white-space: nowrap;
@@ -205,4 +187,9 @@ td.text-end {
 
 .main-row.expanded .arrow {
   transform: rotate(90deg);
+}
+
+.table th,
+.table td {
+  border-right: 1px solid rgba(255, 255, 255, 0.5);
 }
