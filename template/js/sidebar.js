@@ -5,6 +5,9 @@ document.addEventListener("DOMContentLoaded", () => {
     .then(html => {
       document.getElementById("sidebar-container").innerHTML = html;
       // 插入sidebar後再判斷active
+
+      if (window.onSidebarLoaded) window.onSidebarLoaded();
+
       const hamburger = document.querySelector('.hamburger');
       if (hamburger) {
         hamburger.addEventListener('click', toggleSidebar);
@@ -34,7 +37,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 
-  if (window.onSidebarLoaded) window.onSidebarLoaded();
+  
 })
 
 function toggleSidebar() {
@@ -83,11 +86,26 @@ function handleResize() {
   const pageWrapper = document.querySelector('.page-wrapper');
   const hamburger = document.querySelector('.hamburger');
 
+  if (!sidebar) {
+    console.warn('找不到 .sidebar 元素');
+  }
+  if (!pageWrapper) {
+    console.warn('找不到 .page-wrapper 元素');
+  }
+  if (!hamburger) {
+    console.warn('找不到 .hamburger 元素');
+  }
+
+  if (!sidebar || !pageWrapper || !hamburger) {
+    // 缺任何一個就先不要繼續執行
+    return;
+  }
+
   if (window.innerWidth > 768) {
     sidebar.classList.add('open');
-    pageWrapper.classList.remove('shift'); // ← 可考慮依 sidebar 是否固定來決定是否 shift
-    hamburger.classList.add('hidden'); // ← 桌機版不顯示 hamburger
-    pageWrapper.style.marginLeft = ''; // 清除 inline
+    pageWrapper.classList.remove('shift');
+    hamburger.classList.add('hidden');
+    pageWrapper.style.marginLeft = '';
   } else {
     sidebar.classList.remove('open');
     pageWrapper.classList.remove('shift');
@@ -96,5 +114,7 @@ function handleResize() {
 }
 
 // 初始化
-handleResize();
-window.addEventListener('resize', handleResize);
+window.onSidebarLoaded = () => {
+  handleResize();
+  window.addEventListener('resize', handleResize);
+};
