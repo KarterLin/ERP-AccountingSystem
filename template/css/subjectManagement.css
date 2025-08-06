@@ -19,6 +19,11 @@ body {
      white-space: nowrap;
 }
 
+.btn-bar {
+     display: flex;
+     margin-left: 15px;
+}
+
 .add-btn {
      padding: 10px 20px;
      font-size: 16px;
@@ -62,7 +67,7 @@ body {
 
 .accordion-container {
      margin-top: 40px;
-     width: 100%;
+     width: 50%;
      font-family: Arial, sans-serif;
      font-size: 20px;
      padding: 0 50px 0 20px;
@@ -85,6 +90,79 @@ body {
      border-bottom: 1px solid #ddd;
 }
 
+.accordion-content li:not(:last-child) {
+     margin-bottom: 10px;
+}
+
 .accordion-item.active .accordion-content {
      display: block;
+}
+
+/* Modal 背景 */
+.modal {
+
+     display: none;
+     /* 預設隱藏 */
+     position: fixed;
+     z-index: 1000;
+     left: 0;
+     top: 0;
+     width: 100%;
+     height: 100%;
+     overflow: auto;
+     background-color: rgba(180, 168, 168, 0.4);
+     /* 半透明黑色背景 */
+}
+
+/* Modal 內容區塊 */
+.modal-content {
+     background-color: #fff;
+     margin: 10% auto;
+     padding: 20px;
+     border-radius: 8px;
+     width: 50%;
+     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+/* 關閉按鈕 */
+.close {
+     color: #aaa;
+     float: right;
+     font-size: 28px;
+     font-weight: bold;
+     cursor: pointer;
+}
+
+.close:hover {
+     color: black;
+}
+
+.form-row {
+    display: flex;
+    gap: 40px;
+    margin-top: 20px;
+}
+
+.form-group {
+    flex: 1; /* 平均分配 */
+    display: flex;
+    flex-direction: column;
+    font-size: 18px;
+}
+
+.form-group label {
+    margin-bottom: 5px;
+}
+
+.form-group select,
+.form-group input {
+    padding: 8px;
+    font-size: 16px;
+}
+
+.form-btn{
+     display: flex;
+     justify-content: flex-end;
+     margin-top: 20px;
+     gap: 10px;
 }
