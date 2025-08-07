@@ -1,6 +1,7 @@
 
 document.addEventListener("DOMContentLoaded", () => {
   initTableToggle();
+  initDatePicker();
 });
 
 function initTableToggle() {
@@ -34,8 +35,7 @@ function initTableToggle() {
   });
 }
 // 初始化
-handleResize();
-window.addEventListener('resize', handleResize);
+
 
 function toggleItems() {
   const toggle = document.getElementById('toggleSwitch');
@@ -90,7 +90,11 @@ window.onSidebarLoaded = () => {
   });
 };
 
-// 若 sidebar 載入完了，立即執行
-if (typeof window.onSidebarLoaded === 'function') {
-  window.onSidebarLoaded();
+function initDatePicker() {
+flatpickr("#dateRange", {
+    locale: "zh", // 中文
+    dateFormat: "Y-m-d", // 日期格式：年-月-日
+    mode: "range", // 區間選擇（例如從 7/1 到 7/31）
+    allowInput: true
+  });
 }

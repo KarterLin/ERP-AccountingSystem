@@ -33,9 +33,7 @@ function initTableToggle() {
     }
   });
 }
-// 初始化
-handleResize();
-window.addEventListener('resize', handleResize);
+
 
 function toggleItems() {
   const toggle = document.getElementById('toggleSwitch');
@@ -90,7 +88,8 @@ window.onSidebarLoaded = () => {
   });
 };
 
-// 若 sidebar 載入完了，立即執行
-if (typeof window.onSidebarLoaded === 'function') {
-  window.onSidebarLoaded();
-}
+flatpickr("#dateRange", {
+    locale: "zh", // 中文
+    dateFormat: "Y-m-d", // 日期格式：年-月-日
+    allowInput: true
+  });

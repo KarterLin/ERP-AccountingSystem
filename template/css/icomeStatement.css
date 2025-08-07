@@ -59,15 +59,13 @@ body {
 }
 
 .btn2 {
-
      line-height: 25px;
      cursor: pointer;
      background-color: #f0f0f0;
      border: solid 2px blue;
      border-radius: 4px;
      font-size: 15px;
-     height: 30px;
-     width: 200px;
+     width: auto;
 }
 
 .switch-container {
@@ -192,4 +190,11 @@ td.text-end {
 .table th,
 .table td {
   border-right: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+.field {
+    display: flex;
+    flex-direction: column;
+    flex: 1 1 0;
+    margin-bottom: 5px;
 }
