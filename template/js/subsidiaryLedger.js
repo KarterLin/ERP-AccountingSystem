@@ -1,4 +1,4 @@
-// subsidiaryLedger.js (配合現有API的版本)
+// subsidiaryLedger.js (修正版本)
 
 // 全域變數
 let currentLedgerData = [];
@@ -54,6 +54,7 @@ async function loadAccountOptions() {
     if (!response.ok) throw new Error('載入科目失敗');
     
     allAccounts = await response.json();
+    console.log('載入的科目資料:', allAccounts); // 除錯用
     populateAccountSelects();
   } catch (error) {
     console.error('載入科目錯誤:', error);
@@ -61,7 +62,7 @@ async function loadAccountOptions() {
   }
 }
 
-// 填充科目下拉選單 (修改為單一科目選擇)
+// 填充科目下拉選單 (修正版本)
 function populateAccountSelects() {
   const startSelect = document.getElementById('accountstart');
   const endSelect = document.getElementById('accountend');
@@ -71,16 +72,26 @@ function populateAccountSelects() {
   endSelect.style.display = 'none'; // 隱藏終止科目選擇
   document.querySelector('span').style.display = 'none'; // 隱藏波浪號
   
-  // 按科目代碼排序
-  const sortedAccounts = allAccounts.sort((a, b) => 
-    a.accountCode.localeCompare(b.accountCode)
-  );
+  // 檢查資料是否存在且有效
+  if (!allAccounts || !Array.isArray(allAccounts)) {
+    console.error('科目資料格式錯誤:', allAccounts);
+    return;
+  }
   
-  // 加入科目選項
+  // 按科目代碼排序 (修正欄位名稱)
+  const sortedAccounts = allAccounts.sort((a, b) => {
+    const codeA = a.code || '';
+    const codeB = b.code || '';
+    return codeA.localeCompare(codeB);
+  });
+  
+  // 加入科目選項 (修正欄位名稱)
   sortedAccounts.forEach(account => {
-    const optionText = `${account.accountCode} - ${account.accountName}`;
-    const startOption = new Option(optionText, account.accountCode);
-    startSelect.appendChild(startOption);
+    if (account.code && account.name) {
+      const optionText = `${account.code} - ${account.name}`;
+      const startOption = new Option(optionText, account.code);
+      startSelect.appendChild(startOption);
+    }
   });
 }
 
