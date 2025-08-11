@@ -126,3 +126,9 @@ window.onSidebarLoaded = () => {
 if (typeof window.onSidebarLoaded === 'function') {
   window.onSidebarLoaded();
 }
+
+flatpickr("#dateRange", {
+    locale: "zh", // 中文
+    dateFormat: "Y-m-d", // 日期格式：年-月-日
+    allowInput: true
+  });
