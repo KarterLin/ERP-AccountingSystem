@@ -35,7 +35,6 @@
                                 <option value="prepaidRent">預付租金</option>
                                 <option value="prepaidInsurance">預付保險費</option>
                                 <option value="prepaidSoftwareRights">預付軟體使用費</option>
-                                <option value="prepaidExpense">預付費用</option>
                             </select>
                         </div>
 
@@ -50,6 +49,9 @@
                             <label for="startDate">對應貸方科目：</label>
                             <select id="prepaid-type" name="prepaidType" class="form-control">
                                 <option value="">請選擇</option>
+                                <option value="cash">現金</option>
+                                <option value="bankDeposit">銀行存款</option>
+                                <option value="accountsPayable">應付費用</option>
                             </select>
                         </div>
 
@@ -57,6 +59,10 @@
                             <label for="usefulLife">每期攤提科目：</label>
                             <select id="prepaid-type" name="prepaidType" class="form-control">
                                 <option value="">請選擇</option>
+                                <option value="rentExpenseHouse">租金支出-房子</option>
+                                <option value="rentExpenseOthers">租金支出-其他</option>
+                                <option value="InsuranceExpense">保險費</option>
+                                <option value="softwareRightsExpense">軟體使用費</option>
                             </select>
                         </div>
                     </div>
@@ -94,7 +100,7 @@
                             <input type="text" id="input4" name="input4" class="form-control">
                         </div>
 
-                        
+
                     </div>
 
                     <button type="submit">送出分錄</button>
