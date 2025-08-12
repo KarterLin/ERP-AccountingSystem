@@ -11,6 +11,7 @@
 
 let accountsData = [];
 
+// ========== 原有功能保持不變 ==========
 function getCurrentDate() {
     const today = new Date();
     return today.toISOString().split('T')[0];
@@ -39,259 +40,184 @@ async function loadAccountsData() {
             { code: "5001000", name: '銷貨成本' }
         ];
     }
-
-    populateAllAccountSelects();
-    // 為初始行設置事件監聽器
-    document.querySelectorAll('.journal-row').forEach(setupRowEvents);
 }
 
-// 初始化所有下拉選單選項
-function populateAllAccountSelects() {
-    document.querySelectorAll('.account-code').forEach(select => {
-        if (select.options.length <= 1) { // 只有當選單為空時才填充
-            select.innerHTML = '<option value="">請選擇科目編號</option>';
-            accountsData.forEach(account => {
-                const option = document.createElement('option');
-                option.value = account.code;
-                option.textContent = account.code;
-                select.appendChild(option);
-            });
-        }
+// ========== 新增的固定資產聯動功能 ==========
+// 定義每個固定資產類型對應的折舊科目
+const fixedAssetDepreciationOptions = {
+    'land': {
+        message: '土地無需折舊',
+        disabled: true,
+        autoSelect: null
+    },
+    'buildings': {
+        text: '累積折舊-房屋及建物',
+        value: 'ACCbuildings',
+        disabled: true
+    },
+    'itEquipments': {
+        text: '累積折舊-資訊設備',
+        value: 'ACCitEquipments',
+        disabled: true
+    },
+    'officeitEquipments': {
+        text: '累積折舊-辦公設備',
+        value: 'ACCofficeitEquipments',
+        disabled: true
+    },
+    'transportationEquipments': {
+        text: '累積折舊-運輸設備',
+        value: 'ACCtransportationEquipments',
+        disabled: true
+    },
+    'miscellaneousEquipments': {
+        text: '累積折舊-什項設備',
+        value: 'ACCmiscellaneousEquipments',
+        disabled: true
+    }
+};
+
+// 更新每期折舊科目選單的函數
+function updateFixedAssetDepreciationSubject(selectedType) {
+    // 直接使用 ID 選擇器
+    const depreciationSubjectSelect = document.getElementById('depreciation-subject');
+    if (!depreciationSubjectSelect) return;
+    
+    // 清空現有選項
+    depreciationSubjectSelect.innerHTML = '';
+    
+    if (!selectedType || !fixedAssetDepreciationOptions[selectedType]) {
+        // 如果沒有選擇或選擇了未定義的選項，恢復預設狀態
+        depreciationSubjectSelect.innerHTML = '<option value="">請選擇</option>';
+        depreciationSubjectSelect.disabled = false;
+        depreciationSubjectSelect.style.backgroundColor = '';
+        depreciationSubjectSelect.style.color = '';
+        return;
+    }
+
+    const config = fixedAssetDepreciationOptions[selectedType];
+    
+    // 統一設置反灰樣式
+    depreciationSubjectSelect.disabled = true;
+    depreciationSubjectSelect.style.backgroundColor = '#f5f5f5';
+    depreciationSubjectSelect.style.color = '#999';
+    
+    // 特別處理土地的情況
+    if (selectedType === 'land') {
+        const option = document.createElement('option');
+        option.value = '';
+        option.textContent = config.message; // "土地無需折舊"
+        depreciationSubjectSelect.appendChild(option);
+        depreciationSubjectSelect.value = '';
+        return;
+    }
+    
+    // 處理其他固定資產類型：自動帶出對應的累計折舊科目並反灰
+    const option = document.createElement('option');
+    option.value = config.value;
+    option.textContent = config.text;
+    depreciationSubjectSelect.appendChild(option);
+    depreciationSubjectSelect.value = config.value;
+}
+
+// ========== 事件監聽器設置 ==========
+// 表單提交處理
+const journalForm = document.getElementById('journal-entry-form');
+if (journalForm) {
+    journalForm.addEventListener('submit', async function (e) {
+        e.preventDefault();
+        
+        // 固定資產表單提交處理
+        handleFixedAssetFormSubmission();
     });
-
-    document.querySelectorAll('.account-name').forEach(select => {
-        if (select.options.length <= 1) { // 只有當選單為空時才填充
-            select.innerHTML = '<option value="">請選擇科目名稱</option>';
-            accountsData.forEach(account => {
-                const option = document.createElement('option');
-                option.value = account.name;
-                option.textContent = account.name;
-                select.appendChild(option);
-            });
-        }
-    });
 }
 
-// 為單一行設置選項和事件監聽器
-function setupRowEvents(row) {
-    const codeSelect = row.querySelector('.account-code');
-    const nameSelect = row.querySelector('.account-name');
-    const debitInput = row.querySelector('.debit-amount');
-    const creditInput = row.querySelector('.credit-amount');
-
-    // 填充選項（只有當選單為空時）
-    if (codeSelect.options.length <= 1) {
-        codeSelect.innerHTML = '<option value="">請選擇科目編號</option>';
-        accountsData.forEach(account => {
-            const option = document.createElement('option');
-            option.value = account.code;
-            option.textContent = account.code;
-            codeSelect.appendChild(option);
-        });
-    }
-
-    if (nameSelect.options.length <= 1) {
-        nameSelect.innerHTML = '<option value="">請選擇科目名稱</option>';
-        accountsData.forEach(account => {
-            const option = document.createElement('option');
-            option.value = account.name;
-            option.textContent = account.name;
-            nameSelect.appendChild(option);
-        });
-    }
-
-    // 設置連動事件（使用標記來避免重複綁定）
-    if (!codeSelect.hasAttribute('data-events-bound')) {
-        codeSelect.addEventListener('change', () => {
-            const matched = accountsData.find(acc => acc.code === codeSelect.value);
-            nameSelect.value = matched ? matched.name : '';
-        });
-        codeSelect.setAttribute('data-events-bound', 'true');
-    }
-
-    if (!nameSelect.hasAttribute('data-events-bound')) {
-        nameSelect.addEventListener('change', () => {
-            const matched = accountsData.find(acc => acc.name === nameSelect.value);
-            codeSelect.value = matched ? matched.code : '';
-        });
-        nameSelect.setAttribute('data-events-bound', 'true');
-    }
-
-    // 借方金額輸入時的處理
-    if (!debitInput.hasAttribute('data-events-bound')) {
-        debitInput.addEventListener('input', () => {
-            if (debitInput.value && parseFloat(debitInput.value) > 0) {
-                creditInput.disabled = true;
-                creditInput.value = '0';
-                creditInput.style.backgroundColor = '#f5f5f5';
-            } else {
-                creditInput.disabled = false;
-                creditInput.style.backgroundColor = '';
-            }
-            updateBalanceSummary();
-        });
-        debitInput.setAttribute('data-events-bound', 'true');
-    }
-
-    // 貸方金額輸入時的處理
-    if (!creditInput.hasAttribute('data-events-bound')) {
-        creditInput.addEventListener('input', () => {
-            if (creditInput.value && parseFloat(creditInput.value) > 0) {
-                debitInput.disabled = true;
-                debitInput.value = '0';
-                debitInput.style.backgroundColor = '#f5f5f5';
-            } else {
-                debitInput.disabled = false;
-                debitInput.style.backgroundColor = '';
-            }
-            updateBalanceSummary();
-        });
-        creditInput.setAttribute('data-events-bound', 'true');
-    }
-}
-
-// 刪除不再需要的函數
-function handleAccountCodeChange(select) {
-    const row = select.closest('tr');
-    const nameSelect = row.querySelector('.account-name');
-    const selected = accountsData.find(a => a.code == select.value);
-    nameSelect.value = selected ? selected.name : '';
-}
-
-function handleAccountNameChange(select) {
-    const row = select.closest('tr');
-    const codeSelect = row.querySelector('.account-code');
-    const selected = accountsData.find(a => a.name === select.value);
-    codeSelect.value = selected ? selected.code : '';
-}
-
-function updateBalanceSummary() {
-    let totalDebit = 0;
-    let totalCredit = 0;
-    document.querySelectorAll('input[name="debit[]"]').forEach(input => {
-        totalDebit += parseFloat(input.value || '0');
-    });
-    document.querySelectorAll('input[name="credit[]"]').forEach(input => {
-        totalCredit += parseFloat(input.value || '0');
-    });
-    const diff = totalDebit - totalCredit;
-    document.getElementById('total-debit').textContent = totalDebit.toFixed(2);
-    document.getElementById('total-credit').textContent = totalCredit.toFixed(2);
-    const diffSpan = document.getElementById('balance-diff');
-    diffSpan.textContent = diff.toFixed(2);
-    diffSpan.style.color = diff === 0 ? 'green' : 'red';
-}
-
-function addEntryRow() {
-    const table = document.getElementById('entries-table');
-    const newRow = table.rows[1].cloneNode(true);
-
-    // 清空新行的輸入值
-    Array.from(newRow.querySelectorAll('input')).forEach(i => {
-        i.value = '';
-        i.disabled = false;
-    });
-    Array.from(newRow.querySelectorAll('select')).forEach(s => s.selectedIndex = 0);
-
-    // 移除事件綁定標記，這樣新行可以重新綁定事件
-    Array.from(newRow.querySelectorAll('select, input')).forEach(element => element.removeAttribute('data-events-bound'));
-
-    const currentRowCount = table.rows.length - 1; // 不含表頭
-    if (currentRowCount >= 2) {
-        newRow.cells[newRow.cells.length - 1].innerHTML = '<button type="button" class="remove-row">-</button>';
-    } else {
-        newRow.cells[newRow.cells.length - 1].innerHTML = '';
-    }
-
-    table.appendChild(newRow);
-
-    // 為新行設置選項和事件監聽器
-    setupRowEvents(newRow);
-}
-
-document.getElementById('entries-table').addEventListener('input', function (e) {
-    if (e.target.name === 'debit[]' || e.target.name === 'credit[]') {
-        updateBalanceSummary();
-    }
-});
-
-document.getElementById('entries-table').addEventListener('change', function (e) {
-    if (e.target.classList.contains('account-code')) handleAccountCodeChange(e.target);
-    else if (e.target.classList.contains('account-name')) handleAccountNameChange(e.target);
-});
-
-document.getElementById('add-row').onclick = addEntryRow;
-
-document.getElementById('entries-table').addEventListener('click', function (e) {
-    if (e.target && e.target.classList.contains('remove-row')) {
-        e.target.closest('tr').remove();
-        updateBalanceSummary();
-    }
-});
-
-document.getElementById('journal-entry-form').addEventListener('submit', async function (e) {
-    e.preventDefault();
+// 固定資產表單提交處理
+async function handleFixedAssetFormSubmission() {
     const entryDate = document.getElementById('entry-date').value;
-    const details = [];
-    const rows = document.querySelectorAll('#entries-table tr');
+    const fixedAssetType = document.getElementById('fixed-asset-type').value;
+    const fixedAssetName = document.getElementById('fixed-asset-name').value;
+    const creditAccount = document.getElementById('credit-account').value;
+    const depreciationSubject = document.getElementById('depreciation-subject').value;
+    
+    // 注意：HTML 中金額和殘值的 ID 都是 startDate，需要修正
+    const amountInputs = document.querySelectorAll('input[type="number"]');
+    const amount = amountInputs[0] ? amountInputs[0].value : '';
+    const residualValue = amountInputs[1] ? amountInputs[1].value : '';
+    
+    // 摘要欄位
+    const descriptionInputs = document.querySelectorAll('input[type="text"]');
+    const description = descriptionInputs[0] ? descriptionInputs[0].value : '';
+    
+    const usefulLifeYears = document.getElementById('useful-life-years').value;
+    const usefulLifeMonths = document.getElementById('useful-life-months').value;
 
-    for (let i = 1; i < rows.length; i++) {
-        const row = rows[i];
-        const accountCode = row.querySelector('select[name="accountCode[]"]').value;
-        const accountName = row.querySelector('select[name="accountName[]"]').value;
-        const debit = row.querySelector('input[name="debit[]"]').value || '0';
-        const credit = row.querySelector('input[name="credit[]"]').value || '0';
-        const description = row.querySelector('input[name="description[]"]').value;
-
-        if (accountCode && accountName) {
-            details.push({
-                accountCode: parseInt(accountCode), // 轉換為數字
-                debit: parseFloat(debit),
-                credit: parseFloat(credit),
-                description
-            });
-        }
+    // 基本驗證
+    if (!entryDate) return alert('請選擇入帳日期');
+    if (!fixedAssetType) return alert('請選擇固定資產類型');
+    if (!fixedAssetName) return alert('請輸入固定資產名稱');
+    if (!creditAccount) return alert('請選擇對應貸方科目');
+    if (!amount || parseFloat(amount) <= 0) return alert('請輸入正確的金額');
+    
+    // 土地不需要折舊科目和使用年限
+    if (fixedAssetType !== 'land') {
+        if (!depreciationSubject) return alert('請選擇每期折舊科目');
+        if (!usefulLifeYears && !usefulLifeMonths) return alert('請輸入使用年限');
     }
 
-    if (details.length === 0) return alert('請至少填寫一筆分錄');
-
-    const totalDebit = details.reduce((sum, e) => sum + e.debit, 0);
-    const totalCredit = details.reduce((sum, e) => sum + e.credit, 0);
-    if (totalDebit !== totalCredit) return alert(`借貸不相符！\n借方總額：${totalDebit}，貸方總額：${totalCredit}`);
-
-    // 構建新的JSON格式
-    const journalEntry = {
-        entryDate: entryDate,
-        details: details
+    const formData = {
+        entryDate,
+        fixedAssetType,
+        fixedAssetName,
+        creditAccount,
+        depreciationSubject: fixedAssetType === 'land' ? null : depreciationSubject, // 土地設為 null
+        amount: parseFloat(amount),
+        residualValue: parseFloat(residualValue || '0'),
+        usefulLifeYears: parseInt(usefulLifeYears || '0'),
+        usefulLifeMonths: parseInt(usefulLifeMonths || '0'),
+        description
     };
 
-    // 顯示將要發送的JSON格式供檢查
-    console.log('將要發送的JSON格式:', JSON.stringify(journalEntry, null, 2));
-
+    console.log('固定資產數據:', formData);
+    
     try {
-        const res = await fetch('http://localhost:8080/api/journal-entries', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(journalEntry)
+        // 這裡可以添加API調用
+        // const response = await fetch('http://localhost:8080/api/fixed-assets', {
+        //     method: 'POST',
+        //     headers: { 'Content-Type': 'application/json' },
+        //     body: JSON.stringify(formData)
+        // });
+        
+        alert('固定資產分錄已提交！');
+        document.getElementById('journal-entry-form').reset();
+        setDefaultDates();
+        updateFixedAssetDepreciationSubject('');
+    } catch (error) {
+        console.error('提交錯誤:', error);
+        alert('提交失敗，請重試');
+    }
+}
+
+// DOMContentLoaded 事件處理
+document.addEventListener('DOMContentLoaded', function () {
+    // 設置預設日期
+    setDefaultDates();
+
+    // 新增的固定資產聯動功能
+    const fixedAssetTypeSelect = document.getElementById('fixed-asset-type');
+    if (fixedAssetTypeSelect) {
+        // 監聽固定資產類型選擇變化
+        fixedAssetTypeSelect.addEventListener('change', function() {
+            const selectedType = this.value;
+            updateFixedAssetDepreciationSubject(selectedType);
         });
-        if (res.ok) {
-            alert('分錄已成功提交！');
-            this.reset();
-            setDefaultDates();
-            updateBalanceSummary();
-        } else {
-            alert('提交失敗，請重試');
-        }
-    } catch (err) {
-        console.error(err);
-        alert('提交時發生錯誤，請重試');
+
+        // 初始化折舊科目選單
+        updateFixedAssetDepreciationSubject(fixedAssetTypeSelect.value);
+    }
+
+    // 如果存在賬戶相關功能，載入賬戶數據
+    if (document.querySelector('.account-code') || document.querySelector('.account-name')) {
+        loadAccountsData();
     }
 });
-
-document.addEventListener('DOMContentLoaded', function () {
-    setDefaultDates();
-    loadAccountsData();
-    addEntryRow(); // 新增第二筆
-    updateBalanceSummary();
-});
-

@@ -26,10 +26,11 @@
                     </div><br>
 
 
+                    <!-- 修改建議的 HTML 結構 -->
                     <div class="row-above-buttons">
                         <div class="form-group">
-                            <label for="startDate">固定資產類型：</label>
-                            <select id="prepaid-type" name="prepaidType" class="form-control">
+                            <label for="fixed-asset-type">固定資產類型：</label>
+                            <select id="fixed-asset-type" name="fixedAssetType" class="form-control">
                                 <option value="">請選擇</option>
                                 <option value="land">土地</option>
                                 <option value="buildings">房屋及建物</option>
@@ -41,15 +42,15 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="usefulLife">固定資產名稱：</label>
-                            <input type="text" id="startDate" name="startDate" class="form-control">
+                            <label for="fixed-asset-name">固定資產名稱：</label>
+                            <input type="text" id="fixed-asset-name" name="fixedAssetName" class="form-control">
                         </div>
                     </div>
 
                     <div class="row-above-buttons">
                         <div class="form-group">
-                            <label for="startDate">對應貸方科目：</label>
-                            <select id="prepaid-type" name="prepaidType" class="form-control">
+                            <label for="credit-account">對應貸方科目：</label>
+                            <select id="credit-account" name="creditAccount" class="form-control">
                                 <option value="">請選擇</option>
                                 <option value="cash">現金</option>
                                 <option value="bankDeposit">銀行存款</option>
@@ -58,8 +59,8 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="usefulLife">每期攤提科目：</label>
-                            <select id="prepaid-type" name="prepaidType" class="form-control">
+                            <label for="depreciation-subject">每期折舊科目：</label>
+                            <select id="depreciation-subject" name="depreciationSubject" class="form-control">
                                 <option value="">請選擇</option>
                                 <option value="ACCbuildings">累積折舊-房屋及建物</option>
                                 <option value="ACCitEquipments">累積折舊-資訊設備</option>
@@ -72,38 +73,40 @@
 
                     <div class="row-above-buttons">
                         <div class="form-group">
-                            <label for="startDate">金額：</label>
-                            <input type="number" id="startDate" name="startDate" class="form-control">
+                            <label for="amount">金額：</label>
+                            <input type="number" id="amount" name="amount" class="form-control">
                         </div>
 
                         <div class="form-group">
-                            <label for="usefulLife">預估剩餘殘值：</label>
-                            <input type="number" id="startDate" name="startDate" class="form-control">
+                            <label for="residual-value">預估剩餘殘值：</label>
+                            <input type="number" id="residual-value" name="residualValue" class="form-control">
                         </div>
                     </div>
+
                     <div class="row-above-buttons">
                         <div class="form-group">
-                            <label for="startDate">摘要：</label>
-                            <input type="text" id="startDate" name="startDate" class="form-control">
+                            <label for="description">摘要：</label>
+                            <input type="text" id="description" name="description" class="form-control">
                         </div>
-
-                        <div class="form-group">
-                            <label for="useful-life-years">使用年限：</label>
-                            <div style="display: flex; gap: 10px;">
-                                <input type="number" id="useful-life-years" name="usefulLifeYears" min="0"
-                                    placeholder="年">
-                                <input type="number" id="useful-life-months" name="usefulLifeMonths" min="0" max="11"
-                                    placeholder="月">
-                            </div>
-                        </div>
+                        <!-- 使用年限保持不變 -->
                     </div>
 
-
-
-                    <button type="submit">送出分錄</button>
-                </form>
+                    <div class="form-group">
+                        <label for="useful-life-years">使用年限：</label>
+                        <div style="display: flex; gap: 10px;">
+                            <input type="number" id="useful-life-years" name="usefulLifeYears" min="0" placeholder="年">
+                            <input type="number" id="useful-life-months" name="usefulLifeMonths" min="0" max="11"
+                                placeholder="月">
+                        </div>
+                    </div>
             </div>
+
+
+
+            <button type="submit">送出分錄</button>
+            </form>
         </div>
+    </div>
     </div>
     <script src="js/sidebar.js"></script>
     <script src="js/fixedAssets.js"></script>
