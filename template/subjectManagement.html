@@ -18,17 +18,15 @@
             <h1 class="title">科目管理</h1>
         </div>
         <div class="btn-bar">
-            <button id="trialBalanceBtn" class="add-btn">新增科目</button>
+            <button id="addSubjectBtn" class="add-btn">新增科目</button>
         </div>
 
         <div class="accordion-container">
             <div class="accordion-item">
                 <div class="accordion-header">資產</div>
                 <div class="accordion-content">
-                    <ul>
-                        <li>現金</li>
-                        <li>應收帳款</li>
-                        <li>存貨</li>
+                    <ul id="asset-list">
+                        <!-- 動態載入資產類科目 -->
                     </ul>
                 </div>
             </div>
@@ -36,9 +34,8 @@
             <div class="accordion-item">
                 <div class="accordion-header">負債</div>
                 <div class="accordion-content">
-                    <ul>
-                        <li>應付帳款</li>
-                        <li>短期借款</li>
+                    <ul id="liability-list">
+                        <!-- 動態載入負債類科目 -->
                     </ul>
                 </div>
             </div>
@@ -46,48 +43,93 @@
             <div class="accordion-item">
                 <div class="accordion-header">權益</div>
                 <div class="accordion-content">
-                    <ul>
-                        <li>普通股</li>
-                        <li>保留盈餘</li>
+                    <ul id="equity-list">
+                        <!-- 動態載入權益類科目 -->
+                    </ul>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <div class="accordion-header">收入</div>
+                <div class="accordion-content">
+                    <ul id="revenue-list">
+                        <!-- 動態載入收入類科目 -->
+                    </ul>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <div class="accordion-header">成本</div>
+                <div class="accordion-content">
+                    <ul id="cost-list">
+                        <!-- 動態載入成本類科目 -->
+                    </ul>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <div class="accordion-header">費用</div>
+                <div class="accordion-content">
+                    <ul id="expense-list">
+                        <!-- 動態載入費用類科目 -->
                     </ul>
                 </div>
             </div>
         </div>
     </div>
 
-    <div id="trialBalanceModal" class="modal">
+    <!-- 新增科目 Modal -->
+    <div id="addSubjectModal" class="modal">
         <div class="modal-content">
             <span class="close">&times;</span>
-            <h2>新增會計子科目</h2>
+            <h2>新增會計科目</h2>
             <hr>
             <div class="form-row">
                 <div class="form-group">
-                    <label for="parentAccount">選擇母科目：</label>
-                    <span>類別：</span>
-                    <select id="parentAccount">
-                        <option value="">請選擇</option>
-                        <option value="1">資產</option>
-                        <option value="2">負債</option>
-                        <option value="3">權益</option>
-                    </select>
-                    <span>科目：</span>
-                    <select id="parentSubject">
-                        <option value="">請選擇</option>
-                        <option value="1">現金</option>
-                        <option value="2">銀行存款</option>
-                        <option value="3">應收帳款</option>
+                    <label for="subjectCode">科目代碼：</label>
+                    <input type="text" id="subjectCode" placeholder="請輸入科目代碼">
+                </div>
+                
+                <div class="form-group">
+                    <label for="subjectName">科目名稱：</label>
+                    <input type="text" id="subjectName" placeholder="請輸入科目名稱">
+                </div>
+
+                <div class="form-group">
+                    <label for="subjectType">科目類型：</label>
+                    <select id="subjectType">
+                        <option value="">請選擇科目類型</option>
+                        <option value="asset">資產</option>
+                        <option value="liability">負債</option>
+                        <option value="equity">權益</option>
+                        <option value="revenue">收入</option>
+                        <option value="cost">成本</option>
+                        <option value="expense">費用</option>
                     </select>
                 </div>
 
                 <div class="form-group">
-                    <label for="childAccount">新增子科目：</label>
-                    <span>子科目名稱</span>
-                    <input type="text" id="childAccount" placeholder="請輸入子科目名稱">
+                    <label for="parentId">父科目ID：</label>
+                    <input type="number" id="parentId" placeholder="請輸入父科目ID（可選）">
                 </div>
             </div>
             <div class="form-btn">
-                <button id="saveChildAccountBtn" class="add-btn">儲存</button>
-                <button id="cancelChildAccountBtn" class="add-btn">取消</button>
+                <button id="saveSubjectBtn" class="add-btn">儲存</button>
+                <button id="cancelSubjectBtn" class="add-btn">取消</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 刪除確認 Modal -->
+    <div id="deleteConfirmModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>刪除科目</h2>
+            <hr>
+            <p>確定要刪除科目「<span id="deleteSubjectName"></span>」嗎？</p>
+            <div class="form-btn">
+                <button id="confirmDeleteBtn" class="add-btn">確認刪除</button>
+                <button id="cancelDeleteBtn" class="add-btn">取消</button>
             </div>
         </div>
     </div>
