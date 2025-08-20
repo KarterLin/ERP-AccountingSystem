@@ -1,0 +1,70 @@
+/* --- 讓 Topbar 變三欄：左(空白)－中(品牌)－右(功能列) --- */
+.topbar{
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  height: var(--topbar-height, 80px);
+  background: #fff;
+  border-bottom: 1px solid #e5e7eb;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;  /* 左右各 1fr，品牌在中央 auto 欄 */
+  align-items: center;
+  padding: 0 var(--topbar-padding-x, 32px);
+  z-index: 1200;
+}
+
+/* ✅ 把「logo + ERP 會計系統」放到中間那欄，並置中 */
+.topbar-left{
+  grid-column: 2;                 /* 放到中間欄 */
+  justify-self: center;           /* 水平置中 */
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+}
+
+/* 右邊功能列固定靠右 */
+.topbar-right{
+  grid-column: 3;                 /* 右邊欄 */
+  justify-self: end;              /* 水平靠右 */
+  display: inline-flex;
+  align-items: center;
+  gap: 16px;
+}
+
+/* 若有中間按鈕區暫時不用，先隱藏（要用時拿掉這段） */
+.topbar-center{ display: none; }
+
+/* 尺寸與字級（沿用你之前的設定，保留示意） */
+.topbar-left .logo{
+  width: var(--logo-size, 48px);
+  height: var(--logo-size, 48px);
+  object-fit: contain;
+}
+.topbar-left .brand {
+  font-size: 32px;                     /* 字體大小 */
+  font-weight: 900;                    /* 粗體 */
+  font-family: "Noto Sans TC", "Microsoft JhengHei", sans-serif;
+  background: linear-gradient(90deg, #2563eb, #9333ea); /* 藍到紫漸層 */
+  -webkit-background-clip: text;       /* 讓漸層套用到文字 */
+  -webkit-text-fill-color: transparent;/* 隱藏實心字色，只顯示漸層 */
+  letter-spacing: 1.5px;               /* 增加字距 */
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.2); /* 輕微陰影，立體感 */
+}
+.topbar-left .brand small{
+  font-size: var(--brand-sub-font, 12px);
+  color: #64748b;
+  font-weight: 600;
+}
+
+/* 右邊的 Blog/通知/訊息維持小字 */
+.topbar-right .nav-link{ font-size: 14px; color:#2563eb; text-decoration:none; }
+.topbar-right .user img{ width:32px; height:32px; border-radius:50%; }
+.topbar-right .user span{ font-size:14px; }
+
+/* 讓內容避開 topbar */
+.page-wrapper{ margin-top: var(--topbar-height, 80px); }
+
+:root {
+  --topbar-height: 80px;   /* 整條高一點 */
+  --logo-size: 60px;        /* 圖片跟著大 */
+  --brand-font-size: 28px;  /* ERP字大一點 */
+}

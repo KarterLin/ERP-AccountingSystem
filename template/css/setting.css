@@ -1,39 +1,67 @@
-.menu + div {
-    display: flex;
-    margin: 20px;
-    justify-content: space-around;
-    align-items: center;
+/* ====== 全局 ====== */
+body {
+  margin: 0;
+  font-family: "Lato", sans-serif;
+  background-color: #f5f7fa;
 }
-.link-box {
-    display: inline-flex;
-    flex-direction: column;
-    flex-wrap: wrap;
-    margin: 15px;
-    justify-content: left;
-    /* align-items: center; */
-    height: 80px;
-    width: 80px;
-    padding: 15px;
-    border: 1px solid #27ae60;
-    border-radius: 20px;
-    margin-bottom: 40px;
-    text-decoration: none;
+
+header {
+  padding: 16px;
+  font-size: 40px;
+  font-weight: bold;
 }
-.link-box .icon {
-    display: flex;
-    justify-content: center;
+
+/* ====== 區塊：按鈕區容器 ======
+   一個 .buttons 代表一個小節（如：帳號設定 / 開帳設定）
+   小標在上、按鈕列在下
+================================ */
+.buttons {
+  display: flex;
+  flex-direction: column;   /* 小標在上，按鈕群在下 */
+  align-items: flex-start;  /* 靠左 */
+  margin-left: 25px;        /* 與 header 左對齊 */
+  margin-top: 30px;
+  gap: 10px;                /* 小標與按鈕群的間距 */
 }
-.icon img {
-    width: 50px;
-    /* object-fit: contain; */
+
+/* 小標（帳號設定 / 開帳設定） */
+.button-label {
+  font-size: 25px;
+  color: #534e4e;
+  font-weight: 500;
+  line-height: 1.2;
 }
-.link-box .text {
-    text-align: center;
-    font-size: 20px;
-    color: #27ae60;
-    text-shadow: 5px 5px 8px lightgray;
-    margin-top: 5px;
+
+/* 按鈕群：橫向排列 */
+.button-group {
+  display: flex;
+  gap: 20px;                /* 每顆按鈕的間距 */
 }
-.link-box:hover {
-    box-shadow: 0 0 10px #00CACA;
+
+/* ====== 按鈕樣式 ====== */
+.buttons button {
+  display: flex;
+  flex-direction: column;   /* 圖片在上、文字在下 */
+  align-items: center;
+  justify-content: center;
+  width: 150px;
+  height: 150px;
+  gap: 8px;
+  font-size: 16px;
+
+  border: none;
+  border-radius: 5px;
+  background-color: #fff;
+  cursor: pointer;
+}
+
+.buttons button:hover {
+  background-color: #f0f0f0;
+}
+
+/* ====== 響應式（可依需要調整） ====== */
+@media screen and (max-width: 700px) {
+  header { margin-left: 0; }
+  .buttons { margin-left: 16px; }
+  .button-group { flex-wrap: wrap; } /* 窄螢幕自動換行 */
 }

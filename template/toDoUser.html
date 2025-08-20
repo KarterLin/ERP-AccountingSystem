@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./css/toDoUser.css">
+    <link rel="stylesheet" href="./css/sidebar.css">
+    <link rel="stylesheet" href="./css/topnavbar.css">
+
+</head>
+
+<body>
+     <!-- Topbar -->
+    <div id="topbar-container"></div>
+    <!-- Sidebar -->
+    <div id="sidebar-container"></div>
+    <!-- 主要內容區域 -->
+    <div class="page-wrapper">
+        <header class="page-header">
+            <span class="page-title">代辦事項</span>
+            <div class="page-header-right">
+                <span class="info-text">目前登入人員:</span>
+            </div>
+        </header>
+        <div class="main-content">
+            <div class="entry-form-container">
+
+                <table id="entries-table">
+                    <tr>
+                        <th>日期</th>
+                        <th>傳票編號</th>
+                        <th>科目代碼</th>
+                        <th>科目名稱</th>
+                        <th>借方金額</th>
+                        <th>貸方金額</th>
+                        <th>摘要</th>
+                        <th>審核狀態</th>
+                    </tr>
+                    <tr class="journal-row">
+                        <td>2025/08/18</td>
+                        <td>20250818001</td>
+                        <td>A00001</td>
+                        <td>現金</td>
+                        <td>1000</td>
+                        <td>1000</td>
+                        <td>購入XXX</td>
+                        <td>已提交待審核</td>
+                    </tr>
+                    <tr class="journal-row">
+                        <td>2025/08/18</td>
+                        <td>20250818002</td>
+                        <td>A00001</td>
+                        <td>現金</td>
+                        <td>1000</td>
+                        <td>1000</td>
+                        <td>購入XXX</td>
+                        <td>已提交待審核</td>
+                    </tr>
+                    <tr class="journal-row">
+                        <td>2025/08/18</td>
+                        <td>20250818003</td>
+                        <td>A00001</td>
+                        <td>現金</td>
+                        <td>1000</td>
+                        <td>1000</td>
+                        <td>購入XXX</td>
+                        <td>已提交待審核</td>
+                    </tr>
+                    <tr class="journal-row">
+                        <td>2025/08/18</td>
+                        <td>20250818004</td>
+                        <td>A00001</td>
+                        <td>現金</td>
+                        <td>1000</td>
+                        <td>1000</td>
+                        <td>購入XXX</td>
+                        <td>已提交待審核</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+    <script src="js/sidebar.js"></script>
+    <script src="js/topnavbar.js"></script>
+    <script src="js/toDoUser.js"></script>
+</body>
+
+</html>

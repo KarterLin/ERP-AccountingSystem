@@ -1,144 +1,88 @@
-body {
-     margin: 0;
-     font-family: "Lato", sans-serif;
-     background-color: #f5f7fa;
+/* ==== 變數 ==== */
+:root{
+  --sidebar-width: 200px;
+  --bg:#f5f7fa; --text:#0f172a; --muted:#555;
+  --card-bg:#fff; --card-border:#e5e7eb; --accent:#007bff;
+  --radius:12px; --shadow:0 2px 8px rgba(0,0,0,.1);
+  --gap:24px;
+
+  /* KPI 三卡等高：改這個就好 */
+  --kpi-height: 460px;
 }
 
-header {
-     margin-left: 200px;
-     padding: 16px;
-     font-size: 24px;
-     font-weight: bold;
+/* ==== 版面 / 側欄 ==== */
+body{ margin:0; font-family:"Lato",sans-serif; background:var(--bg); color:var(--text); }
+#sidebar-container,.sidebar{ width:var(--sidebar-width); }
+.page-wrapper{ margin-left:var(--sidebar-width); }
+@media (max-width:1024px){ .page-wrapper{ margin-left:0; } }
+
+/* ==== Header ==== */
+header{ padding:16px 24px; font-size:24px; font-weight:700; }
+
+/* ==== 主內容：flex + 等高 ==== */
+.content{
+  padding:24px;
+  display:flex;
+  flex-wrap:wrap;
+  gap:var(--gap);
+  align-items:stretch; /* 同列等高 */
 }
 
-.content {
-     margin-left: 200px;
-     padding: 24px;
-     display: flex;
-     flex-wrap: wrap;
-     gap: 24px;
-     width: calc(100% - 200px);
+/* 區段標題（佔滿一列） */
+.section-title{ flex:1 1 100%; margin:8px 0; font-weight:800; }
+
+/* ==== 卡片通用 ==== */
+.card{
+  flex:1 1 300px; max-width:500px;
+  background:var(--card-bg); border:1px solid var(--card-border);
+  border-radius:var(--radius); box-shadow:var(--shadow);
+  padding:20px; display:flex; flex-direction:column; box-sizing:border-box;
 }
+/* KPI 三卡固定同高度 */
+.income,.expense,.financial-summary{ height:var(--kpi-height); }
 
-.card {
-     flex: 1 1 300px;
-     max-width: 500px;
-     background-color: white;
-     border-radius: 12px;
-     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-     padding: 20px;
-     display: flex;
-     flex-direction: column;
-     align-items: center;
+/* 標題＋金額：左上、同色 */
+.card h4,.card .amount{ color:var(--accent); text-align:left; margin:0; }
+.card h4{ font-size:16px; font-weight:600; }
+.card .amount{ font-size:20px; font-weight:700; margin-top:2px; }
+
+/* 圓餅圖：自適應放大 */
+.circle{
+  width:clamp(180px, 72%, calc(var(--kpi-height) - 160px));
+  aspect-ratio:1/1; border-radius:50%; border:1px solid #ccc; margin:auto;
 }
+.income .circle{ background:#fff; }
+.expense .circle{ background:#9be132; }
 
-.card h4 {
-     margin: 0;
-     font-size: 16px;
-     color: #555;
+/* ==== 摘要卡片：三列平均 ==== */
+.financial-summary{
+  display:flex; flex-direction:column; align-items:stretch; height:var(--kpi-height);
 }
-
-.amount {
-     font-size: 24px;
-     color: #007bff;
-     margin: 8px 0;
+.financial-summary .item{
+  flex:1;                        /* 平分 1/3 高度 */
+  display:flex; flex-direction:column; justify-content:center;
+  border-bottom:1px solid #eee; padding:0 0; margin:0;
 }
+.financial-summary .item:last-child{ border-bottom:none; }
+.financial-summary .item h4{ margin:0 0 4px 0; font-size:14px; color:#333; }
 
-.circle {
-     width: 200px;
-     height: 200px;
-     border-radius: 50%;
-     margin-top: 16px;
+/* ==== 表格 ==== */
+table.t1{
+  flex:1 1 100%; width:100%; max-width:1000px; margin:0 0 24px 0;
+  border-collapse:collapse; background:var(--card-bg);
+  border:1px solid var(--card-border); border-radius:var(--radius);
+  box-shadow:var(--shadow); overflow:hidden; font-family:"Lato",sans-serif;
 }
+.t1 th,.t1 td{ padding:12px 16px; text-align:center; border-bottom:1px solid #ddd; font-size:14px; }
+.t1 thead th{ background:var(--accent); color:#fff; font-weight:700; position:sticky; top:0; z-index:1; }
+.t1 tbody tr:hover{ background:#f1f1f1; }
+/* 欄寬 */
+.t1 th:nth-child(1),.t1 td:nth-child(1){ width:120px; }
+.t1 th:nth-child(2),.t1 td:nth-child(2){ width:100px; }
+.t1 th:nth-child(3),.t1 td:nth-child(3){ width:auto; max-width:300px; text-align:left; white-space:normal; word-break:break-word; }
 
-.income .circle {
-     background-color: white;
-     border: 1px solid #ccc;
-}
-
-.expense .circle {
-     background-color: #9be132;
-}
-
-
-.content,
-header {
-     margin-left: 0;
-}
-
-
-@media screen and (max-width: 400px) {
-
-
-     .content {
-          flex-direction: column;
-          align-items: center;
-     }
-}
-
-.financial-summary {
-     flex: 1;
-     background-color: white;
-     border-radius: 12px;
-     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-     padding: 20px;
-     display: flex;
-     flex-direction: column;
-     align-items: center;
-     /* ✅ 跟其他卡片一致 */
-     justify-content: space-between;
-}
-
-.financial-summary .item {
-     border-bottom: 1px solid #eee;
-     padding-bottom: 10px;
-     width: 100%;
-}
-
-.financial-summary .item:last-child {
-     border-bottom: none;
-}
-
-.financial-summary .item h4 {
-     margin: 0;
-     font-size: 14px;
-     color: #333;
-}
-
-table {
-     border-collapse: collapse;
-     margin: 40px auto;
-     /* ✅ 置中 */
-     width: calc(100% - 240px);
-     /* ✅ 考慮 sidebar 的寬度 */
-     max-width: 1000px;
-     background-color: white;
-     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-     border-radius: 10px;
-     overflow: hidden;
-     font-family: "Lato", sans-serif;
-}
-
-th,
-td {
-     padding: 12px 16px;
-     text-align: center;
-     border-bottom: 1px solid #ddd;
-     font-size: 14px;
-}
-
-th {
-     background-color: #007bff;
-     color: white;
-     font-weight: bold;
-}
-
-tr:hover {
-     background-color: #f1f1f1;
-}
-
-@media (max-width: 768px) {
-     .t1 {
-          margin-left: 15px;
-     }
+/* ==== 手機 ==== */
+@media (max-width:600px){
+  :root{ --kpi-height: 380px; }
+  .content{ flex-direction:column; }
 }

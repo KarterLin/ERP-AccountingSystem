@@ -1,109 +1,87 @@
 <!DOCTYPE html>
 <html lang="zh-Hant">
-<!-- java 連 TrialBalanceDetailController -->
 <head>
-     <meta charset="UTF-8">
-     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-     <title>營運組成分析</title>
-     <link rel="stylesheet" href="./css/index.css">
-     <link rel="stylesheet" href="./css/sidebar.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>營運組成分析</title>
+  <link rel="stylesheet" href="./css/index.css">
+  <link rel="stylesheet" href="./css/sidebar.css"><!-- 你的側欄樣式 -->
+  <link rel="stylesheet" href="./css/topnavbar.css"><!-- 你的頂部導航欄樣式 -->
 </head>
-
 <body>
+  <!-- Topbar -->
+    <div id="topbar-container"></div>
+  <!-- Sidebar -->
+  <div id="sidebar-container"></div>
 
-     <!-- Sidebar -->
-     <div id="sidebar-container"></div>
+  <div class="page-wrapper">
+    <!-- Header -->
+    <h1>營運組成分析</h1>
 
-     <div class="page-wrapper">
-          <!-- Header -->
-          <header>營運組成分析</header>
+    <!-- 主內容 -->
+    <div class="content">
+      <!-- KPI 卡片 -->
+      <div class="card income">
+        <h4>2025年總收入</h4>
+        <div class="amount">$ 0</div>
+        <div class="circle"></div>
+      </div>
 
-          <!-- Content -->
-          <div class="content">
-               <div class="card income">
-                    <h4>2025年總收入</h4>
-                    <div class="amount">$ 0</div>
-                    <div class="circle"></div>
-               </div>
+      <div class="card expense">
+        <h4>2025年總支出</h4>
+        <div class="amount">$ 100</div>
+        <div class="circle"></div>
+      </div>
 
-               <div class="card expense">
-                    <h4>2025年總支出</h4>
-                    <div class="amount">$ 100</div>
-                    <div class="circle"></div>
-               </div>
+      <div class="card financial-summary">
+        <div class="item">
+          <h4>2025年總收入</h4>
+          <div class="amount">$ 0</div>
+        </div>
+        <div class="item">
+          <h4>2025年總支出</h4>
+          <div class="amount">$ 100</div>
+        </div>
+        <div class="item">
+          <h4>2025年總損益</h4>
+          <div class="amount">$ -100</div>
+        </div>
+      </div>
 
-               <div class="card financial-summary">
-                    <div class="item">
-                         <h4>2025年總收入</h4>
-                         <div class="amount">$ 0</div>
-                    </div>
-                    <div class="item">
-                         <h4>2025年總支出</h4>
-                         <div class="amount">$ 100</div>
-                    </div>
-                    <div class="item">
-                         <h4>2025年總損益</h4>
-                         <div class="amount">$ -100</div>
-                    </div>
-               </div>
-          </div>
-          <table class="t1">
-               <tr>
-                    <th>公司代號</th>
-                    <th>公司簡稱</th>
-                    <th>發言日期</th>
-                    <th>發言時間</th>
-                    <th>主旨</th>
-               </tr>
-               <tr>
-                    <td>Alfreds Futterkiste</td>
-                    <td>Maria Anders</td>
-                    <td>Germany</td>
-                    <td>Germany</td>
-                    <td>Germany</td>
-               </tr>
-               <tr>
-                    <td>Centro comercial Moctezuma</td>
-                    <td>Francisco Chang</td>
-                    <td>Mexico</td>
-                    <td>Germany</td>
-                    <td>Germany</td>
-               </tr>
-               <tr>
-                    <td>Alfreds Futterkiste</td>
-                    <td>Maria Anders</td>
-                    <td>Germany</td>
-                    <td>Germany</td>
-                    <td>Germany</td>
-               </tr>
-               <tr>
-                    <td>Alfreds Futterkiste</td>
-                    <td>Maria Anders</td>
-                    <td>Germany</td>
-                    <td>Germany</td>
-                    <td>Germany</td>
-               </tr>
-               <tr>
-                    <td>Alfreds Futterkiste</td>
-                    <td>Maria Anders</td>
-                    <td>Germany</td>
-                    <td>Germany</td>
-                    <td>Germany</td>
-               </tr>
-               <tr>
-                    <td>Alfreds Futterkiste</td>
-                    <td>Maria Anders</td>
-                    <td>Germany</td>
-                    <td>Germany</td>
-                    <td>Germany</td>
-               </tr>
-          </table>
+      <!-- 區段標題（放在 .content 裡，才能和卡片對齊） -->
+      <h1 class="section-title">網站重要訊息</h1>
 
-     </div>
+      <!-- 表格（同樣在 .content 裡，吃 padding 左右界線） -->
+      <table class="t1">
+        <thead>
+          <tr>
+            <th>公告日期</th>
+            <th>公告時間</th>
+            <th>主旨</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>114/08/18</td>
+            <td>14:10:56</td>
+            <td>(更正事實發生日)本公司依公開發行公司資金貸與及 背書保證處理準則第二十二條規定之公告</td>
+          </tr>
+          <tr>
+            <td>114/08/18</td>
+            <td>14:08:09</td>
+            <td>本公司受邀參加證券櫃檯買賣中心舉辦之「114年下半年度興櫃公司業績說明會」。</td>
+          </tr>
+          <tr>
+            <td>114/08/18</td>
+            <td>14:07:21</td>
+            <td>公告本公司113年度股東會年報修訂</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
 
-
-
-     <script src="js/sidebar.js"></script>
+  <script src="js/sidebar.js"></script>
+  <script src="js/topnavbar.js"></script>
 </body>
-
 </html>

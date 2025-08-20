@@ -1,85 +1,94 @@
+/* ---- 共用變數（可依你的實際數值調整） ---- */
+:root {
+  --sidebar-width: 200px;   /* 你的側欄寬度 */
+  --topbar-height: 64px;    /* 你的 topbar 高度（要跟 topbar.css 一致） */
+}
+
+/* ---- Sidebar ---- */
 .sidebar {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 200px;
-    height: 100%;
-    background-color: #f1f1f1;
-    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
-    transform: translateX(0);
-    transition: transform 0.3s ease;
-    z-index: 1000;
+  position: fixed;
+  top: var(--topbar-height);                         /* ✅ 從 topbar 底下開始 */
+  left: 0;
+  width: var(--sidebar-width);
+  height: calc(100vh - var(--topbar-height));        /* ✅ 高度扣掉 topbar */
+  background-color: #f1f1f1;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+  transform: translateX(0);
+  transition: transform 0.3s ease;
+  z-index: 1000;                                     /* 低於 topbar（建議 topbar 用 1200） */
 }
 
 .sidebar.open {
-    transform: translateX(0);
+  transform: translateX(0);
 }
 
 .sidebar a {
-    display: block;
-    color: black;
-    padding: 16px;
-    text-decoration: none;
+  display: block;
+  color: black;
+  padding: 16px;
+  text-decoration: none;
 }
 
 .sidebar a.active {
-    background-color: #04AA6D;
-    color: white;
+  background-color: #04AA6D;
+  color: white;
 }
 
 .sidebar a:hover:not(.active) {
-    background-color: #555;
-    color: white;
+  background-color: #555;
+  color: white;
 }
 
+/* ---- 漢堡按鈕 ---- */
 .hamburger {
-    display: none;
-    position: fixed;
-    top: 10px;
-    left: 10px;
-    font-size: 35px;
-    background: none;
-    border: none;
-    z-index: 1100;
-    cursor: pointer;
-    opacity: 1;
-    pointer-events: auto;
-    transition: opacity 0.2s ease;
+  display: none;
+  position: fixed;
+  top: calc(10px + var(--topbar-height));            /* ✅ 也避開 topbar */
+  left: 10px;
+  font-size: 35px;
+  background: none;
+  border: none;
+  z-index: 1100;
+  cursor: pointer;
+  opacity: 1;
+  pointer-events: auto;
+  transition: opacity 0.2s ease;
 }
 
 .hamburger.hidden {
-    opacity: 0;
-    pointer-events: none;
+  opacity: 0;
+  pointer-events: none;
 }
 
+/* ---- 主內容：避開側欄 & topbar ---- */
 .page-wrapper {
-    margin-left: 225px;
-    transition: margin-left 0.3s ease;
+  margin-left: calc(var(--sidebar-width) + 25px);    /* 你原本用 225px，我保留 +25 的空隙 */
+  margin-top: var(--topbar-height);                  /* ✅ 避開 topbar */
+  transition: margin-left 0.3s ease;
 }
 
+/* ---- 小螢幕 ---- */
 @media (max-width: 768px) {
-    .sidebar {
-        transform: translateX(-200px);
-        /* 隱藏 */
-    }
+  .sidebar {
+    transform: translateX(-200px);                   /* 收起 */
+    top: var(--topbar-height);                       /* 依然從 topbar 下開始 */
+    height: calc(100vh - var(--topbar-height));
+  }
 
-    .sidebar.open {
-        transform: translateX(0);
-        /* 顯示 */
-    }
+  .sidebar.open {
+    transform: translateX(0);                        /* 展開 */
+  }
 
-    .hamburger {
-        display: block;
-        /* 小螢幕才顯示漢堡 */
-    }
+  .hamburger {
+    display: block;                                  /* 小螢幕顯示漢堡 */
+  }
 
-    .page-wrapper {
-        margin-left: 50px;
-    }
+  .page-wrapper {
+    margin-left: 50px;                               /* 收起側欄時，主內容向左一些 */
+    margin-top: var(--topbar-height);
+  }
 
-    .page-wrapper.shift {
-        margin-left: 200px;
-        /* sidebar 展開時內容偏移 */
-    }
+  .page-wrapper.shift {
+    margin-left: var(--sidebar-width);               /* 展開側欄時，主內容再讓出空間 */
+  }
 }
-
