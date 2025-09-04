@@ -417,47 +417,45 @@
   <footer id="footer" class="footer dark-background">
 
     <div class="container footer-top">
-      <div class="row gy-4">
-        <div class="col-lg-4 col-md-6 footer-about">
+      <div class="row gy-4 align-items-start justify-content-between">
+        <!-- 左側：品牌 / 聯絡 / 社群 -->
+        <div class="col-lg-5 col-md-6 footer-about">
           <a href="index.html" class="logo d-flex align-items-center">
             <img src="./assets/img/presentation.png" alt="">
             <span class="sitename">柴務豹表</span>
           </a>
           <div class="footer-contact pt-3">
             <p>Since 2025~</p>
-
           </div>
           <div class="social-links d-flex mt-4">
             <a href="https://github.com/KarterLin/" target="_blank"><i class="bi bi-github"></i></a>
           </div>
         </div>
 
-        <div class="col-lg-4 col-md-6 ms-auto">
-          <div class="footer-links custom-center float-end">
-            <h4>網內連結</h4>
-            <ul class="list-unstyled d-flex flex-wrap gap-3 justify-content-md-end justify-content-start">
-              <li class="d-flex align-items-center">
-                <i class="bi bi-chevron-right me-1"></i> <a href="#hero">首頁</a>
-              </li>
-              <li class="d-flex align-items-center">
-                <i class="bi bi-chevron-right me-1"></i> <a href="#about">產品介紹</a>
-              </li>
-              <li class="d-flex align-items-center">
-                <i class="bi bi-chevron-right me-1"></i> <a href="#services">隊史館</a>
-              </li>
-              <li class="d-flex align-items-center">
-                <i class="bi bi-chevron-right me-1"></i> <a href="#team">Team</a>
-              </li>
-              <li class="d-flex align-items-center">
-                <i class="bi bi-chevron-right me-1"></i> <a href="rules.html">操作手冊</a>
-              </li>
-            </ul>
-
-          </div>
-        </div>
-
+        <!-- 右側：網內連結（變寬、靠左、不再 float / ms-auto） -->
+        <nav class="col-lg-6 col-md-6 footer-links" aria-label="網站內部連結">
+          <h4>網內連結</h4>
+          <ul class="list-unstyled d-flex flex-wrap gap-3">
+            <li class="d-flex align-items-center">
+              <i class="bi bi-chevron-right me-1"></i> <a href="#hero">首頁</a>
+            </li>
+            <li class="d-flex align-items-center">
+              <i class="bi bi-chevron-right me-1"></i> <a href="#about">產品介紹</a>
+            </li>
+            <li class="d-flex align-items-center">
+              <i class="bi bi-chevron-right me-1"></i> <a href="#services">隊史館</a>
+            </li>
+            <li class="d-flex align-items-center">
+              <i class="bi bi-chevron-right me-1"></i> <a href="#team">Team</a>
+            </li>
+            <li class="d-flex align-items-center">
+              <i class="bi bi-chevron-right me-1"></i> <a href="rules.html">操作手冊</a>
+            </li>
+          </ul>
+        </nav>
       </div>
     </div>
+
 
 
 
