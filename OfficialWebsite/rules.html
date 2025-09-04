@@ -107,71 +107,213 @@
 
                     <div class="tab-pane fade active show" id="features-tab-1">
                         <div class="row">
-                            <div class="col-lg-7 order-2 order-lg-1 mt-3 mt-lg-0">
-                                <h3>DiviNe車隊隊規。</h3>
+                            <div class="col-lg-5 order-2 order-lg-1 mt-3 mt-lg-0">
+                                <h3>會計科目-科目管理</h3>
                                 <p class="fst-italic">
-                                    適用於端遊以及Rush Plus。
+                                    自定義建立及修改會計科目
                                 </p>
                                 <ul>
                                     <li>
-                                        <spab>1.考生首重人品，且互動性高，平時不管在遊戲或群組皆不能潛水，給予警告後若未改善將剔除。</spab>
+                                        <spab>已預先建立部分會計科目，使用者依操作需求可自行新增及刪除科目。</spab>
                                     </li>
                                     <li>
-                                        <spab>2.嚴禁任何分化團結，背叛車隊之情事發生，一個團隊最忌諱分化與背叛，更不可將個人不當情緒帶入車隊中造成團隊動盪，倘若對車隊、和任何人造成傷害者汰除。
+                                        <spab>注意事項: <br>
+                                            <br>1.新增科目時，科目編號不可重複，且不可修改系統預設的科目編號。
+                                            <br>2.刪除科目時，若該科目已有交易紀錄，則無法刪除。
                                         </spab>
                                     </li>
                                     <li>
-                                        <spab>3.Line群組和 DISCORD 7天未發言者且7天未上DC者直接剔除（若有特殊情況不在此限，如：工作、學業等原因）</spab>
-                                    </li>
-                                    <li>
-                                        <spab>4.車隊中允許男女正常交往，但不可有任何因男女私情影響整個車隊運作之情事發生，於公於私都要分的清楚。</spab>
-                                    </li>
-                                    <li>
-                                        <spab>
-                                            5.車隊中每一個人在內在外的行為舉止都代表著DN，無論在遊戲中、社群平台上，嚴禁任何與他人爭執辱罵或言語挑釁、騷擾等不當言行發生，若出現個人無法處理的狀況，立即向車隊回報，車隊會給予最適當的處置，並以保護自身隊員為最大原則。
-                                        </spab>
-                                    </li>
-                                    <li>
-                                        <spab>6.首重品性，有好的品德才有好的車技，品性惡劣及犯錯不改者汰除。</spab>
-                                    </li>
-                                    <li>
-                                        <spab>7.現實生活過於忙碌或有不得已之原因需請假或是離開車隊，都必須向幹部報告，不得有任意離開把車隊當廚房進出之情事發生，否則汰除永不錄用。</spab>
-                                    </li>
-                                    <li>
-                                        <spab>8.車隊幹部皆犧牲自己時間及心力為車隊及隊員推動隊務，所有人需對幹部保持尊重，不得有逾越分際之情事發生。</spab>
-                                    </li>
-                                    <li>
-                                        <spab>9.隊員若有任何不平冤屈及困難請逐級向其他幹部申訴，不得私自至各大平台開副本影響車隊隊譽，以維護全體隊員既有之榮耀與權益。</spab>
-                                    </li>
-                                    <li>
-                                        <spab>10.本車隊不接受雙重隊籍。</spab>
-                                    </li>
-                                    <li>
-                                        <spab>11.以上隊規車隊長保有最後修改權。</spab>
-                                    </li>
-                                    <li>
-                                        <spab>12.入隊後將成為觀察生一週，觀察內容為隊內互動程度、且品行良好，以上皆達成方能成為競速/道具隊員。</spab>
-                                    </li>
-                                    <li>
-                                        <spab>13.入隊申請煩請於本官方網站提出申請。</spab>
-                                    </li>
+                                        <spab>會計父科目與報表對應請詳下:<hr>
+
+                                            <div class="accordion" id="subjectAccordion">
+
+                                                <!-- 資產 -->
+                                                <div class="accordion-item">
+                                                    <h2 class="accordion-header" id="headingAsset">
+                                                        <button class="accordion-button collapsed" type="button"
+                                                            data-bs-toggle="collapse" data-bs-target="#collapseAsset"
+                                                            aria-expanded="false">
+                                                            資產
+                                                        </button>
+                                                    </h2>
+                                                    <div id="collapseAsset" class="accordion-collapse collapse"
+                                                        data-bs-parent="#subjectAccordion">
+                                                        <div class="accordion-body">
+
+                                                            <!-- 流動資產 -->
+                                                            <h6>流動資產</h6>
+                                                            <ul class="list-unstyled ms-3">
+                                                                <li><strong>1100</strong> - 現金及約當現金</li>
+                                                                <li><strong>1132</strong> - 按攤銷後成本衡量之金融資產-流動</li>
+                                                                <li><strong>1150</strong> - 應收票據</li>
+                                                                <li><strong>1170</strong> - 應收帳款</li>
+                                                                <li><strong>1180</strong> - 應收帳款-關係人</li>
+                                                                <li><strong>1210</strong> - 其他應收款-關係人淨額</li>
+                                                                <li><strong>1220</strong> - 本期所得稅資產</li>
+                                                                <li><strong>1300</strong> - 存貨</li>
+                                                                <li><strong>1410</strong> - 預付款項</li>
+                                                            </ul>
+
+                                                            <!-- 非流動資產 -->
+                                                            <h6 class="mt-3">非流動資產</h6>
+                                                            <ul class="list-unstyled ms-3">
+                                                                <li><strong>1600</strong> - 不動產、廠房及設備</li>
+                                                                <li><strong>1780</strong> - 無形資產</li>
+                                                                <li><strong>1840</strong> - 遞延所得稅資產</li>
+                                                                <li><strong>1900</strong> - 其他非流動資產</li>
+                                                            </ul>
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <!-- 負債 -->
+                                                <div class="accordion-item">
+                                                    <h2 class="accordion-header" id="headingLiability">
+                                                        <button class="accordion-button collapsed" type="button"
+                                                            data-bs-toggle="collapse"
+                                                            data-bs-target="#collapseLiability">
+                                                            負債
+                                                        </button>
+                                                    </h2>
+                                                    <div id="collapseLiability" class="accordion-collapse collapse"
+                                                        data-bs-parent="#subjectAccordion">
+                                                        <div class="accordion-body">
+
+                                                            <!-- 流動負債 -->
+                                                            <h6>流動負債</h6>
+                                                            <ul class="list-unstyled ms-3">
+                                                                <li><strong>2100</strong> - 銀行借款</li>
+                                                                <li><strong>2170</strong> - 應付帳款</li>
+                                                                <li><strong>2200</strong> - 其他應付款</li>
+                                                                <li><strong>2220</strong> - 其他應付款-關係人</li>
+                                                                <li><strong>2300</strong> - 其他流動負債</li>
+                                                            </ul>
+
+                                                            <!-- 非流動負債 -->
+                                                            <h6 class="mt-3">非流動負債</h6>
+                                                            <ul class="list-unstyled ms-3">
+                                                                <li><strong>2540</strong> - 長期借款</li>
+                                                                <li><strong>2570</strong> - 遞延所得稅負債</li>
+                                                                <li><strong>2600</strong> - 其他非流動負債</li>
+                                                            </ul>
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <!-- 股東權益 -->
+                                                <div class="accordion-item">
+                                                    <h2 class="accordion-header" id="headingEquity">
+                                                        <button class="accordion-button collapsed" type="button"
+                                                            data-bs-toggle="collapse" data-bs-target="#collapseEquity">
+                                                            股東權益
+                                                        </button>
+                                                    </h2>
+                                                    <div id="collapseEquity" class="accordion-collapse collapse"
+                                                        data-bs-parent="#subjectAccordion">
+                                                        <div class="accordion-body">
+
+                                                            <h6>股本</h6>
+                                                            <ul class="list-unstyled ms-3">
+                                                                <li><strong>3100</strong> - 股本</li>
+                                                            </ul>
+
+                                                            <h6 class="mt-3">保留盈餘</h6>
+                                                            <ul class="list-unstyled ms-3">
+                                                                <li><strong>3300</strong> - 保留盈餘及累積盈虧</li>
+                                                                <li><strong>3310</strong> - 法定盈餘公積</li>
+                                                                <li><strong>3600</strong> - 本期盈餘及盈虧</li>
+                                                            </ul>
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <!-- 損益 -->
+                                                <div class="accordion-item">
+                                                    <h2 class="accordion-header" id="headingPL">
+                                                        <button class="accordion-button collapsed" type="button"
+                                                            data-bs-toggle="collapse" data-bs-target="#collapsePL">
+                                                            損益
+                                                        </button>
+                                                    </h2>
+                                                    <div id="collapsePL" class="accordion-collapse collapse"
+                                                        data-bs-parent="#subjectAccordion">
+                                                        <div class="accordion-body">
+
+                                                            <h6>營業收入</h6>
+                                                            <ul class="list-unstyled ms-3">
+                                                                <li><strong>4000</strong> - 營業收入</li>
+                                                            </ul>
+
+                                                            <h6 class="mt-3">營業成本</h6>
+                                                            <ul class="list-unstyled ms-3">
+                                                                <li><strong>5000</strong> - 營業成本</li>
+                                                            </ul>
+
+                                                            <h6 class="mt-3">營業費用</h6>
+                                                            <ul class="list-unstyled ms-3">
+                                                                <li><strong>6100</strong> - 推銷費用</li>
+                                                                <li><strong>6200</strong> - 管理費用</li>
+                                                                <li><strong>6300</strong> - 研究發展費用</li>
+                                                                <li><strong>7950</strong> - 所得稅費用</li>
+                                                            </ul>
+
+                                                            <h6 class="mt-3">營業外收入及支出</h6>
+                                                            <ul class="list-unstyled ms-3">
+                                                                <li><strong>7100</strong> - 其他收入</li>
+                                                                <li><strong>7230</strong> - 其他利益及損失</li>
+                                                                <li><strong>7050</strong> - 財務成本</li>
+                                                            </ul>
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+
+
 
                                 </ul>
 
                             </div>
-                            <div class="col-lg-5 order-1 order-lg-2 text-center">
-                                <img src="assets/img/logo4.jpg" alt="" class="img-fluid">
+                            <div class="col-lg-7 order-1 order-lg-2 text-center">
+                                <img src="./img/rules/subjectRule01.png" alt="" class="img-fluid">
                             </div>
                         </div>
                     </div><!-- End Tab Content Item -->
 
                     <div class="tab-pane fade" id="features-tab-2">
                         <div class="row">
-                            <div class="col-lg-12 order-2 order-lg-1 mt-3 mt-lg-0">
-                                <h3>跑跑卡丁車端遊於2024年8月1日結束營運，故DN端遊組停止招生。</h3>
+                            <div class="col-lg-6 order-2 order-lg-1 mt-3 mt-lg-0">
+                                <h3>Rush Plus 競速組標準（男生一線以上、女生二線以上）</h3>
 
+                                <ul>
+                                    <li><i class="bi bi-exclamation-circle-fill"></i>
+                                        <spab>考生首重人品，且互動性高，平時不管在遊戲或群組皆不能潛水，給予警告後若未改善將剔除。</spab>
+                                    </li>
+                                    <li><i class="bi bi-exclamation-circle-fill"></i>
+                                        <span>考生須開麥，考試期間可以多與考官互動，有互動者，考官將會視情況予以機會。</span>
+                                    </li>
+                                    <li><span>競速：與考官排位10場，由考官判斷是否為一線（男）or二線（女）以上。</span></li>
+                                    <li><span>若實戰考核表現不佳經考官討論後未通過者，可於三天後再次報考，若再未通過可於一週後再次報考，最多可重考三次（3天、一週、兩週後）。</span>
+                                    </li>
+                                    <li><span>考試全程需使用語音辨識是否本人。</span></li>
+                                    <li><span>入隊後隊員須請強制更名為DiviNeXXX。</span></li>
+
+                                </ul>
+                                <br><br><br>
+                                <p class="fst-italic">
+                                    ▪️每日台服交流<br>
+                                    ▪️培養一線玩家訓練<br>
+                                    ▪️舉辦北中南東隊聚維繫大家感情<br>
+                                    ▪️不定時舉辦隊內活動
+                                </p>
                             </div>
-
+                            <div class="col-lg-6 order-1 order-lg-2 text-center">
+                                <img src="assets/img/MOB race/m1.jpg" alt="" class="img-fluid">
+                            </div>
                         </div>
                     </div><!-- End Tab Content Item -->
 
